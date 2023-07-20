@@ -4,22 +4,27 @@
 
 @font-face {
   font-family: font-regular;
-  src: url("./fonts/Roboto-Regular.ttf");
+  src: url("./fonts/Lato-Regular.ttf");
 }
 
 @font-face {
   font-family: font-bold;
-  src: url("./fonts/Roboto-Bold.ttf");
+  src: url("./fonts/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: font-bold-italic;
+  src: url("./fonts/Lato-BlackItalic.ttf");
 }
 
 @font-face {
   font-family: font-light;
-  src: url("./fonts/Roboto-Light.ttf");
+  src: url("./fonts/Lato-Light.ttf");
 }
 
 @font-face {
   font-family: font-semibold;
-  src: url("./fonts/Roboto-Medium.ttf");
+  src: url("./fonts/Lato-Bold.ttf");
 }
 
 * {

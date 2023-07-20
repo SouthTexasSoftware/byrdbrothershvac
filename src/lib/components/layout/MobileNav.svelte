@@ -74,13 +74,13 @@
       on:introend={() => (mobileNavShowing = true)}
       bind:this={mobileMenuElement}
     >
+      <a href="/services" class="mobile-nav-link">Services</a>
+      <a href="/about" class="mobile-nav-link">About Us</a>
       <a href="/services/air_conditioning" class="mobile-nav-link"
         >Air Conditioning</a
       >
-      <a href="/services/heating" class="mobile-nav-link">Heating</a>
       <a href="/services/insulation" class="mobile-nav-link">Insulation</a>
-      <a href="/about" class="mobile-nav-link">About Us</a>
-      <a href="/contact" class="mobile-nav-link">Contact Now</a>
+      <a href="/contact" class="mobile-nav-link">Contact Us</a>
     </div>
   {/if}
 </nav>
@@ -107,14 +107,5 @@
     box-shadow: 0px 0px 2px grey;
     z-index: 105;
     background-color: hsl(var(--b1));
-  }
-
-  @media (max-width: 500px) {
-  }
-
-  @media (min-width: 500px) and (max-width: 1000px) {
-  }
-
-  @media (min-width: 1000px) {
   }
 </style>

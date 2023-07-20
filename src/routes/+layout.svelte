@@ -16,5 +16,12 @@
     position: relative;
     flex-direction: column;
     min-height: 100vh;
+    max-width: 1900px;
+  }
+  /* UltraWide */
+  @media only screen and (min-width: 1900px) {
+    #page-content {
+      margin: 0 auto;
+    }
   }
 </style>

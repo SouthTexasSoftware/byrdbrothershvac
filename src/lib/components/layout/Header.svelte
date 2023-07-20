@@ -1,22 +1,28 @@
 <script lang="ts">
   import Logo from "$lib/photos/logo.png";
+  import { onMount } from "svelte";
   import DesktopNav from "./DesktopNav.svelte";
   import MobileNav from "./MobileNav.svelte";
 
   let screenWidth: number;
+  let mounted = false;
+
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
 <header>
-  <!-- flex -->
   <a href="/" id="logo-and-link-home">
     <img src={Logo} alt="logo" id="navbar-logo" />
   </a>
-  <!-- check screenwidth and show mobile or desktop navigation -->
-  {#if screenWidth < 800}
-    <MobileNav />
-  {:else}
-    <DesktopNav />
+  {#if mounted}
+    {#if screenWidth < 800}
+      <MobileNav />
+    {:else}
+      <DesktopNav />
+    {/if}
   {/if}
 </header>
 
@@ -24,14 +30,21 @@
   header {
     display: flex;
     justify-content: space-between;
-    max-width: 1400px;
+    max-width: 1900px;
     margin: 0 10px;
   }
   #navbar-logo {
     height: 80px;
   }
-  /* Mobile styling */
-  @media (max-width: 500px) {
+  /* UltraWide */
+  @media only screen and (min-width: 1900px) {
+    header {
+      margin: 0 auto;
+    }
+  }
+
+  /* Mobile  */
+  @media only screen and (max-width: 600px) {
     #navbar-logo {
       height: 50px;
     }
