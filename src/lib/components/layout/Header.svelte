@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Logo from "$lib/photos/logo.png";
+  import LogoComponent from "$lib/logos/LogoComponent.svelte";
   import { onMount } from "svelte";
   import DesktopNav from "./DesktopNav.svelte";
   import MobileNav from "./MobileNav.svelte";
@@ -14,28 +14,31 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <header>
-  <a href="/" id="logo-and-link-home">
-    <img src={Logo} alt="logo" id="navbar-logo" />
-  </a>
   {#if mounted}
-    {#if screenWidth < 800}
-      <MobileNav />
+    {#if screenWidth < 940}
+      <a href="/" id="logo-and-link-home" aria-label='Homepage Link'>
+        <LogoComponent height={45} />
+      </a>
+      <MobileNav height={45} />
     {:else}
+      <a href="/" id="logo-and-link-home" aria-label='Homepage Link'>
+        <LogoComponent height={60} />
+      </a>
       <DesktopNav />
     {/if}
   {/if}
 </header>
 
+
 <style>
   header {
     display: flex;
     justify-content: space-between;
-    max-width: 1900px;
-    margin: 0 10px;
+    max-width: 1920px;
+    padding: 0 10px;
+    border-bottom: 4px solid #ff7817;
   }
-  #navbar-logo {
-    height: 80px;
-  }
+
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
     header {
@@ -45,8 +48,8 @@
 
   /* Mobile  */
   @media only screen and (max-width: 600px) {
-    #navbar-logo {
-      height: 50px;
+    header {
+      border-bottom: 3px solid #ff7817;
     }
   }
 </style>

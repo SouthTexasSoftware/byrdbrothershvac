@@ -1,7 +1,10 @@
 <script lang="ts">
+  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
+  import PhotoSingleBlock from "$lib/components/photos/PhotoSingleBlock.svelte";
   import bgPhoto from "$lib/photos/byrdbrothersbg.jpg";
   import { onMount } from "svelte";
   import { fly, slide } from "svelte/transition";
+  import HomepageContent from "./HomepageContent.svelte";
 
   let pageMounted = false;
   let screenWidth = 0;
@@ -25,22 +28,25 @@
     </h2>
 
     <div class="cta-container">
-      <p>
-        Specializing in AC installation, repair, maintenance, and insulation
-        installation.
-      </p>
+      <h4>
+        <!-- Specializing in AC Installation, AC Maintenance, AC Repair, and Insulation Installation -->
+        <!-- AC INSTALLATION, AC MAINTENANCE, AC REPAIR, AND INSULATION INSTALLATION -->
+        <!-- in:fly={{ y: 50, duration: 1000, delay: 1500 }} -->
+      </h4>
       <div class="button-container">
-        <a href="/services" in:fly={{ y: 50, duration: 1000, delay: 1500 }}
+        <a href="/services" 
           >Services</a
         >
         <a
           href="tel:800-123-4567"
-          in:fly={{ y: 50, duration: 1000, delay: 2000 }}>Call Now</a
+          >Call Now</a
         >
       </div>
     </div>
   {/if}
 </div>
+
+<HomepageContent {screenWidth}/>
 
 <style>
   #background-photo {
@@ -49,9 +55,9 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: hsl(var(--n));
+    background-color: var(--neutral);
     position: relative;
-    max-width: 1900px;
+    max-width: 1920px;
     color: hsl(var(--b1));
   }
   .catchphrase {
@@ -59,23 +65,26 @@
     font-size: 44px;
     font-family: font-bold-italic;
     margin-top: 25px;
+    color: white;
   }
   .emphasis {
     font-family: font-bold-italic;
-    color: hsl(var(--p));
+    color: var(--primary);
     filter: brightness(0.95);
+    font-size: 44px;
   }
   .cta-container {
     position: absolute;
     bottom: 50px;
-    right: 30vw;
+    right: 20vw;
     display: flex;
     flex-direction: column;
-    width: 340px;
+    width: 400px;
   }
   .cta-container * {
     font-family: font-light;
-    font-size: 20px;
+    font-size: 24px;
+    color: white;
   }
   .button-container {
     margin-top: 10px;
@@ -85,11 +94,11 @@
   }
   .cta-container a {
     padding: 5px 40px;
-    border: 1px solid hsl(var(--b1));
+    border: 1px solid var(--bg);
     transition: all 0.5s;
   }
   .cta-container a:hover {
-    border: 1px solid hsl(var(--p));
+    border: 1px solid var(--primary);
   }
 
   /* UltraWide */
@@ -102,13 +111,18 @@
     }
     .catchphrase {
       width: 100%;
-      font-size: 2em;
+      font-size: 8vw;
+    }
+    .emphasis {
+      font-size: inherit;
     }
     .cta-container {
       position: absolute;
-      width: 340px;
-      right: 10%;
+      width: 70vw;
+      right: 5vw;
       bottom: 40px;
+      text-align: right;
+      min-width: 275px;
     }
     .cta-container a {
       padding: 5px 25px;

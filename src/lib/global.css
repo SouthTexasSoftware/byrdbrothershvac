@@ -27,7 +27,71 @@
   src: url("./fonts/Lato-Bold.ttf");
 }
 
+@font-face {
+  font-family: font-italic;
+  src: url("./fonts/Lato-Italic.ttf");
+}
+
+/* GLOBAL VARIABLES */
+
+:root {
+
+  --primary:#fe7615;
+  --secondary: #1c79ea;
+  --neutral: #272636;
+  --bg: #fff;
+  --text: #313131;
+
+  --banner-primary: #ff78189b;
+  --primary-dark: #cf5e0e;
+
+  --light-text: #8c8c8c;
+  --input-border: #eaeaea;
+
+  --heating: #D22B2B;
+  --cooling: #2D53DA;
+}
+
 * {
   font-family: font-regular;
   box-sizing: border-box;
+  font-size: 18px;
+  color: var(--text);
+}
+
+
+/* DEFAULT STYLING */
+.content-width {
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.semibold {
+  font-family: font-semibold;
+}
+.primary {
+  font-family: font-semibold;
+  color: var(--primary);
+}
+.warm {
+  font-family: font-semibold;
+  color: var(--heating);
+}
+.cool {
+  font-family: font-semibold;
+  color: var(--cooling);
+}
+/* Tablet */
+@media only screen and (max-width: 1200px) and (min-width: 600px) {
+  .content-width {
+    width: 95vw;
+    margin: 20px 2.5vw;
+  }
+}
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  .content-width {
+    width: 90vw;
+    margin: 20px 5vw;
+  }
 }
