@@ -10,8 +10,14 @@
 
   let mobile = false;
   let desktop = false;
+  let serviceAreaMapFilename = 'service-area-map.png';
 
-  let showCitiesList = false;
+  const getAssetSrc = (name: string) => {
+    const path = `/src/lib/photos/${name}`;
+    const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
+    const mod = modules[path] as { default: string };
+    return mod.default;
+};
 
   $: if (screenWidth < 600) {
     mobile = true;
@@ -140,7 +146,7 @@
     <div />
   </SectionContainer>
   <!-- TODO: Change this to use the GOOGLE MAPS API -->
-  <img class='service-area-map' src="src/lib/photos/service-area-map.png" alt="Service Area Map">
+  <img class='service-area-map' src={getAssetSrc(serviceAreaMapFilename)} alt="Service Area Map">
 
 
 
