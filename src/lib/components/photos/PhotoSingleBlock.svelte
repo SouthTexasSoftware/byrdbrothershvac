@@ -1,19 +1,25 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
 
-  export let photoFilename: String;
+  export let photoFilename: string;
   export let backgroundSide: string;
   export let photoCaption: string;
 
-  let photoFilepath = $page.url.origin + "/src/lib/photos/" + photoFilename;
-
+  const getAssetSrc = (name: string) => {
+    const path = `/src/lib/photos/${name}`;
+    const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
+    const mod = modules[path] as { default: string };
+    return mod.default;
+};
 </script>
 
 <div class="photo-container left right">
   <picture>
-    <img src={photoFilepath} alt="Byrd Brothers HVAC" />
+
+    <img src={getAssetSrc(photoFilename)} alt="Byrd Brothers HVAC" />
     {#if backgroundSide != "none"}
-    <div class="block-photo-background {backgroundSide}" />
+      <div class="block-photo-background {backgroundSide}" />
     {/if}
     <p class="caption {backgroundSide}">{photoCaption}</p>
   </picture>

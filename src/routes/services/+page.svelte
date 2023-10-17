@@ -9,6 +9,13 @@
     displayCards = true;
   });
 
+  const getAssetSrc = (name: string) => {
+    const path = `/src/lib/photos/${name}`;
+    const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
+    const mod = modules[path] as { default: string };
+    return mod.default;
+};
+
 </script>
 
 <svelte:head>
@@ -26,7 +33,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500}}>
     <a href="/services/air_conditioning">
       <img
-        src="src/lib/photos/ruud-outdoor-unit.png"
+        src={getAssetSrc("ruud-outdoor-unit.png")}
         alt="Air Conditioning Services"
       />
     </a>
@@ -52,7 +59,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500, delay: 100}}>
     <a href="/services/heating">
       <img
-        src="src/lib/photos/ruud-vertical-furnace.png"
+        src={getAssetSrc("ruud-vertical-furnace.png")}
         alt="Heating Services"
       />
     </a>
@@ -71,7 +78,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500 , delay: 200}}>
     <a href="/services/insulation">
       <img
-        src="src/lib/photos/ducting-insulation-stock.webp"
+        src={getAssetSrc("ducting-insulation-stock.webp")}
         alt="Insulation Services"
       />
     </a>
@@ -90,7 +97,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500 , delay: 300}}>
     <a href="/services/air_quality">
       <img
-        src="src/lib/photos/ruud-air-filter-cartridge.png"
+        src={getAssetSrc("ruud-air-filter-cartridge.png")}
         alt="Air Quality Services"
       />
     </a>

@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { page } from "$app/stores";
 
   let date = new Date();
   let copyrightYear = date.getFullYear();
+  let photoFilename = 'sts-logo-no-icon.png';
 
-  let photoFilepath = $page.url.origin + "/src/lib/photos/sts-logo-no-icon.png";
+  const getAssetSrc = (name: string) => {
+    const path = `/src/lib/photos/${name}`;
+    const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
+    const mod = modules[path] as { default: string };
+    return mod.default;
+};
+
 </script>
 
 <footer>
@@ -49,7 +55,7 @@
       </div>
       <a href="https://www.southtexas.software/">
         <img
-          src={photoFilepath}
+          src={getAssetSrc(photoFilename)}
           alt="South Texas Software, LLC"
           class="footer-picture"
         /></a
