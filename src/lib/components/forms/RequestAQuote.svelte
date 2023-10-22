@@ -89,15 +89,15 @@
 
     <input
       name="phone"
-      type="text"
+      type="tel"
       placeholder="Phone*"
-      autocomplete="tel"
+      autocomplete="tel-national"
       required
     />
 
     <input
       name="email"
-      type="text"
+      type="email"
       placeholder="Email*"
       autocomplete="email"
       required
@@ -107,7 +107,7 @@
       name="location"
       type="text"
       placeholder="Location*"
-      autocomplete="on"
+      autocomplete="street-address"
       required
     />
 
