@@ -1,17 +1,25 @@
 <script lang="ts">
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
+  import Heating from "./Heating.svelte";
+
+  let screenWidth: number;
+
+$: mobile = screenWidth > 600 ? false : true;
 
 </script>
+
+
+<svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>Our Services | Byrd Brothers HVAC</title>
+  <title>Heating Services in Brazoria County | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="We offer installation, repair, and maintenance of air conditioning, heating, and insulation for homes and businesses."
+    content="Heating system installation, repairs, maintenance, and everything in between. We can help you stay warm when the cold fronts hit."
   />
 </svelte:head>
 <ViewTitleBar title="Heating"></ViewTitleBar>
 
-
+<Heating {mobile} />
 
 <style>
 

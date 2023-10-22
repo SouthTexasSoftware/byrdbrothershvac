@@ -2,6 +2,11 @@
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
   import { onMount } from "svelte";
   import ACInstallation from "./ACInstallation.svelte";
+  import AcRepair from "./ACRepair.svelte";
+  import AcMaintenance from "./ACMaintenance.svelte";
+  import EmergencyHvac from "./EmergencyHVAC.svelte";
+  import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
+  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
 
   let screenWidth: number;
 
@@ -30,7 +35,7 @@
     From new air conditioning installation and whole system replacement, to routine
     maintenance and emergency repairs, we are your local experts in keeping your
     home cool and comfortable. We pride ourselves in being a family-owned business
-    that treats our customers like one of our own.
+    that treats our customers like one of our own. <a href="/contact/quote_form">Request a quote!</a>
     <br /><br />
     Scroll down or click below to learn more about our AC services:
   </p>
@@ -44,6 +49,18 @@
 <div class="divider-bar content-width" />
 
 <ACInstallation {mobile}/>
+<div class="divider-bar content-width" />
+<AcRepair {mobile} />
+<div class="divider-bar content-width" />
+<AcMaintenance {mobile} />
+<div class="divider-bar content-width" />
+<EmergencyHvac {mobile} />
+
+<div class="article-content content-width">
+    <SectionContainer bannerContent="GET A QUOTE!" bannerScreenSide="left" bannerDescription="Free estimates for any size job.">
+      <RequestAQuote />
+    </SectionContainer>
+</div>
 
 <style>
   .main-page-container {
@@ -76,6 +93,9 @@
   @media only screen and (max-width: 600px) {
     .main-page-container {
     padding: 0;
+  }
+  .divider-bar {
+    width: 90vw;
   }
   }
 </style>

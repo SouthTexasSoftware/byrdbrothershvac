@@ -7,7 +7,15 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
-
+<svelte:head>
+  <title
+    >Air Conditioning Installation in Brazoria County | Byrd Brothers HVAC</title
+  >
+  <meta
+    name="description"
+    content="Full replacement or new install, find out all the reasons starting from NEW is a cool way to go."
+  />
+</svelte:head>
 <AcInstallation {mobile} />
 
 <style>

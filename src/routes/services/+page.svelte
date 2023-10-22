@@ -1,4 +1,6 @@
 <script lang="ts">
+  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
+  import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
   import { onMount } from "svelte";
   import { fly, slide } from "svelte/transition";
@@ -59,7 +61,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500, delay: 100}}>
     <a href="/services/heating">
       <img
-        src={getAssetSrc("ruud-vertical-furnace.png")}
+        src={getAssetSrc("ruud-furnace.png")}
         alt="Heating Services"
       />
     </a>
@@ -78,7 +80,7 @@
   <div class="service-card" in:fly={{x:50, duration: 500 , delay: 200}}>
     <a href="/services/insulation">
       <img
-        src={getAssetSrc("ducting-insulation-stock.webp")}
+        src={getAssetSrc("ducting-insulation-stock.png")}
         alt="Insulation Services"
       />
     </a>
@@ -118,6 +120,12 @@
   {/if}
 </div>
 
+<div class="article-content content-width">
+  <SectionContainer bannerContent="GET A QUOTE!" bannerScreenSide="left" bannerDescription="Free estimates for any size job.">
+    <RequestAQuote />
+  </SectionContainer>
+</div>
+
 <style>
   .card-container {
     display: flex;
@@ -141,6 +149,7 @@
   a img {
     min-width: 200px;
     height: 200px;
+    border-radius: 15px;
   }
   .service-card a {
     margin: auto 0;
@@ -190,6 +199,10 @@
     }
     .card-description {
       text-align: justify;
+    }
+    a img {
+      height: auto;
+      max-width: 73vw;
     }
   }
 </style>
