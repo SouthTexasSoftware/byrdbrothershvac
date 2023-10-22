@@ -282,13 +282,13 @@
             >
               PARTNERS
             </a>
-            <a
+            <!-- <a
               href="/about/financing"
               class="mobile-nav-link sub"
               class:viewing={$page.url.pathname.includes("/financing")}
             >
               FINANCING
-            </a>
+            </a> -->
             <div class="sub-bar" />
           </div>
         {/if}
@@ -357,7 +357,7 @@
         {/if}
       </div>
 
-      <div class="link-container">
+      <!-- <div class="link-container">
         <div class="main-link">
           <a
             href="/services/insulation"
@@ -394,7 +394,7 @@
             <div class="sub-bar" />
           </div>
         {/if}
-      </div>
+      </div> -->
 
       <div class="link-container">
         <div class="main-link">

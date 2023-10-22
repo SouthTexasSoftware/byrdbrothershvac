@@ -31,17 +31,11 @@
     }
   });
 
-  //TODO: add in google reviews to main landing page
-
-  //TODO: still need to build out the FOOOTER
-
   //TODO: add hook into analytics connection to utilize $velte app navigation to log 'screen_view' events..
-
-  //TODO: Add hover effect to desktop nav links - with orange line like logo popping up
 
   //TODO: add the banner slide in effect to be queued on page position
 
-  //TODO: setup a template for the svelte:HEAD for each new page - write the seo meta descriptions, etc
+  //TODO: complete Form submission setup/link to firestore and email api..
 
 
 </script>

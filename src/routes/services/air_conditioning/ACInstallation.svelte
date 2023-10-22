@@ -1,4 +1,5 @@
 <script lang="ts">
+  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
   import ArticleTitleBar from "$lib/components/layout/ArticleTitleBar.svelte";
   import SectionBreak from "$lib/components/layout/SectionBreak.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
@@ -11,7 +12,7 @@
   title="AIR CONDITIONING INSTALLATION"
   machineDate="2023-10-16"
   date="10/16/2023"
-  articleOwner="Brady Byrd"
+  articleOwner="Brady Byrd, Owner"
 />
 <div class="article-content content-width">
   <SectionContainer bannerContent="A NEW TYPE OF COOL" bannerScreenSide="left">
@@ -176,6 +177,9 @@
     specific needs and budget. We are here to help you make an informed decision!
     <a href="tel:+19794808444">Call us today</a>.
   </p>
+  <SectionContainer bannerContent="GET A QUOTE!" bannerScreenSide="left" bannerDescription="Free estimates for any size job.">
+    <RequestAQuote />
+  </SectionContainer>
 </div>
 
 <style>
@@ -185,11 +189,13 @@
     flex-wrap: wrap;
   }
   .list-topic {
-    font-size: 18px;
+    font-size: 20px;
   }
   li {
     margin-bottom: 10px;
     position: relative;
+    font-family: font-regular;
+    font-size: 20px;
   }
   li::before {
     content: "";
@@ -209,9 +215,14 @@
   }
   .final-paragraph {
     padding: 0 200px;
+    margin-bottom: 50px;
+    font-family: font-regular;
+    font-size: 20px;
   }
   a {
     text-decoration: underline;
+    font-family: font-regular;
+    font-size: 19px;
   }
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
@@ -223,6 +234,9 @@
   @media only screen and (max-width: 600px) {
     .article-content {
       flex-direction: column;
+    }
+    .section-content {
+      padding: 0;
     }
     .final-paragraph {
       padding: 0 0px;

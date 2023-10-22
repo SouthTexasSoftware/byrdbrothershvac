@@ -37,7 +37,7 @@
       <br />
     {/if}
     <a href="/services/air_conditioning/maintenance">AC Maintenance</a>, and
-    <a href="/services/insulation/installation">Insulation Installation</a>.
+    <a href="/services/insulation">Insulation</a>.
   </h2>
   <GoogleReviews />
   <SectionContainer
@@ -110,7 +110,7 @@
       <br />
     </p>
     <div class="service-area-list">
-      <button class='cities-button' >All Areas We Service</button>
+      <a href='about/service_area' class='cities-button' >All Areas We Service</a>
       <div class='breaker-bar'></div>
       <ul class='list-items'>
         <li>Angleton</li>
@@ -148,7 +148,19 @@
   <!-- TODO: Change this to use the GOOGLE MAPS API -->
   <img class='service-area-map' src={getAssetSrc(serviceAreaMapFilename)} alt="Service Area Map">
 
-
+  <p class="section-content">
+    <br><br>
+    Contacting us is the first step towards ensuring your indoor
+    comfort and well-being. We understand that your HVAC system plays a critical
+    role in your daily life, and any issues can disrupt your peace of mind.
+    Whether you require installation, repairs, maintenance, or expert advice,
+    reaching out to us is the key to reliable, efficient, and personalized
+    solutions. Our team is here to provide professional guidance, exceptional
+    service, and a swift response to your HVAC needs. Don't let heating or
+    cooling issues go unaddressed; contact us today, and let us take care of
+    your comfort, so you can focus on what matters most.
+    
+  </p>
 
 </div>
 
@@ -232,6 +244,9 @@
   @media only screen and (max-width: 600px) {
     .homepage-content {
       flex-direction: column;
+    }
+    .section-content {
+      padding: 0;
     }
     .service-statement {
       font-size: 4.5vw;

@@ -18,7 +18,7 @@
 {#if mounted && content != "none"}
   <h2 class="banner {mobileScreenSide}">{content}</h2>
   {#if description}
-    <p class="banner-description">{description}</p>
+    <p class="banner-description {mobileScreenSide}">{description}</p>
   {/if}
 {/if}
 
@@ -37,6 +37,7 @@
     text-align: center;
     margin-bottom: 4px;
   }
+  
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
   }
@@ -66,5 +67,9 @@
       padding-left: 5vw;
       margin-bottom: 6px;
     }
+    .banner-description.right {
+    text-align: right;
+    margin-right: 5%;
+  }
   }
 </style>

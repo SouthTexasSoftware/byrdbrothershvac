@@ -56,7 +56,7 @@
         </a>
         <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
         <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
-        <a href="/about/financing" class="desktop-nav-link"> FINANCING </a>
+        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
       </div>
     {/if}
   </div>
@@ -96,7 +96,7 @@
     {/if}
   </div>
 
-  <div
+  <!-- <div
     class="link-container"
     on:mouseenter={() => (hoverState.insulation = true)}
     on:mouseleave={() => {
@@ -118,7 +118,7 @@
         </a>
       </div>
     {/if}
-  </div>
+  </div> -->
   <div
     class="link-container"
     on:mouseenter={() => (hoverState.contact = true)}
@@ -182,7 +182,7 @@
     font-family: font-semibold;
     font-size: 18px;
     text-align: center;
-    z-index: 1;
+    z-index: 10;
     top: 100%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

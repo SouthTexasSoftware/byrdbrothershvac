@@ -17,6 +17,13 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
+<svelte:head>
+  <title>Byrd Brothers HVAC | Air Conditioning, Heating, and Insulation</title>
+  <meta
+    name="description"
+    content="Air Conditioning, Heating, and Insulation company serving Brazoria County and Matagorda County. Installation, repair, and maintenance services provided."
+  />
+</svelte:head>
 <div id="background-photo" style="background-image:url({bgPhoto});">
   {#if pageMounted}
     <h2 class="catchphrase" in:slide={{ duration: 1000, delay: 500 }}>
@@ -28,25 +35,15 @@
     </h2>
 
     <div class="cta-container">
-      <h4>
-        <!-- Specializing in AC Installation, AC Maintenance, AC Repair, and Insulation Installation -->
-        <!-- AC INSTALLATION, AC MAINTENANCE, AC REPAIR, AND INSULATION INSTALLATION -->
-        <!-- in:fly={{ y: 50, duration: 1000, delay: 1500 }} -->
-      </h4>
       <div class="button-container">
-        <a href="/services" 
-          >Services</a
-        >
-        <a
-          href="tel:800-123-4567"
-          >Call Now</a
-        >
+        <a href="/services">Services</a>
+        <a href="tel:+19794808444">Call Now</a>
       </div>
     </div>
   {/if}
 </div>
 
-<HomepageContent {screenWidth}/>
+<HomepageContent {screenWidth} />
 
 <style>
   #background-photo {
