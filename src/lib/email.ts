@@ -3,6 +3,7 @@ import { dev } from "$app/environment";
 import { sendgridConfig } from "../config";
 
 const newRequestTemplateId = "d-ebb64ab7b732467ba9fe9a07efeb5c0a";
+// update for vercel env variables. git push required.
 
 let msg: MessageObject = {
   from: {
