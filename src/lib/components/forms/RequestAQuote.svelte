@@ -12,6 +12,8 @@
   import popupBg from "$lib/photos/form-popup-bg.png";
   import { fly, slide } from "svelte/transition";
   import { page } from "$app/stores";
+  import { dev } from "$app/environment";
+  import { logEvent } from "firebase/analytics";
 
   let formAvailable = false;
   let formCollection: CollectionReference;
@@ -26,6 +28,26 @@
 
   $: if (formAvailable) {
     formCollection = collection($firebaseStore.db, "quote-forms");
+  }
+
+  let formInteractionCompleted = false;
+
+  function formInteractionLogger() {
+    if (formInteractionCompleted) return;
+    if (!dev) {
+      if ($firebaseStore.analytics) {
+        logEvent($firebaseStore.analytics, "form_interaction");
+      }
+    }
+    formInteractionCompleted = true;
+  }
+
+  function formSubmissionLogger() {
+    if (!dev) {
+      if ($firebaseStore.analytics) {
+        logEvent($firebaseStore.analytics, "form_submitted");
+      }
+    }
   }
 </script>
 
@@ -68,6 +90,8 @@
 
       cancel();
 
+      formSubmissionLogger();
+      
       formSubmitted = true;
       formSubmitting = false;
       formAvailable = false;
@@ -85,6 +109,7 @@
       placeholder="Name*"
       required
       autocomplete="name"
+      on:click={formInteractionLogger}
     />
 
     <input
@@ -93,6 +118,7 @@
       placeholder="Phone*"
       autocomplete="tel-national"
       required
+      on:click={formInteractionLogger}
     />
 
     <input
@@ -101,6 +127,7 @@
       placeholder="Email*"
       autocomplete="email"
       required
+      on:click={formInteractionLogger}
     />
 
     <input
@@ -109,6 +136,7 @@
       placeholder="Location*"
       autocomplete="street-address"
       required
+      on:click={formInteractionLogger}
     />
 
     <textarea
@@ -116,6 +144,7 @@
       id="details"
       cols="30"
       rows="10"
+      on:click={formInteractionLogger}
       placeholder="Details
 
       Be as specific as possible!
@@ -246,7 +275,6 @@
     .submission-popup {
       width: 90%;
       left: 5%;
-      
     }
   }
 </style>

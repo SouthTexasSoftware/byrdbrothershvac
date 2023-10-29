@@ -6,6 +6,7 @@
   import { firebaseStore } from "$lib/stores";
   import { connectToFirebase, connectAnalytics } from "$lib/helpers";
   import { dev } from "$app/environment";
+  import { page } from "$app/stores";
 
   // connect to firebase to ensure we can take form submissions.
   onMount(() => {
@@ -22,6 +23,8 @@
               storeData.analytics = analytics;
               return storeData;
             });
+
+            //tie the analytics into page navigation here.
           }
         } else {
           // throw error.
@@ -30,14 +33,6 @@
       });
     }
   });
-
-  //TODO: add hook into analytics connection to utilize $velte app navigation to log 'screen_view' events..
-
-  //TODO: add the banner slide in effect to be queued on page position
-
-  //TODO: complete Form submission setup/link to firestore and email api..
-
-
 </script>
 
 <Header />
