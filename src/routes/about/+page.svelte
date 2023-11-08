@@ -81,7 +81,7 @@
         <div class="card-title-underline" />
         <p class="card-description">
           Whatever equipment you have or prefer, we are here to help! Our
-          techicians are trained and certified on all HVAC equipement. With that
+          techicians are trained and certified on all HVAC equipment. With that
           in mind, we also analyze and select key business partners to help
           provide our customers with superior pricing, products, and services -
           and continue to evaluate the best options available. We recommend our

@@ -81,39 +81,15 @@
     backgroundSide="right"
   />
   <SectionBreak />
-  {#if !mobile}
-    <PhotoSingleBlock
-      photoFilename="Cody Garrison Field Technician.png"
-      photoCaption="Cody Garrison, Field Technician"
-      backgroundSide="left"
-    />
-  {/if}
-  <SectionContainer
-    bannerContent="CODY GARRISON"
-    bannerScreenSide="right"
-    bannerDescription="Field Technician"
-  >
-    <p class="section-content">
-      Cody is the backbone of our HVAC team, bringing with him a wealth of
-      expertise and a passion for creating comfortable, energy-efficient spaces.
-      With a background in HVAC technology and years of hands-on experience,
-      he's the go-to person for tackling complex heating and cooling challenges
-      in the field. Whether it's installing a new system, troubleshooting
-      issues, or conducting routine maintenance, Cody's dedication to precision
-      and customer satisfaction shines through. His commitment to ensuring that
-      homes and businesses have optimal indoor climates makes him an invaluable
-      asset to our company.
-    </p>
-  </SectionContainer>
-  {#if mobile}
-    <PhotoSingleBlock
-      photoFilename="Cody Garrison Field Technician.png"
-      photoCaption="Cody Garrison, Field Technician"
-      backgroundSide="left"
-    />
-  {/if}
-  <SectionBreak />
 
+  <SectionBreak />
+  {#if !mobile}
+  <PhotoSingleBlock
+    photoFilename="Debbie Jenkins Office Manager.png"
+    photoCaption="Debbie Jenkins, Office Manager"
+    backgroundSide="right"
+  />
+  {/if}
   <SectionContainer
     bannerContent="DEBBIE JENKINS"
     bannerScreenSide="left"
@@ -130,11 +106,13 @@
       members alike.
     </p>
   </SectionContainer>
+  {#if mobile}
   <PhotoSingleBlock
     photoFilename="Debbie Jenkins Office Manager.png"
     photoCaption="Debbie Jenkins, Office Manager"
     backgroundSide="right"
   />
+  {/if}
   <SectionBreak />
 
   <p class="final-paragraph">
