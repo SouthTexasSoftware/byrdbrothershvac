@@ -65,7 +65,29 @@
     />
   {/if}
   <SectionBreak />
-
+  <SectionContainer
+    bannerContent="Generac Sales and Service"
+    bannerScreenSide="left"
+  >
+    <p class="section-content">
+      We're committed to providing comprehensive solutions for all your home
+      comfort needs. That's why we're proud to announce our partnership with
+      Generac, the leading name in home backup power solutions. Whether you're
+      looking to safeguard your home against unexpected power outages or seeking
+      reliable backup power for peace of mind, we've got you covered with our
+      sales and service of Generac home electric generators. Call us today for a
+      consultation. We can assess your power needs and recommend the right
+      Generac generator to fit your home and lifestyle. Followed by professional
+      installation, routine maintenance, and even emergency repairs. Let us help
+      you keep your home comfortable no matter what happens!
+    </p>
+  </SectionContainer>
+  <PhotoSingleBlock
+    photoFilename="generac-authorized-dealer-logo.png"
+    photoCaption=""
+    backgroundSide="none"
+  />
+  <SectionBreak />
   <p class="final-paragraph">
     It's important to note that our commitment extends beyond these
     partnerships. While we proudly offer RUUD and MRCOOL products, our team of
