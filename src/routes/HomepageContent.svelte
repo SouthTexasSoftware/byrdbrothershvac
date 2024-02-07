@@ -264,4 +264,20 @@
     }
     
   }
+
+  /* Very Small / Zoomed in Screens */
+  @media only screen and (max-width: 400px) {
+    .section-content {
+      font-size: 6vw;
+      width: 90vw;
+      margin: 0;
+      padding: 0;
+    }
+    .section-content * {
+      font-size: 6vw !important;
+    }
+
+  }
+
+  
 </style>
