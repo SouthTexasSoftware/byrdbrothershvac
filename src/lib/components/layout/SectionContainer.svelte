@@ -35,4 +35,8 @@
       min-width: 0px;
     }
   }
+    /* Very Small / Zoomed in Screens */
+    @media only screen and (max-width: 400px) {
+      
+    }
 </style>

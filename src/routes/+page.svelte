@@ -100,6 +100,7 @@
 
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
+    
   }
   /* Mobile */
   @media only screen and (max-width: 600px) {
@@ -119,14 +120,24 @@
       right: 5vw;
       bottom: 40px;
       text-align: right;
-      min-width: 275px;
     }
     .cta-container a {
       padding: 5px 25px;
+      font-size: 5vw;
     }
     .cta-container * {
       font-family: font-light;
       font-size: 20px;
+    }
+  }
+  /* Very Small / Zoomed in Screens */
+  @media only screen and (max-width: 400px) {
+    .cta-container {
+      position: absolute;
+      width: 100vw;
+      right: 0;
+      bottom: 40px;
+      text-align: right;
     }
   }
 </style>

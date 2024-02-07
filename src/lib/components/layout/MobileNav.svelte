@@ -174,7 +174,7 @@
   </svg>
 </button>
 
-<nav >
+<nav>
   {#if showMobileMenu}
     <div
       class="mobile-nav-link-container"
@@ -222,6 +222,13 @@
               class:viewing={$page.url.pathname.includes("/heating")}
             >
               HEATING
+            </a>
+            <a
+              href="/services/maintenance_program"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/maintenance")}
+            >
+              MAINTENANCE
             </a>
             <a
               href="/services/insulation"

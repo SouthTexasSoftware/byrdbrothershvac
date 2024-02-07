@@ -31,6 +31,9 @@
           AIR CONDITIONING
         </a>
         <a href="/services/heating" class="desktop-nav-link"> HEATING </a>
+        <a href="/services/maintenance_program" class="desktop-nav-link">
+          MAINTENANCE
+        </a>
         <a href="/services/insulation" class="desktop-nav-link"> INSULATION </a>
         <a href="/services/air_quality" class="desktop-nav-link">
           AIR QUALITY
