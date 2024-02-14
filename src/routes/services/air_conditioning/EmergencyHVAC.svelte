@@ -6,6 +6,8 @@
   import PhotoSingleBlock from "$lib/components/photos/PhotoSingleBlock.svelte";
 
   export let mobile: boolean;
+
+  export let include_quote_form = true;
 </script>
 
 <ArticleTitleBar
@@ -102,9 +104,15 @@
     winter, and comfortable year-round.
     <a href="tel:+19794808444">Call us today</a>.
   </p>
-  <SectionContainer bannerContent="GET A QUOTE!" bannerScreenSide="left" bannerDescription="Free estimates for any size job.">
-    <RequestAQuote />
-  </SectionContainer>
+  {#if include_quote_form}
+    <SectionContainer
+      bannerContent="GET A QUOTE!"
+      bannerScreenSide="left"
+      bannerDescription="Free estimates for any size job."
+    >
+      <RequestAQuote />
+    </SectionContainer>
+  {/if}
 </div>
 
 <style>

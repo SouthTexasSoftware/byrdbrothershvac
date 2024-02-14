@@ -1,12 +1,10 @@
 <script lang="ts">
-  import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
-  import { onMount } from "svelte";
-  import ACInstallation from "./ACInstallation.svelte";
-  import AcRepair from "./ACRepair.svelte";
-  import AcMaintenance from "./ACMaintenance.svelte";
-  import EmergencyHvac from "./EmergencyHVAC.svelte";
-  import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
-  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
+  import AcInstallation from "../../routes/services/air_conditioning/ACInstallation.svelte";
+  import AcMaintenance from "../../routes/services/air_conditioning/ACMaintenance.svelte";
+  import AcRepair from "../../routes/services/air_conditioning/ACRepair.svelte";
+  import EmergencyHvac from "../../routes/services/air_conditioning/EmergencyHVAC.svelte";
+  import RequestAQuote from "./forms/RequestAQuote.svelte";
+  import SectionContainer from "./layout/SectionContainer.svelte";
 
   let screenWidth: number;
 
@@ -14,31 +12,9 @@
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
-<svelte:head>
-  <title
-    >Air Conditioning Services in Brazoria County | Byrd Brothers HVAC</title
-  >
-  <meta
-    name="description"
-    content="We specialize in air conditioning installation, repair, and maintenance with a satisfaction guarantee."
-  />
-</svelte:head>
-
-<ViewTitleBar title="Air Conditioning" />
 
 <div class="main-page-container content-width">
   <p class="main-page-content">
-    Byrd Brothers HVAC specializes in Air Conditioning Services in Brazoria
-    County and Matagorda County of South Texas, with close proximity to <a
-      href="/about/service_area/sweeny"
-      class="paragraph-link">Sweeny</a
-    >,
-    <a href="/about/service_area/brazoria" class="paragraph-link">Brazoria</a>,
-    and
-    <a href="/about/service_area/lake_jackson" class="paragraph-link"
-      >Lake Jackson</a
-    >, TX.
-    <br /><br />
     From new air conditioning installation and whole system replacement, to routine
     maintenance and emergency repairs, we are your local experts in keeping your
     home cool and comfortable. We pride ourselves in being a family-owned business
@@ -56,7 +32,7 @@
 </div>
 <div class="divider-bar content-width" />
 
-<ACInstallation {mobile} include_quote_form={false} />
+<AcInstallation {mobile} include_quote_form={false} />
 <div class="divider-bar content-width" />
 <AcRepair {mobile} include_quote_form={false} />
 <div class="divider-bar content-width" />

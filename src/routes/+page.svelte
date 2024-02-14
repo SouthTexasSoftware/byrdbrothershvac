@@ -5,6 +5,7 @@
   import { onMount } from "svelte";
   import { fly, slide } from "svelte/transition";
   import HomepageContent from "./HomepageContent.svelte";
+  import LinkCarousel from "./LinkCarousel.svelte";
 
   let pageMounted = false;
   let screenWidth = 0;
@@ -40,6 +41,7 @@
         <a href="tel:+19794808444">Call Now</a>
       </div>
     </div>
+    <LinkCarousel />
   {/if}
 </div>
 
@@ -100,7 +102,6 @@
 
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
-    
   }
   /* Mobile */
   @media only screen and (max-width: 600px) {

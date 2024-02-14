@@ -30,6 +30,7 @@
 
   let dropdownState: { [key: string]: boolean } = {
     services: false,
+    products: false,
     about: false,
     air_conditioning: false,
     insulation: false,
@@ -38,6 +39,7 @@
 
   let previousDropdownState: { [key: string]: boolean } = {
     services: false,
+    products: false,
     about: false,
     air_conditioning: false,
     insulation: false,
@@ -67,6 +69,7 @@
 
     dropdownState = {
       services: false,
+      products: false,
       about: false,
       air_conditioning: false,
       insulation: false,
@@ -249,53 +252,60 @@
         {/if}
       </div>
 
-      <div class="link-container about">
+      <div class="link-container products">
         <div class="main-link">
           <a
-            href="/about"
+            href="/products"
             class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.about}
-            class:viewing={$page.url.pathname.includes("/about")}
+            class:dropdown-showing={dropdownState.products}
+            class:viewing={$page.url.pathname.includes("/products")}
           >
-            ABOUT</a
+            PRODUCTS</a
           >
           <button
             class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("about")}
-            class:showing={dropdownState.about}><DropdownButton /></button
+            on:click={() => toggleSubMenuDropdowns("products")}
+            class:showing={dropdownState.products}><DropdownButton /></button
           >
         </div>
-        {#if dropdownState.about}
+        {#if dropdownState.products}
           <div class="sub-links" transition:slide>
             <div class="sub-bar" />
             <a
-              href="/about/service_area"
+              href="/products/ruud"
               class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/service_area")}
+              class:viewing={$page.url.pathname.includes("/ruud")}
             >
-              SERVICE AREA
+              RUUD
             </a>
             <a
-              href="/about/meet_team"
+              href="/products/mrcool"
               class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/meet_team")}
+              class:viewing={$page.url.pathname.includes("/mrcool")}
             >
-              MEET THE TEAM
+              MRCOOL
             </a>
             <a
-              href="/about/partners"
+              href="/products/generac"
               class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/partners")}
+              class:viewing={$page.url.pathname.includes("/generac")}
             >
-              PARTNERS
+              GENERAC
             </a>
-            <!-- <a
-              href="/about/financing"
+            <a
+              href="/products/air_scrubber"
               class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/financing")}
+              class:viewing={$page.url.pathname.includes("/air_scrubber")}
             >
-              FINANCING
-            </a> -->
+              AIR SCRUBBER
+            </a>
+            <a
+              href="/products/attic_tent"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/attic_tent")}
+            >
+              ATTIC TENT
+            </a>
             <div class="sub-bar" />
           </div>
         {/if}
@@ -359,6 +369,58 @@
             >
               EMERGENCY HVAC
             </a>
+            <div class="sub-bar" />
+          </div>
+        {/if}
+      </div>
+
+      <div class="link-container about">
+        <div class="main-link">
+          <a
+            href="/about"
+            class="mobile-nav-link"
+            class:dropdown-showing={dropdownState.about}
+            class:viewing={$page.url.pathname.includes("/about")}
+          >
+            ABOUT</a
+          >
+          <button
+            class="dropdown-button"
+            on:click={() => toggleSubMenuDropdowns("about")}
+            class:showing={dropdownState.about}><DropdownButton /></button
+          >
+        </div>
+        {#if dropdownState.about}
+          <div class="sub-links" transition:slide>
+            <div class="sub-bar" />
+            <a
+              href="/about/service_area"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/service_area")}
+            >
+              SERVICE AREA
+            </a>
+            <a
+              href="/about/meet_team"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/meet_team")}
+            >
+              MEET THE TEAM
+            </a>
+            <a
+              href="/about/partners"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/partners")}
+            >
+              PARTNERS
+            </a>
+            <!-- <a
+              href="/about/financing"
+              class="mobile-nav-link sub"
+              class:viewing={$page.url.pathname.includes("/financing")}
+            >
+              FINANCING
+            </a> -->
             <div class="sub-bar" />
           </div>
         {/if}

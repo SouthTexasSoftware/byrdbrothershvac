@@ -3,6 +3,7 @@
 
   let hoverState = {
     services: false,
+    products: false,
     about: false,
     air_conditioning: false,
     insulation: false,
@@ -44,25 +45,31 @@
 
   <div
     class="link-container"
-    on:mouseenter={() => (hoverState.about = true)}
+    on:mouseenter={() => (hoverState.products = true)}
     on:mouseleave={() => {
-      setTimeout(() => (hoverState.about = false), 200);
+      setTimeout(() => (hoverState.products = false), 200);
     }}
   >
-    <a href="/about" class="desktop-nav-link" class:highlight={hoverState.about}
-      >ABOUT</a
+    <a
+      href="/products"
+      class="desktop-nav-link"
+      class:highlight={hoverState.products}
     >
-    {#if hoverState.about}
+      PRODUCTS
+    </a>
+    {#if hoverState.products}
       <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/about/service_area" class="desktop-nav-link">
-          SERVICE AREA
+        <a href="/products/ruud" class="desktop-nav-link"> RUUD </a>
+        <a href="/products/mrcool" class="desktop-nav-link"> MRCOOL </a>
+        <a href="/products/generac" class="desktop-nav-link"> GENERAC </a>
+        <a href="/products/air_scrubber" class="desktop-nav-link">
+          AIR SCRUBBER
         </a>
-        <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
-        <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
-        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
+        <a href="/products/attic_tent" class="desktop-nav-link"> ATTIC TENT </a>
       </div>
     {/if}
   </div>
+
   <div
     class="link-container"
     on:mouseenter={() => (hoverState.air_conditioning = true)}
@@ -95,6 +102,28 @@
         <a href="/services/air_conditioning/emergency" class="desktop-nav-link">
           EMERGENCY HVAC
         </a>
+      </div>
+    {/if}
+  </div>
+
+  <div
+    class="link-container"
+    on:mouseenter={() => (hoverState.about = true)}
+    on:mouseleave={() => {
+      setTimeout(() => (hoverState.about = false), 200);
+    }}
+  >
+    <a href="/about" class="desktop-nav-link" class:highlight={hoverState.about}
+      >ABOUT</a
+    >
+    {#if hoverState.about}
+      <div class="sub-menu" transition:fly={{ y: -10 }}>
+        <a href="/about/service_area" class="desktop-nav-link">
+          SERVICE AREA
+        </a>
+        <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
+        <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
+        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
       </div>
     {/if}
   </div>

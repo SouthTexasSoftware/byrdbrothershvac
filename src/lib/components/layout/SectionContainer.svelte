@@ -1,19 +1,23 @@
 <script lang="ts">
   import SectionBanner from "./SectionBanner.svelte";
-  
+
   export let bannerContent: string = "none";
   export let bannerScreenSide: string = "left";
   export let bannerDescription: string | undefined = undefined;
-
+  export let id: string = "";
 </script>
 
-<div class="section-container">
-<SectionBanner content={bannerContent} mobileScreenSide={bannerScreenSide} description={bannerDescription}/>
-<slot></slot>
+<div class="section-container" {id}>
+  <SectionBanner
+    content={bannerContent}
+    mobileScreenSide={bannerScreenSide}
+    description={bannerDescription}
+  />
+  <slot />
 </div>
 
 <style>
-      .section-container {
+  .section-container {
     display: flex;
     flex-direction: column;
     width: 30vw;
@@ -35,8 +39,7 @@
       min-width: 0px;
     }
   }
-    /* Very Small / Zoomed in Screens */
-    @media only screen and (max-width: 400px) {
-      
-    }
+  /* Very Small / Zoomed in Screens */
+  @media only screen and (max-width: 400px) {
+  }
 </style>
