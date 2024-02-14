@@ -11,6 +11,13 @@
 
 <div class="carousel-wrapper">
   <Carousel autoplay>
+    <a class="carousel-card" href="/services/maintenance_program">
+      <img
+        src={getAssetSrc("annual-maintenance-logo.png")}
+        alt="Annual Maintenance Program"
+        class="ghost"
+      />
+    </a>
     <a class="carousel-card" href="/about/partners#ruud">
       <img
         src={getAssetSrc("ruud-pro-partner.png")}
@@ -29,7 +36,11 @@
       <img src={getAssetSrc("mrcool-logo.png")} alt="MRCOOL AC" class="ghost" />
     </a>
     <a class="carousel-card" href="/products/air_scrubber">
-      <img src={getAssetSrc("aerus-logo.png")} alt="Aerus Air Scrubber" class="ghost" />
+      <img
+        src={getAssetSrc("aerus-logo.png")}
+        alt="Aerus Air Scrubber"
+        class="ghost"
+      />
     </a>
   </Carousel>
   <h3 class="carousel-label">Explore our Partners and Products!</h3>
