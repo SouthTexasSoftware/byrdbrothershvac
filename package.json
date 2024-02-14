@@ -24,7 +24,9 @@
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.1.1",
     "firebase": "^10.4.0",
+    "lucide-svelte": "^0.324.0",
     "postcss": "^8.4.24",
+    "svelte-carousel": "^1.0.25",
     "tailwindcss": "^3.3.2"
   }
 }

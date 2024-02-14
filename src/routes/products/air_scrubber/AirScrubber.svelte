@@ -16,85 +16,62 @@
   /> -->
 <div class="article-content content-width">
   <SectionContainer
-    bannerContent="SPRING SPECIAL: $125"
+    bannerContent="ActivePure Technology"
     bannerScreenSide="left"
   >
     <p class="section-content">
-      As spring blooms and temperatures begin to rise, it's crucial to ensure
-      your air conditioning system is ready to keep you cool during the warmer
-      months. With our Seasonal Maintenance Program, for just <span
-        class="semibold cool">$125</span
-      >, you'll receive comprehensive AC system maintenance performed by our
-      skilled technicians. From cleaning coils to checking refrigerant levels
-      and inspecting electrical components, we'll ensure your AC system operates
-      at peak performance when you need it most.
+      <span class="semibold">Upfront Pricing:</span> $950 installed!
+      <br />
+      <span class="semibold">30 Day Money Back Guarantee</span>
+      <br /><br />
+      Are you looking for a powerful solution to purify the air in your home and
+      protect your family's health? Look no further than the
+      <a class="paragraph-link" href="https://www.airscrubberbyaerus.com/"
+        >Air Scrubber by Aerus</a
+      >—a cutting-edge air purification system that harnesses the power of
+      ActivePure technology to create a cleaner and healthier indoor
+      environment. At Byrd Brothers HVAC, we're proud to offer this
+      revolutionary product to our valued customers.
     </p>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="dual-ac-units-with-leaves.png"
-    photoCaption="The Spring Warm Up"
-    backgroundSide="right"
+    photoFilename="air-scrubber-chart-1.png"
+    photoCaption="Bacteria Reduction over 24 hours"
+    backgroundSide="none"
   />
   <SectionBreak />
   {#if !mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="air_scrubber.jpg"
+      photoCaption="Installed in existing ductwork"
       backgroundSide="left"
     />
   {/if}
-  <SectionContainer bannerContent="FALL SPECIAL: $99" bannerScreenSide="right">
+  <SectionContainer bannerContent="LEARN MORE" bannerScreenSide="right">
     <p class="section-content">
-      As the temperatures start to cool, it's time to shift focus to your
-      heating system's reliability and efficiency. With our Seasonal Maintenance
-      Program, enjoy peace of mind for just $99 with our thorough heating system
-      maintenance service. Our technicians will conduct detailed inspections,
-      perform necessary tune-ups, and ensure your furnace or heat pump is primed
-      to keep you warm and comfortable throughout the chilly season.
+      The AirScrubber by Aerus® attaches directly to the HVAC system ductwork
+      to reduce viruses, bacteria, and other contaminants in the ambient air and
+      on surfaces while the HVAC fan is running. Patented ActivePure is an
+      advanced surface and air purification technology. It has been proven to
+      reduce up to 99.9% of many common airborne and surface contaminants.
+      <br />
+      <a href="https://www.airscrubberbyaerus.com/"
+        >Read more from the source!</a
+      >
     </p>
   </SectionContainer>
   {#if mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="air_scrubber.jpg"
+      photoCaption="Installed in existing ductwork"
       backgroundSide="left"
     />
   {/if}
   <SectionBreak />
-  <div>
-    <h3 class="semibold">
-      Benefits of Joining Our Seasonal Maintenance Program
-    </h3>
-    <ol>
-      <li>
-        Convenient annual maintenance appointments tailored to your schedule
-      </li>
-      <li>Priority service and scheduling for maintenance visits</li>
-      <li>
-        Regular inspections to catch potential issues early and prevent costly
-        repairs
-      </li>
-      <li>Transparent pricing with no surprises</li>
-      <li>
-        Expert service from certified technicians dedicated to your comfort and
-        satisfaction
-      </li>
-    </ol>
-  </div>
-  <p class="final-paragraph">
-    <br /><br />
-    Don't let seasonal HVAC maintenance slip your mind—join our Maintenance Program
-    today and enjoy worry-free comfort year-round! To learn more, contact us at
-    <a href="tel:+19794808444">(979) 480-8444</a>. Stay ahead of the curve and
-    ensure your home comfort with Byrd Brothers HVAC!
-  </p>
 </div>
 
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="JOIN THE PROGRAM!"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="DROP US A LINE!" bannerScreenSide="left">
     <RequestAQuote />
   </SectionContainer>
 </div>

@@ -51,7 +51,7 @@
     }}
   >
     <a
-      href="/services"
+      href="/products"
       class="desktop-nav-link"
       class:highlight={hoverState.products}
     >
@@ -127,7 +127,7 @@
       </div>
     {/if}
   </div>
-  
+
   <!-- <div
     class="link-container"
     on:mouseenter={() => (hoverState.insulation = true)}

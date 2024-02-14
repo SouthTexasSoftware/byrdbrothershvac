@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ServiceAnythingStatement from "$lib/components/ServiceAnythingStatement.svelte";
   import ArticleTitleBar from "$lib/components/layout/ArticleTitleBar.svelte";
   import SectionBreak from "$lib/components/layout/SectionBreak.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
@@ -14,9 +15,15 @@
     articleOwner="Brady Byrd, Owner"
   /> -->
 <div class="article-content content-width">
-  <SectionContainer bannerContent="RUUD Pro Partner" bannerScreenSide="left">
+  <SectionContainer
+    bannerContent="RUUD Pro Partner"
+    bannerScreenSide="left"
+    id="ruud"
+  >
     <p class="section-content">
-      RUUD's decades of industry experience, innovation, and reputation for
+      <a class="paragraph-link" href="https://www.ruud.com/products/hvac/"
+        >RUUD</a
+      >'s decades of industry experience, innovation, and reputation for
       manufacturing high-performance heating and cooling systems align perfectly
       with our mission to provide our clients with top-tier solutions. Their
       state-of-the-art technology and reliability ensure that our customers
@@ -41,20 +48,23 @@
       backgroundSide="none"
     />
   {/if}
-  <SectionContainer bannerContent="MRCOOL" bannerScreenSide="right">
+  <SectionContainer bannerContent="MRCOOL" bannerScreenSide="right" id="mrcool">
     <p class="section-content">
-      We're thrilled to have joined forces with MRCOOL, a renowned leader in the
-      HVAC industry, to offer cutting-edge mini-splits and heat pumps to our
-      valued customers. The decision to partner with MRCOOL was driven by their
-      unwavering commitment to innovation and delivering exceptional
-      energy-efficient solutions. MRCOOL's mini-splits and heat pumps have
-      consistently set industry standards for performance, reliability, and
-      user-friendly technology. By integrating MRCOOL's high-quality products
-      into our offerings, we're providing our clients with efficient, versatile,
-      and eco-friendly HVAC solutions that are perfectly suited for a wide range
-      of applications. This partnership reflects our shared dedication to
-      creating comfortable, environmentally responsible spaces while ensuring
-      our customers receive the best in modern HVAC technology.
+      We're thrilled to have joined forces with <a
+        class="paragraph-link"
+        href="https://mrcool.com/">MRCOOL</a
+      >, a renowned leader in the HVAC industry, to offer cutting-edge
+      mini-splits and heat pumps to our valued customers. The decision to
+      partner with MRCOOL was driven by their unwavering commitment to
+      innovation and delivering exceptional energy-efficient solutions. MRCOOL's
+      mini-splits and heat pumps have consistently set industry standards for
+      performance, reliability, and user-friendly technology. By integrating
+      MRCOOL's high-quality products into our offerings, we're providing our
+      clients with efficient, versatile, and eco-friendly HVAC solutions that
+      are perfectly suited for a wide range of applications. This partnership
+      reflects our shared dedication to creating comfortable, environmentally
+      responsible spaces while ensuring our customers receive the best in modern
+      HVAC technology.
     </p>
   </SectionContainer>
   {#if mobile}
@@ -68,12 +78,16 @@
   <SectionContainer
     bannerContent="Generac Sales and Service"
     bannerScreenSide="left"
+    id="generac"
   >
     <p class="section-content">
       We're committed to providing comprehensive solutions for all your home
       comfort needs. That's why we're proud to announce our partnership with
-      Generac, the leading name in home backup power solutions. Whether you're
-      looking to safeguard your home against unexpected power outages or seeking
+      <a
+        class="paragraph-link"
+        href="https://www.generac.com/all-products/generators">Generac</a
+      >, the leading name in home backup power solutions. Whether you're looking
+      to safeguard your home against unexpected power outages or seeking
       reliable backup power for peace of mind, we've got you covered with our
       sales and service of Generac home electric generators. Call us today for a
       consultation. We can assess your power needs and recommend the right
@@ -87,18 +101,7 @@
     photoCaption=""
     backgroundSide="none"
   />
-  <SectionBreak />
-  <p class="final-paragraph">
-    It's important to note that our commitment extends beyond these
-    partnerships. While we proudly offer RUUD and MRCOOL products, our team of
-    expert technicians possesses the versatility and knowledge to work on any
-    HVAC equipment, regardless of the brand. This means that, as your trusted
-    HVAC partner, we're equipped to provide comprehensive services, from
-    installation to maintenance and repairs, for a wide array of systems. Our
-    mission is to deliver the highest level of satisfaction to our clients, no
-    matter the make or model of their HVAC equipment, ensuring that their
-    comfort and peace of mind are always our top priority.
-  </p>
+  <ServiceAnythingStatement />
 </div>
 
 <style>
@@ -107,6 +110,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
+
   .list-topic {
     font-size: 20px;
   }

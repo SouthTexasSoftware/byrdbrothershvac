@@ -2,8 +2,11 @@
   import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
+  import LogoStandingOnly from "$lib/logos/LogoStandingOnly.svelte";
   import { onMount } from "svelte";
   import { fly, slide } from "svelte/transition";
+  import { AlertCircle } from "lucide-svelte";
+  import ServiceAnythingStatement from "$lib/components/ServiceAnythingStatement.svelte";
 
   let displayCards = false;
 
@@ -30,6 +33,7 @@
 <ViewTitleBar title="Products" />
 
 <div class="card-container">
+  <ServiceAnythingStatement />
   {#if displayCards}
     <div class="service-card" in:fly={{ x: 50, duration: 500 }}>
       <a href="/products/ruud">
@@ -41,8 +45,11 @@
         >
         <div class="card-title-underline" />
         <p class="card-description">
-          We're proud to offer RUUD's top-of-the-line products, delivering
-          unmatched performance and comfort for your home.
+          We're proud to offer <a
+            class="paragraph-link"
+            href="https://www.ruud.com/products/hvac/">RUUD</a
+          >'s top-of-the-line products, delivering unmatched performance and
+          comfort for your home.
           <br /><br />
           Whether you're in need of a new air conditioner, furnace, heat pump, or
           indoor air quality solution, RUUD has the perfect solution to meet your
@@ -65,9 +72,10 @@
         <p class="card-description">
           Revolutionize your home comfort with MRCOOL's state-of-the-art
           mini-split and ductless HVAC equipment. At Byrd Brothers HVAC, we're
-          thrilled to offer MRCOOL's cutting-edge solutions, delivering
-          unmatched performance, energy efficiency, and versatility for your
-          heating and cooling needs.
+          thrilled to offer <a class="paragraph-link" href="https://mrcool.com/"
+            >MRCOOL</a
+          >'s cutting-edge solutions, delivering unmatched performance, energy
+          efficiency, and versatility for your heating and cooling needs.
         </p>
       </div>
     </div>
@@ -86,8 +94,10 @@
         <p class="card-description">
           You can't heat or cool your home without power! We understand the
           importance of uninterrupted power supply for your home and comfort
-          needs. That's why we're excited to offer comprehensive Generac home
-          generator sales and service to keep your lights on and your family
+          needs. That's why we're excited to offer comprehensive <a
+            class="paragraph-link"
+            href="https://www.generac.com/all-products/generators">Generac</a
+          > home generator sales and service to keep your lights on and your family
           safe, no matter what.
         </p>
       </div>
@@ -110,11 +120,14 @@
           <br />
           <span class="semibold">30 Day</span> Money Back Guarantee
           <br /><br />
-          The AirScrubber by Aerus® attaches directly to the HVAC system ductwork
-          to reduce viruses, bacteria, and other contaminants in the ambient air
-          and on surfaces while the HVAC fan is running. Patented ActivePure is an
-          advanced surface and air purification technology. It has been proven to
-          reduce up to 99.9% of many common airborne and surface contaminants.
+          The
+          <a class="paragraph-link" href="https://www.airscrubberbyaerus.com/"
+            >AirScrubber by Aerus</a
+          > attaches directly to the HVAC system ductwork to reduce viruses, bacteria,
+          and other contaminants in the ambient air and on surfaces while the HVAC
+          fan is running. Patented ActivePure is an advanced surface and air purification
+          technology. It has been proven to reduce up to 99.9% of many common airborne
+          and surface contaminants.
         </p>
       </div>
     </div>
@@ -162,6 +175,7 @@
     align-items: center;
     margin-bottom: 50px;
   }
+
   .service-card {
     display: flex;
     width: 900px;

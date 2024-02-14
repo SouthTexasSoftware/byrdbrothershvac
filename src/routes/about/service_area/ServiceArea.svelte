@@ -46,7 +46,8 @@
       <li>Angleton</li>
       <li>Bailey's Prairie</li>
       <li>Bay City</li>
-      <li>Brazoria</li>
+      <li><a href="/about/service_area/brazoria">Brazoria</a></li>
+<!-- link to city page  -->
       <li>Caney</li>
       <li>Cedar Lake</li>
       <li>Cedar Lane</li>
@@ -59,14 +60,14 @@
       <li>Hawkinsville</li>
       <li>Holiday Lakes</li>
       <li>Jones Creek</li>
-      <li>Lake Jackson</li>
+      <li><a href="/about/service_area/lake_jackson">Lake Jackson</a></li>
       <li>Old Ocean</li>
       <li>Oyster Creek</li>
       <li>Quintana</li>
       <li>Richwood</li>
       <li>Sugar Valley</li>
       <li>Surfside Beach</li>
-      <li>Sweeny</li>
+      <li><a href="/about/service_area/sweeny">Sweeny</a></li>
       <li>Van Vleck</li>
       <li>West Columbia</li>
       <li>Wild Peach</li>

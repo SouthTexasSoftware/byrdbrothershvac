@@ -9,13 +9,13 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>HVAC Maintenance in Brazoria County | Byrd Brothers HVAC</title>
+  <title>Air Scrubber Installation | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="Spring and Fall HVAC Maintenance Program | Click to learn more about our special program pricing and let us make sure you're comfortable year round!"
+    content="Advanced air purification technology attaches directly to your existing ductwork. Click to learn more!"
   />
 </svelte:head>
-<ViewTitleBar title="HVAC Maintenance Program" />
+<ViewTitleBar title="Air Scrubber by Aerus®" />
 
 <AirScrubber {mobile} />
 

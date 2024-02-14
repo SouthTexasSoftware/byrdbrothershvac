@@ -9,13 +9,13 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>HVAC Maintenance in Brazoria County | Byrd Brothers HVAC</title>
+  <title>RUUD HVAC Products | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="Spring and Fall HVAC Maintenance Program | Click to learn more about our special program pricing and let us make sure you're comfortable year round!"
+    content="Proudly a RUUD Pro Partner! We stand by RUUD product performance, efficiency, affordability, and warranty! Click to learn more."
   />
 </svelte:head>
-<ViewTitleBar title="HVAC Maintenance Program" />
+<ViewTitleBar title="RUUD" />
 
 <Ruud {mobile} />
 

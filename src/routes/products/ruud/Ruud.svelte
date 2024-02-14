@@ -15,86 +15,80 @@
     articleOwner="Brady Byrd, Owner"
   /> -->
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="SPRING SPECIAL: $125"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="TIME TESTED" bannerScreenSide="left">
     <p class="section-content">
-      As spring blooms and temperatures begin to rise, it's crucial to ensure
-      your air conditioning system is ready to keep you cool during the warmer
-      months. With our Seasonal Maintenance Program, for just <span
-        class="semibold cool">$125</span
-      >, you'll receive comprehensive AC system maintenance performed by our
-      skilled technicians. From cleaning coils to checking refrigerant levels
-      and inspecting electrical components, we'll ensure your AC system operates
-      at peak performance when you need it most.
+      RUUD has been a trusted name and brand since 1897 - <span class="semibold"
+        >over 100 years expertise!
+      </span>We choose to support RUUD and their products because they will do
+      right by you and us. They offer a HUGE range of air conditioning and
+      heating systems from heat pumps, gas furnaces, central AC, thermostats,
+      and more! If you're thinking about replacing your existing air
+      conditioner, or starting on a new building, let us walk you through a
+      solution by RUUD. Check out the full list of their products at the
+      <a  class="paragraph-link" href="https://www.ruud.com/products/hvac/">RUUD HVAC website.</a>
     </p>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="dual-ac-units-with-leaves.png"
-    photoCaption="The Spring Warm Up"
-    backgroundSide="right"
+    photoFilename="ruud-pro-partner.png"
+    photoCaption=""
+    backgroundSide="none"
   />
   <SectionBreak />
   {#if !mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
-      backgroundSide="left"
+      photoFilename="ruud-outdoor-unit.png"
+      photoCaption="RUUD Air Conditioner"
+      backgroundSide="none"
     />
   {/if}
-  <SectionContainer bannerContent="FALL SPECIAL: $99" bannerScreenSide="right">
-    <p class="section-content">
-      As the temperatures start to cool, it's time to shift focus to your
-      heating system's reliability and efficiency. With our Seasonal Maintenance
-      Program, enjoy peace of mind for just $99 with our thorough heating system
-      maintenance service. Our technicians will conduct detailed inspections,
-      perform necessary tune-ups, and ensure your furnace or heat pump is primed
-      to keep you warm and comfortable throughout the chilly season.
-    </p>
+  <SectionContainer bannerContent="WHAT TO EXPECT" bannerScreenSide="right">
+    <div class="section-content">
+      Let us help you make an educated decision! We are here to help, whether
+      you choose RUUD or not.
+
+      <ol>
+        <br />
+        <li>
+          <span class="semibold">Capacity and Sizing: </span>We can determine
+          the heating and cooling demands of your building. Too much cooling
+          capacity and your unit starts and stops too frequently, which causes
+          wear on the equipment. Too little capacity leaves you in a warm home
+          on Texas' hottest days.
+        </li>
+        <li>
+          <span class="semibold">Energy efficiency: </span>We want to deliver
+          the most bang for your buck, not only for our service but for years to
+          come. Selecting the most energy efficient unit within your budget is
+          the only way we do it.
+        </li>
+        <li>
+          <span class="semibold">Warranty: </span>Strong warranty coverage for
+          equipment and installation is paramount. You pay for something to
+          last, and it should. Sticking with a reputable brand and HVAC company
+          for a proffessional service means that you are covered!
+        </li>
+      </ol>
+    </div>
   </SectionContainer>
   {#if mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
-      backgroundSide="left"
+      photoFilename="ruud-outdoor-unit.png"
+      photoCaption="RUUD Air Conditioner"
+      backgroundSide="none"
     />
   {/if}
-  <SectionBreak />
-  <div>
-    <h3 class="semibold">
-      Benefits of Joining Our Seasonal Maintenance Program
-    </h3>
-    <ol>
-      <li>
-        Convenient annual maintenance appointments tailored to your schedule
-      </li>
-      <li>Priority service and scheduling for maintenance visits</li>
-      <li>
-        Regular inspections to catch potential issues early and prevent costly
-        repairs
-      </li>
-      <li>Transparent pricing with no surprises</li>
-      <li>
-        Expert service from certified technicians dedicated to your comfort and
-        satisfaction
-      </li>
-    </ol>
-  </div>
+
   <p class="final-paragraph">
     <br /><br />
-    Don't let seasonal HVAC maintenance slip your mind—join our Maintenance Program
-    today and enjoy worry-free comfort year-round! To learn more, contact us at
-    <a href="tel:+19794808444">(979) 480-8444</a>. Stay ahead of the curve and
-    ensure your home comfort with Byrd Brothers HVAC!
+    If you're considering an upgrade, replacement, or new install -
+    <a href="tel:+19794808444">give us a call</a>
+    to see how RUUD compares! Stay ahead of the curve and ensure your home comfort
+    with Byrd Brothers HVAC!
   </p>
 </div>
 
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="JOIN THE PROGRAM!"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="HOW CAN WE HELP?" bannerScreenSide="left">
     <RequestAQuote />
   </SectionContainer>
 </div>

@@ -9,13 +9,13 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>HVAC Maintenance in Brazoria County | Byrd Brothers HVAC</title>
+  <title>Generac Home Generator | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="Spring and Fall HVAC Maintenance Program | Click to learn more about our special program pricing and let us make sure you're comfortable year round!"
+    content="You can't heat or cool your home without power! We our an authorized sales and service partner with Generac. Click to learn more."
   />
 </svelte:head>
-<ViewTitleBar title="HVAC Maintenance Program" />
+<ViewTitleBar title="Generac Home Generators" />
 
 <Generac {mobile} />
 

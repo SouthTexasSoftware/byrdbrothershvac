@@ -15,86 +15,72 @@
     articleOwner="Brady Byrd, Owner"
   /> -->
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="SPRING SPECIAL: $125"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="SIMPLE & EFFECTIVE" bannerScreenSide="left">
     <p class="section-content">
-      As spring blooms and temperatures begin to rise, it's crucial to ensure
-      your air conditioning system is ready to keep you cool during the warmer
-      months. With our Seasonal Maintenance Program, for just <span
-        class="semibold cool">$125</span
-      >, you'll receive comprehensive AC system maintenance performed by our
-      skilled technicians. From cleaning coils to checking refrigerant levels
-      and inspecting electrical components, we'll ensure your AC system operates
-      at peak performance when you need it most.
+      <span class="semibold">Upfront Pricing:</span> $150 installed!
+      
+      <br /><br />
+      Are you tired of feeling drafts and losing valuable energy through your attic
+      access door? Say goodbye to wasted energy and hello to year-round comfort with
+      this awesome product. An attic door tent is a simple yet effective solution
+      to seal off your attic access and keep conditioned air where it belongs — in
+      your home.
     </p>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="dual-ac-units-with-leaves.png"
-    photoCaption="The Spring Warm Up"
+    photoFilename="attic-tent-personal-demo.png"
+    photoCaption=""
     backgroundSide="right"
   />
   <SectionBreak />
   {#if !mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="attic-tent-insulator.png"
+      photoCaption="Installed & Sealed Attic Tent"
       backgroundSide="left"
     />
   {/if}
-  <SectionContainer bannerContent="FALL SPECIAL: $99" bannerScreenSide="right">
-    <p class="section-content">
-      As the temperatures start to cool, it's time to shift focus to your
-      heating system's reliability and efficiency. With our Seasonal Maintenance
-      Program, enjoy peace of mind for just $99 with our thorough heating system
-      maintenance service. Our technicians will conduct detailed inspections,
-      perform necessary tune-ups, and ensure your furnace or heat pump is primed
-      to keep you warm and comfortable throughout the chilly season.
-    </p>
+  <SectionContainer bannerContent="LEARN MORE" bannerScreenSide="right">
+    <div class="section-content">
+      <ol>
+        <li>
+          <span class="semibold">Seals Against Allergens and Dust: </span>It
+          acts as a barrier, preventing attic dust and allergens from entering
+          the home.
+        </li>
+        <li>
+          <span class="semibold">Reflects Heat and Cold: </span>The insulator
+          reflects heat and cold away from the attic door, maintaining
+          consistent temperatures.
+        </li>
+        <li>
+          <span class="semibold">Barrier Against Insects and Rodents: </span>It
+          forms an effective shield, keeping unwanted pests out.
+        </li>
+        <li>
+          <span class="semibold">Zero Operation Costs: </span>This attic
+          stairway insulator requires no additional expenses to operate.
+        </li>
+      </ol>
+    </div>
   </SectionContainer>
   {#if mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="attic-tent-insulator.png"
+      photoCaption="Installed & Sealed Attic Tent"
       backgroundSide="left"
     />
   {/if}
-  <SectionBreak />
-  <div>
-    <h3 class="semibold">
-      Benefits of Joining Our Seasonal Maintenance Program
-    </h3>
-    <ol>
-      <li>
-        Convenient annual maintenance appointments tailored to your schedule
-      </li>
-      <li>Priority service and scheduling for maintenance visits</li>
-      <li>
-        Regular inspections to catch potential issues early and prevent costly
-        repairs
-      </li>
-      <li>Transparent pricing with no surprises</li>
-      <li>
-        Expert service from certified technicians dedicated to your comfort and
-        satisfaction
-      </li>
-    </ol>
-  </div>
   <p class="final-paragraph">
-    <br /><br />
-    Don't let seasonal HVAC maintenance slip your mind—join our Maintenance Program
-    today and enjoy worry-free comfort year-round! To learn more, contact us at
+    <br />
+    Don't let the simple problems cost you in the long run! Contact us at
     <a href="tel:+19794808444">(979) 480-8444</a>. Stay ahead of the curve and
     ensure your home comfort with Byrd Brothers HVAC!
   </p>
 </div>
 
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="JOIN THE PROGRAM!"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="SCHEDULE A VISIT!" bannerScreenSide="left">
     <RequestAQuote />
   </SectionContainer>
 </div>

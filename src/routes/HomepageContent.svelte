@@ -1,23 +1,25 @@
 <script lang="ts">
+  import ServiceAnythingStatement from "$lib/components/ServiceAnythingStatement.svelte";
   import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
   import DropdownButton from "$lib/components/layout/DropdownButton.svelte";
   import SectionBreak from "$lib/components/layout/SectionBreak.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import GoogleReviews from "$lib/components/photos/GoogleReviews.svelte";
   import PhotoSingleBlock from "$lib/components/photos/PhotoSingleBlock.svelte";
+  import LinkCarousel from "./LinkCarousel.svelte";
 
   export let screenWidth: number;
 
   let mobile = false;
   let desktop = false;
-  let serviceAreaMapFilename = 'service-area-map.png';
+  let serviceAreaMapFilename = "service-area-map.png";
 
   const getAssetSrc = (name: string) => {
     const path = `/src/lib/photos/${name}`;
     const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
     const mod = modules[path] as { default: string };
     return mod.default;
-};
+  };
 
   $: if (screenWidth < 600) {
     mobile = true;
@@ -39,7 +41,12 @@
     <a href="/services/air_conditioning/maintenance">AC Maintenance</a>, and
     <a href="/services/insulation">Insulation</a>.
   </h2>
+
   <GoogleReviews />
+  <ServiceAnythingStatement />
+
+  <SectionBreak />
+
   <SectionContainer
     bannerContent={"REQUEST A QUOTE!"}
     bannerScreenSide={"left"}
@@ -110,9 +117,10 @@
       <br />
     </p>
     <div class="service-area-list">
-      <a href='about/service_area' class='cities-button' >All Areas We Service</a>
-      <div class='breaker-bar'></div>
-      <ul class='list-items'>
+      <a href="about/service_area" class="cities-button">All Areas We Service</a
+      >
+      <div class="breaker-bar"></div>
+      <ul class="list-items">
         <li>Angleton</li>
         <li>Bailey's Prairie</li>
         <li>Bay City</li>
@@ -146,22 +154,23 @@
     <div />
   </SectionContainer>
   <!-- TODO: Change this to use the GOOGLE MAPS API -->
-  <img class='service-area-map' src={getAssetSrc(serviceAreaMapFilename)} alt="Service Area Map">
+  <img
+    class="service-area-map"
+    src={getAssetSrc(serviceAreaMapFilename)}
+    alt="Service Area Map"
+  />
 
   <p class="section-content">
-    <br><br>
-    Contacting us is the first step towards ensuring your indoor
-    comfort and well-being. We understand that your HVAC system plays a critical
-    role in your daily life, and any issues can disrupt your peace of mind.
-    Whether you require installation, repairs, maintenance, or expert advice,
-    reaching out to us is the key to reliable, efficient, and personalized
-    solutions. Our team is here to provide professional guidance, exceptional
-    service, and a swift response to your HVAC needs. Don't let heating or
-    cooling issues go unaddressed; contact us today, and let us take care of
-    your comfort, so you can focus on what matters most.
-    
+    <br /><br />
+    Contacting us is the first step towards ensuring your indoor comfort and well-being.
+    We understand that your HVAC system plays a critical role in your daily life,
+    and any issues can disrupt your peace of mind. Whether you require installation,
+    repairs, maintenance, or expert advice, reaching out to us is the key to reliable,
+    efficient, and personalized solutions. Our team is here to provide professional
+    guidance, exceptional service, and a swift response to your HVAC needs. Don't
+    let heating or cooling issues go unaddressed; contact us today, and let us take
+    care of your comfort, so you can focus on what matters most.
   </p>
-
 </div>
 
 <style>
@@ -228,7 +237,6 @@
     padding: 0 20px;
   }
   .list-items li {
-    
     flex: 50%;
   }
   .service-area-map {
@@ -256,13 +264,11 @@
     }
     .cities-button {
       width: 100%;
-      
     }
     .service-area-map {
       margin-top: 0;
       width: 100%;
     }
-    
   }
 
   /* Very Small / Zoomed in Screens */
@@ -276,8 +282,5 @@
     .section-content * {
       font-size: 6vw !important;
     }
-
   }
-
-  
 </style>

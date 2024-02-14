@@ -1,6 +1,6 @@
 <script lang="ts">
+  import CityPage from "$lib/components/CityPage.svelte";
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
-  import MrCool from "./MrCool.svelte";
 
   let screenWidth: number;
 
@@ -9,15 +9,15 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>MRCOOL Mini-splits & More! | Byrd Brothers HVAC</title>
+  <title>Air Conditioning Services in Lake Jackson | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="Ready for an air conditioned garage, shop, or new build home? We partnered with the biggest name in mini-split units, MRCOOL!"
+    content="Let us welcome you to the Byrd Brothers Family! We install, repair, and service all varieties of HVAC equipment. Air Conditioning and Heating Services in Lake Jackson, TX."
   />
 </svelte:head>
-<ViewTitleBar title="MRCOOL ®" />
+<ViewTitleBar title="AC Services in Lake Jackson, TX" />
 
-<MrCool {mobile} />
+<CityPage/>
 
 <style>
   /* UltraWide */

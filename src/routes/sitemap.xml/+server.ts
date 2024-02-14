@@ -85,6 +85,18 @@ export async function GET() {
 		<lastmod>2023-10-22</lastmod>
 	</url>
     <url>
+		<loc>${url}/about/service_area/sweeny</loc>
+		<lastmod>2024-02-07</lastmod>
+	</url>
+    <url>
+		<loc>${url}/about/service_area/brazoria</loc>
+		<lastmod>2024-02-07</lastmod>
+	</url>
+    <url>
+		<loc>${url}/about/service_area/lake_jackson</loc>
+		<lastmod>2024-02-07</lastmod>
+	</url>
+    <url>
 		<loc>${url}/about/partners</loc>
 		<lastmod>2024-02-07</lastmod>
 	</url>

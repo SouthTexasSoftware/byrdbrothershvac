@@ -9,13 +9,13 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>HVAC Maintenance in Brazoria County | Byrd Brothers HVAC</title>
+  <title>Attic Tent Installation | Byrd Brothers HVAC</title>
   <meta
     name="description"
-    content="Spring and Fall HVAC Maintenance Program | Click to learn more about our special program pricing and let us make sure you're comfortable year round!"
+    content="Looking for an inexpensive and quick way to improve your home's energy efficiency? Look no further! Seal off your conditioned home from that hot attic today."
   />
 </svelte:head>
-<ViewTitleBar title="HVAC Maintenance Program" />
+<ViewTitleBar title="Attic Door Tents" />
 
 <AtticTent {mobile} />
 

@@ -16,85 +16,76 @@
   /> -->
 <div class="article-content content-width">
   <SectionContainer
-    bannerContent="SPRING SPECIAL: $125"
+    bannerContent="COOL ANYWHERE & EVERYWHERE"
     bannerScreenSide="left"
   >
     <p class="section-content">
-      As spring blooms and temperatures begin to rise, it's crucial to ensure
-      your air conditioning system is ready to keep you cool during the warmer
-      months. With our Seasonal Maintenance Program, for just <span
-        class="semibold cool">$125</span
-      >, you'll receive comprehensive AC system maintenance performed by our
-      skilled technicians. From cleaning coils to checking refrigerant levels
-      and inspecting electrical components, we'll ensure your AC system operates
-      at peak performance when you need it most.
+      Probably best known for their ductless mini-splits, we partnered with
+      <a class="paragraph-link" href="https://mrcool.com/">MRCOOL</a> to offer high-efficiency and
+      innovative HVAC products. Perfect for an air conditioned garage, air
+      conditioned shop, air conditioned mancave, you name it! These products are
+      easy to install and can get you <span class="cool">cool</span>
+      fast! A small footprint and low power consumption give you a new world of options.
+      <a href="tel:+19794808444">Give us a call</a> to discuss yours!
     </p>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="dual-ac-units-with-leaves.png"
-    photoCaption="The Spring Warm Up"
+    photoFilename="mrcool-indoor-outdoor.png"
+    photoCaption="A complete system!"
     backgroundSide="right"
   />
   <SectionBreak />
   {#if !mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="mrcool-mounted-outside.png"
+      photoCaption="Install Anywhere!"
       backgroundSide="left"
     />
   {/if}
-  <SectionContainer bannerContent="FALL SPECIAL: $99" bannerScreenSide="right">
-    <p class="section-content">
-      As the temperatures start to cool, it's time to shift focus to your
-      heating system's reliability and efficiency. With our Seasonal Maintenance
-      Program, enjoy peace of mind for just $99 with our thorough heating system
-      maintenance service. Our technicians will conduct detailed inspections,
-      perform necessary tune-ups, and ensure your furnace or heat pump is primed
-      to keep you warm and comfortable throughout the chilly season.
-    </p>
+  <SectionContainer bannerContent="LEARN MORE" bannerScreenSide="right">
+    <div class="section-content">
+      Let us help you get the right product for you!
+      <ol>
+        <li>
+          <span class="semibold">Energy Consumption: </span>How much will it
+          cost to run every month? We can help you find out!
+        </li>
+        <li>
+          <span class="semibold">Temperature Control: </span>Most new units can
+          be controlled directly from your smartphone! Cool the house down on
+          your way home from the football game.
+        </li>
+        <li>
+          <span class="semibold">Warranty: </span>One of the best in the
+          industry. 5 Year Warranty is standard, with optional warranties
+          available for peace of mind!
+        </li>
+        <li>
+          <span class="semibold">Salty Air: </span>MRCOOL products are prepared
+          for the Texas Gulf Coast with corrosion resistant condensors - built
+          for our outdoor elements.
+        </li>
+      </ol>
+    </div>
   </SectionContainer>
   {#if mobile}
     <PhotoSingleBlock
-      photoFilename="fall-leaves-ac-unit.png"
-      photoCaption="Winter Prep Season"
+      photoFilename="mrcool-mounted-outside.png"
+      photoCaption="Install Anywhere!"
       backgroundSide="left"
     />
   {/if}
-  <SectionBreak />
-  <div>
-    <h3 class="semibold">
-      Benefits of Joining Our Seasonal Maintenance Program
-    </h3>
-    <ol>
-      <li>
-        Convenient annual maintenance appointments tailored to your schedule
-      </li>
-      <li>Priority service and scheduling for maintenance visits</li>
-      <li>
-        Regular inspections to catch potential issues early and prevent costly
-        repairs
-      </li>
-      <li>Transparent pricing with no surprises</li>
-      <li>
-        Expert service from certified technicians dedicated to your comfort and
-        satisfaction
-      </li>
-    </ol>
-  </div>
   <p class="final-paragraph">
-    <br /><br />
-    Don't let seasonal HVAC maintenance slip your mind—join our Maintenance Program
-    today and enjoy worry-free comfort year-round! To learn more, contact us at
+    <br />
+    Don't let space or budget stop you from staying cool in the Texas heat! To learn
+    more, contact us at
     <a href="tel:+19794808444">(979) 480-8444</a>. Stay ahead of the curve and
     ensure your home comfort with Byrd Brothers HVAC!
   </p>
 </div>
 
 <div class="article-content content-width">
-  <SectionContainer
-    bannerContent="JOIN THE PROGRAM!"
-    bannerScreenSide="left"
-  >
+  <SectionContainer bannerContent="NEED A MINISPLIT?" bannerScreenSide="left">
     <RequestAQuote />
   </SectionContainer>
 </div>

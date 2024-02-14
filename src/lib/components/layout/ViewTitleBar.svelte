@@ -20,6 +20,7 @@ export let title: string;
     font-family: font-bold;
     font-size: 34px;
     color: black;
+    text-align: center;
   }
   .title-underline {
     width: 100px;
@@ -38,5 +39,8 @@ export let title: string;
     .title-container {
         margin-top: 15px;
     }
+    .page-title {
+      padding: 0 20px;
+  }
   }
 </style>
