@@ -25,15 +25,15 @@
     </p>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="ducting-insulation-stock.png"
-    photoCaption="Rolls of ducting insulation"
-    backgroundSide="none"
+    photoFilename="byrdbrothers-insulation-before-blown-in.png"
+    photoCaption="Before Byrd Brothers Insulation Install"
+    backgroundSide="right"
   />
   <SectionBreak />
   {#if !mobile}
     <PhotoSingleBlock
-      photoFilename="blown-in-insulation.jpg"
-      photoCaption="Blown-in attic insulation"
+      photoFilename="byrdbrothers-insulation-after-blown-in.png"
+      photoCaption="After Byrd Brothers Insulation Install"
       backgroundSide="left"
     />
   {/if}
@@ -67,8 +67,8 @@
   </SectionContainer>
   {#if mobile}
     <PhotoSingleBlock
-      photoFilename="blown-in-insulation.jpg"
-      photoCaption="Blown-in attic insulation"
+      photoFilename="byrdbrothers-insulation-after-blown-in.png"
+      photoCaption="After Byrd Brothers Insulation Install"
       backgroundSide="left"
     />
   {/if}
@@ -100,8 +100,8 @@
     </div>
   </SectionContainer>
   <PhotoSingleBlock
-    photoFilename="fiberglass-batt-insulation.jpg"
-    photoCaption="Fiberglass batt insulation rolls"
+    photoFilename="blown-in-insulation.jpg"
+    photoCaption="Insulation Covering Joists"
     backgroundSide="right"
   />
   <SectionBreak />

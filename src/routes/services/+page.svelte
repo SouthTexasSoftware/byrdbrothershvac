@@ -103,7 +103,7 @@
     <div class="service-card" in:fly={{ x: 50, duration: 500, delay: 300 }}>
       <a href="/services/insulation">
         <img
-          src={getAssetSrc("ducting-insulation-stock.png")}
+          src={getAssetSrc("byrdbrothers-insulation-after-blown-in.png")}
           alt="Insulation Services"
         />
       </a>
