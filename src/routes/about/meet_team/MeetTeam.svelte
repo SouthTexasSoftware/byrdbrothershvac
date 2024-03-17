@@ -84,11 +84,11 @@
 
   <SectionBreak />
   {#if !mobile}
-  <PhotoSingleBlock
-    photoFilename="Debbie Jenkins Office Manager.png"
-    photoCaption="Debbie Jenkins, Office Manager"
-    backgroundSide="right"
-  />
+    <PhotoSingleBlock
+      photoFilename="Debbie Jenkins Office Manager.png"
+      photoCaption="Debbie Jenkins, Office Manager"
+      backgroundSide="right"
+    />
   {/if}
   <SectionContainer
     bannerContent="DEBBIE JENKINS"
@@ -107,18 +107,42 @@
     </p>
   </SectionContainer>
   {#if mobile}
-  <PhotoSingleBlock
-    photoFilename="Debbie Jenkins Office Manager.png"
-    photoCaption="Debbie Jenkins, Office Manager"
-    backgroundSide="right"
-  />
+    <PhotoSingleBlock
+      photoFilename="Debbie Jenkins Office Manager.png"
+      photoCaption="Debbie Jenkins, Office Manager"
+      backgroundSide="right"
+    />
   {/if}
   <SectionBreak />
+  <SectionBreak />
 
+  <SectionContainer
+    bannerContent="PEDRO ROJAS"
+    bannerScreenSide="left"
+  >
+    <p class="section-content">
+      We are thrilled to welcome Pedro Rojas to our team at Byrd Brothers HVAC!
+      With a passion for excellence and a wealth of experience in HVAC systems,
+      Pedro joins us as a valuable addition to our small-town community. His
+      dedication to providing top-notch service and his expertise in heating,
+      ventilation, and air conditioning will undoubtedly enhance our commitment
+      to delivering quality solutions to our customers. Pedro's friendly
+      demeanor and strong work ethic make him a perfect fit for our team, and
+      we're excited to have him on board as we continue to serve our community's
+      HVAC needs with the utmost professionalism and care.
+    </p>
+  </SectionContainer>
+  <PhotoSingleBlock
+    photoFilename="Pedro Rojas HVAC Team Member.png"
+    photoCaption="Pedro Rojas, HVAC Team Member"
+    backgroundSide="right"
+  />
+  <SectionBreak />
   <p class="final-paragraph">
     Parents, Ronnie and Windy Byrd, also help with the business. Ronnie, who has
-    over 30 years of business management experience and Windy, who teaches business
-    information management at Sweeny High School are ready to see them soar.
+    over 30 years of business management experience and Windy, who teaches
+    business information management at Sweeny High School are ready to see them
+    soar.
   </p>
 </div>
 

@@ -6,7 +6,9 @@
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import GoogleReviews from "$lib/components/photos/GoogleReviews.svelte";
   import PhotoSingleBlock from "$lib/components/photos/PhotoSingleBlock.svelte";
+  import { Video } from "lucide-svelte";
   import LinkCarousel from "./LinkCarousel.svelte";
+  import VideoPlayer from "./VideoPlayer.svelte";
 
   export let screenWidth: number;
 
@@ -44,6 +46,8 @@
 
   <GoogleReviews />
   <ServiceAnythingStatement />
+
+  <VideoPlayer />
 
   <SectionBreak />
 
