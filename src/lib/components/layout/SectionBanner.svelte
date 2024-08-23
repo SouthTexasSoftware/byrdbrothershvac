@@ -37,7 +37,7 @@
     text-align: center;
     margin-bottom: 4px;
   }
-  
+
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
   }
@@ -46,6 +46,7 @@
     .banner {
       width: auto;
       min-width: 350px;
+      
     }
     .banner.left {
       text-align: left;
@@ -68,8 +69,36 @@
       margin-bottom: 6px;
     }
     .banner-description.right {
-    text-align: right;
-    margin-right: 5%;
+      text-align: right;
+      margin-right: 5%;
+    }
   }
+  /* Very Small / Zoomed in Screens */
+  @media only screen and (max-width: 400px) {
+    .banner {
+      font-size: 6vw;
+      width: auto;
+      max-width: 90vw;
+      min-width: 70vw;
+    }
+    .banner-description {
+      font-size: 4vw;
+    }
+    .banner.left {
+      text-align: left;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 14vw;
+      transform: translateX(-9vw);
+    }
+    .banner.right {
+      text-align: right;
+      align-self: flex-end;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-right: 13vw;
+      padding-left: 10vw;
+      transform: translateX(9vw);
+    }
   }
 </style>

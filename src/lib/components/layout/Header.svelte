@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import DesktopNav from "./DesktopNav.svelte";
   import MobileNav from "./MobileNav.svelte";
+  import { slide } from "svelte/transition";
 
   let screenWidth: number;
   let mounted = false;
@@ -16,19 +17,20 @@
 <header>
   {#if mounted}
     {#if screenWidth < 940}
-      <a href="/" id="logo-and-link-home" aria-label='Homepage Link'>
-        <LogoComponent height={45} />
-      </a>
-      <MobileNav height={45} />
+      <div class="mobile-nav-wrapper" in:slide>
+        <a href="/" id="logo-and-link-home" aria-label="Homepage Link">
+          <LogoComponent height={45} />
+        </a>
+        <MobileNav height={45} />
+      </div>
     {:else}
-      <a href="/" id="logo-and-link-home" aria-label='Homepage Link'>
+      <a href="/" id="logo-and-link-home" aria-label="Homepage Link">
         <LogoComponent height={60} />
       </a>
       <DesktopNav />
     {/if}
   {/if}
 </header>
-
 
 <style>
   header {
@@ -38,7 +40,10 @@
     padding: 0 10px;
     border-bottom: 4px solid #ff7817;
   }
-
+  .mobile-nav-wrapper {
+    display: flex;
+    width: 100%;
+  }
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
     header {

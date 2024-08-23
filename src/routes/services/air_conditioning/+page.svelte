@@ -29,13 +29,21 @@
 <div class="main-page-container content-width">
   <p class="main-page-content">
     Byrd Brothers HVAC specializes in Air Conditioning Services in Brazoria
-    County and Matagorda County of South Texas, with close proximity to Sweeny,
-    Brazoria, and Lake Jackson, TX.
+    County and Matagorda County of South Texas, with close proximity to <a
+      href="/about/service_area/sweeny"
+      class="paragraph-link">Sweeny</a
+    >,
+    <a href="/about/service_area/brazoria" class="paragraph-link">Brazoria</a>,
+    and
+    <a href="/about/service_area/lake_jackson" class="paragraph-link"
+      >Lake Jackson</a
+    >, TX.
     <br /><br />
     From new air conditioning installation and whole system replacement, to routine
     maintenance and emergency repairs, we are your local experts in keeping your
     home cool and comfortable. We pride ourselves in being a family-owned business
-    that treats our customers like one of our own. <a href="/contact/quote_form">Request a quote!</a>
+    that treats our customers like one of our own.
+    <a href="/contact/quote_form" class="paragraph-link">Request a quote!</a>
     <br /><br />
     Scroll down or click below to learn more about our AC services:
   </p>
@@ -48,18 +56,22 @@
 </div>
 <div class="divider-bar content-width" />
 
-<ACInstallation {mobile}/>
+<ACInstallation {mobile} include_quote_form={false} />
 <div class="divider-bar content-width" />
-<AcRepair {mobile} />
+<AcRepair {mobile} include_quote_form={false} />
 <div class="divider-bar content-width" />
-<AcMaintenance {mobile} />
+<AcMaintenance {mobile} include_quote_form={false} />
 <div class="divider-bar content-width" />
-<EmergencyHvac {mobile} />
+<EmergencyHvac {mobile} include_quote_form={false} />
 
 <div class="article-content content-width">
-    <SectionContainer bannerContent="GET A QUOTE!" bannerScreenSide="left" bannerDescription="Free estimates for any size job.">
-      <RequestAQuote />
-    </SectionContainer>
+  <SectionContainer
+    bannerContent="GET A QUOTE!"
+    bannerScreenSide="left"
+    bannerDescription="Free estimates for any size job."
+  >
+    <RequestAQuote />
+  </SectionContainer>
 </div>
 
 <style>
@@ -92,10 +104,10 @@
   /* Mobile */
   @media only screen and (max-width: 600px) {
     .main-page-container {
-    padding: 0;
-  }
-  .divider-bar {
-    width: 90vw;
-  }
+      padding: 0;
+    }
+    .divider-bar {
+      width: 90vw;
+    }
   }
 </style>

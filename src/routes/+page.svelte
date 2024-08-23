@@ -2,18 +2,47 @@
   import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
   import PhotoSingleBlock from "$lib/components/photos/PhotoSingleBlock.svelte";
   import bgPhoto from "$lib/photos/byrdbrothersbg.jpg";
+  import bgPhoto2 from "$lib/photos/byrdbrothersshopbg.jpg";
   import { onMount } from "svelte";
   import { fly, slide } from "svelte/transition";
   import HomepageContent from "./HomepageContent.svelte";
+  import LinkCarousel from "./LinkCarousel.svelte";
 
   let pageMounted = false;
   let screenWidth = 0;
 
   $: mobile = screenWidth > 600 ? false : true;
 
+  let backgroundChoices = [bgPhoto, bgPhoto2];
+  let transitioningBg = true;
+  // randomized starting background
+  let rotationalBg = "";
+
   onMount(() => {
     pageMounted = true;
+
+    rotatingBackgroundHandler();
   });
+
+  function rotatingBackgroundHandler() {
+    setInterval(() => {
+      if (rotationalBg == bgPhoto) {
+        transitioningBg = true;
+        setTimeout(() => {
+          rotationalBg = bgPhoto2;
+          transitioningBg = false;
+        }, 2000);
+      } else {
+        transitioningBg = true;
+        setTimeout(() => {
+          rotationalBg = bgPhoto;
+          transitioningBg = false;
+        }, 2000);
+      }
+    }, 15000);
+    rotationalBg = backgroundChoices[Math.round(Math.random())];
+    transitioningBg = false;
+  }
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
@@ -24,24 +53,45 @@
     content="Air Conditioning, Heating, and Insulation company serving Brazoria County and Matagorda County. Installation, repair, and maintenance services provided."
   />
 </svelte:head>
-<div id="background-photo" style="background-image:url({bgPhoto});">
-  {#if pageMounted}
-    <h2 class="catchphrase" in:slide={{ duration: 1000, delay: 500 }}>
-      IF YOU ARE IN THE <span class="emphasis">HEAT</span>,
-      {#if mobile}
-        <br />
-      {/if}
-      THEN WE NEED TO <span class="emphasis">MEET</span>!
-    </h2>
+<div id="background-photo" style="background-image:url({rotationalBg});">
+  <div class="transparent-container" class:transitioning={transitioningBg}>
+    {#if pageMounted}
+      <h2 class="catchphrase" in:slide={{ duration: 1000, delay: 500 }}>
+        IF YOU ARE IN THE <span class="emphasis">HEAT</span>,
+        {#if mobile}
+          <br />
+        {/if}
+        THEN WE NEED TO <span class="emphasis">MEET</span>!
+      </h2>
 
-    <div class="cta-container">
-      <div class="button-container">
-        <a href="/services">Services</a>
-        <a href="tel:+19794808444">Call Now</a>
+      <div class="cta-container">
+        <div class="button-container">
+          <a href="/services">Services</a>
+          <a href="tel:+19794808444">Call Now</a>
+        </div>
       </div>
-    </div>
-  {/if}
+      <LinkCarousel />
+    {/if}
+  </div>
 </div>
+<!-- 
+<button
+  on:click={() => {
+    if (rotationalBg == bgPhoto) {
+      transitioningBg = true;
+      setTimeout(() => {
+        rotationalBg = bgPhoto2;
+        transitioningBg = false;
+      }, 2000);
+    } else {
+      transitioningBg = true;
+      setTimeout(() => {
+        rotationalBg = bgPhoto;
+        transitioningBg = false;
+      }, 2000);
+    }
+  }}>Click me</button
+> -->
 
 <HomepageContent {screenWidth} />
 
@@ -52,10 +102,21 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: var(--neutral);
+    background-color: black;
     position: relative;
     max-width: 1920px;
     color: hsl(var(--b1));
+  }
+  .transparent-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 2s;
+  }
+  .transparent-container.transitioning {
+    backdrop-filter: brightness(0);
   }
   .catchphrase {
     text-align: center;
@@ -119,14 +180,24 @@
       right: 5vw;
       bottom: 40px;
       text-align: right;
-      min-width: 275px;
     }
     .cta-container a {
       padding: 5px 25px;
+      font-size: 5vw;
     }
     .cta-container * {
       font-family: font-light;
       font-size: 20px;
+    }
+  }
+  /* Very Small / Zoomed in Screens */
+  @media only screen and (max-width: 400px) {
+    .cta-container {
+      position: absolute;
+      width: 100vw;
+      right: 0;
+      bottom: 40px;
+      text-align: right;
     }
   }
 </style>

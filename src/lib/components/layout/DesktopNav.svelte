@@ -1,8 +1,11 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import { fly } from "svelte/transition";
 
   let hoverState = {
+    home: false,
     services: false,
+    products: false,
     about: false,
     air_conditioning: false,
     insulation: false,
@@ -11,6 +14,22 @@
 </script>
 
 <nav class="desktop-nav-container">
+  <div
+    class="link-container"
+    on:mouseenter={() => (hoverState.home = true)}
+    on:mouseleave={() => {
+      setTimeout(() => (hoverState.home = false), 200);
+    }}
+  >
+    <a
+      href="/"
+      class="desktop-nav-link"
+      class:highlight={hoverState.home}
+      class:viewing={$page.url.pathname == "/"}
+    >
+      HOME
+    </a>
+  </div>
   <div
     class="link-container"
     on:mouseenter={() => (hoverState.services = true)}
@@ -22,6 +41,7 @@
       href="/services"
       class="desktop-nav-link"
       class:highlight={hoverState.services}
+      class:viewing={$page.url.pathname.includes("/services")}
     >
       SERVICES
     </a>
@@ -31,6 +51,9 @@
           AIR CONDITIONING
         </a>
         <a href="/services/heating" class="desktop-nav-link"> HEATING </a>
+        <a href="/services/maintenance_program" class="desktop-nav-link">
+          MAINTENANCE
+        </a>
         <a href="/services/insulation" class="desktop-nav-link"> INSULATION </a>
         <a href="/services/air_quality" class="desktop-nav-link">
           AIR QUALITY
@@ -41,25 +64,32 @@
 
   <div
     class="link-container"
-    on:mouseenter={() => (hoverState.about = true)}
+    on:mouseenter={() => (hoverState.products = true)}
     on:mouseleave={() => {
-      setTimeout(() => (hoverState.about = false), 200);
+      setTimeout(() => (hoverState.products = false), 200);
     }}
   >
-    <a href="/about" class="desktop-nav-link" class:highlight={hoverState.about}
-      >ABOUT</a
+    <a
+      href="/products"
+      class="desktop-nav-link"
+      class:highlight={hoverState.products}
+      class:viewing={$page.url.pathname.includes("/products")}
     >
-    {#if hoverState.about}
+      PRODUCTS
+    </a>
+    {#if hoverState.products}
       <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/about/service_area" class="desktop-nav-link">
-          SERVICE AREA
+        <a href="/products/ruud" class="desktop-nav-link"> RUUD </a>
+        <a href="/products/mrcool" class="desktop-nav-link"> MRCOOL </a>
+        <a href="/products/generac" class="desktop-nav-link"> GENERAC </a>
+        <a href="/products/air_scrubber" class="desktop-nav-link">
+          AIR SCRUBBER
         </a>
-        <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
-        <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
-        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
+        <a href="/products/attic_tent" class="desktop-nav-link"> ATTIC TENT </a>
       </div>
     {/if}
   </div>
+
   <div
     class="link-container"
     on:mouseenter={() => (hoverState.air_conditioning = true)}
@@ -70,6 +100,7 @@
     <a
       href="/services/air_conditioning"
       class="desktop-nav-link"
+      class:viewing={$page.url.pathname.includes("/services/air_conditioning")}
       class:highlight={hoverState.air_conditioning}>AIR CONDITIONING</a
     >
     {#if hoverState.air_conditioning}
@@ -96,29 +127,31 @@
     {/if}
   </div>
 
-  <!-- <div
+  <div
     class="link-container"
-    on:mouseenter={() => (hoverState.insulation = true)}
+    on:mouseenter={() => (hoverState.about = true)}
     on:mouseleave={() => {
-      setTimeout(() => (hoverState.insulation = false), 200);
+      setTimeout(() => (hoverState.about = false), 200);
     }}
   >
     <a
-      href="/services/insulation"
+      href="/about"
       class="desktop-nav-link"
-      class:highlight={hoverState.insulation}>INSULATION</a
+      class:highlight={hoverState.about}
+      class:viewing={$page.url.pathname.includes("/about")}>ABOUT</a
     >
-    {#if hoverState.insulation}
+    {#if hoverState.about}
       <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/services/insulation/attic" class="desktop-nav-link">
-          ATTIC
+        <a href="/about/service_area" class="desktop-nav-link">
+          SERVICE AREA
         </a>
-        <a href="/services/insulation/ducting" class="desktop-nav-link">
-          DUCTING
-        </a>
+        <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
+        <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
+        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
       </div>
     {/if}
-  </div> -->
+  </div>
+
   <div
     class="link-container"
     on:mouseenter={() => (hoverState.contact = true)}
@@ -129,7 +162,8 @@
     <a
       href="/contact"
       class="desktop-nav-link"
-      class:highlight={hoverState.contact}>CONTACT US</a
+      class:highlight={hoverState.contact}
+      class:viewing={$page.url.pathname.includes("/contact")}>CONTACT US</a
     >
     {#if hoverState.contact}
       <div class="sub-menu" transition:fly={{ y: -10 }}>
@@ -173,7 +207,11 @@
   .desktop-nav-link.highlight {
     color: var(--primary-dark);
   }
-
+  .desktop-nav-link.viewing {
+    text-decoration: underline;
+    text-decoration-color: #ff7817;
+    text-decoration-thickness: 1px;
+  }
   .sub-menu {
     min-width: 100%;
     position: absolute;
