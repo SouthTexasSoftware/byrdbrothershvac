@@ -71,7 +71,7 @@
       photoCaption={"New A/C outdoor unit installed and running"}
     />
   {/if}
-
+ 
   <SectionContainer
     bannerContent={"COUNT ON COMFORT!"}
     bannerScreenSide="right"

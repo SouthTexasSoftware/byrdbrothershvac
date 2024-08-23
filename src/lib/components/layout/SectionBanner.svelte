@@ -46,6 +46,7 @@
     .banner {
       width: auto;
       min-width: 350px;
+      
     }
     .banner.left {
       text-align: left;
