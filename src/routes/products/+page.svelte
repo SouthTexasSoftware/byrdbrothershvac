@@ -158,7 +158,7 @@
   {/if}
 </div>
 
-<div class="article-content content-width">
+<div class="article-content content-width center-child">
   <SectionContainer
     bannerContent="GET A QUOTE!"
     bannerScreenSide="left"
@@ -218,6 +218,7 @@
   .card-description a {
     text-decoration: underline;
   }
+
   /* UltraWide */
   @media only screen and (min-width: 1900px) {
   }

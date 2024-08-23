@@ -33,10 +33,11 @@
   @media only screen and (max-width: 1200px) and (min-width: 600px) {
   }
   /* Mobile */
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 850px) {
     .section-container {
       width: auto;
       min-width: 0px;
+      margin-top: 25px;
     }
   }
   /* Very Small / Zoomed in Screens */

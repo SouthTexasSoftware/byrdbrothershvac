@@ -148,7 +148,7 @@
   {/if}
 </div>
 
-<div class="article-content content-width">
+<div class="article-content content-width center-child">
   <SectionContainer
     bannerContent="GET A QUOTE!"
     bannerScreenSide="left"
