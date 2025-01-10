@@ -20,11 +20,12 @@
   let formSubmitting = false;
   let formSubmitted = false;
 
-  firebaseStore.subscribe((storeData) => {
-    if (storeData) {
-      formAvailable = true;
-    }
-  });
+  // FORM IS DOWN DUE TO TWILIO/SENDGRID ACCOUNT ISSUES
+  // firebaseStore.subscribe((storeData) => {
+  //   if (storeData) {
+  //     formAvailable = true;
+  //   }
+  // });
 
   $: if (formAvailable) {
     formCollection = collection($firebaseStore.db, "quote-forms");
@@ -52,6 +53,9 @@
 </script>
 
 <div class="form-wrapper">
+  <div class="form-unavailable">
+    QUOTE FORM DOWN FOR SERVER MAINTENANCE. PLEASE CHECK BACK SOON OR GIVE US A CALL.
+  </div>
   <form
     class:disabled={!formAvailable}
     method="POST"
@@ -91,7 +95,7 @@
       cancel();
 
       formSubmissionLogger();
-      
+
       formSubmitted = true;
       formSubmitting = false;
       formAvailable = false;
@@ -182,6 +186,20 @@
 <style>
   .form-wrapper {
     position: relative;
+  }
+  .form-unavailable {
+    position: absolute;
+    padding: 25px;
+    backdrop-filter: blur(3px);
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: font-semibold;
+    text-align: center;
+    line-height: 34px;
   }
   .submission-popup {
     width: 60%;
