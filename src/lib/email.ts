@@ -10,10 +10,10 @@ let msg: MessageObject = {
     name: "South Texas Software",
     email: "notifications@southtexas.software",
   },
-  // to: ["notifications@southtexas.software", "byrdbrothershvac@gmail.com"],
+  to: ["notifications@southtexas.software", "byrdbrothershvac@gmail.com"],
 
   // FOR DEBUG
-  to: ["notifications@southtexas.software"],
+  // to: ["notifications@southtexas.software"],
 };
 
 /**
@@ -34,7 +34,7 @@ export async function emailHandler(
   }
 
   // d: change to dev if testing other features
-  if (true) {
+  if (false) {
     console.log(
       "****************** SIMULATING EMAIL PAYLOAD *********************"
     );
