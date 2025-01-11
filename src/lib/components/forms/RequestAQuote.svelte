@@ -20,15 +20,19 @@
   let formSubmitting = false;
   let formSubmitted = false;
 
-  // FORM IS DOWN DUE TO TWILIO/SENDGRID ACCOUNT ISSUES
-  // firebaseStore.subscribe((storeData) => {
-  //   if (storeData) {
-  //     formAvailable = true;
-  //   }
-  // });
+  // COMMENT OUT TO SHUT DOWN FORM SUBMISSIONS
+  firebaseStore.subscribe((storeData) => {
+    if (storeData) {
+      formAvailable = true;
+    }
+  });
 
   $: if (formAvailable) {
-    formCollection = collection($firebaseStore.db, "quote-forms");
+    if (dev) {
+      formCollection = collection($firebaseStore.db, "quote-forms-dev");
+    } else {
+      formCollection = collection($firebaseStore.db, "quote-forms-2");
+    }
   }
 
   let formInteractionCompleted = false;
@@ -53,9 +57,9 @@
 </script>
 
 <div class="form-wrapper">
-  <div class="form-unavailable">
+  <!-- <div class="form-unavailable">
     QUOTE FORM DOWN FOR SERVER MAINTENANCE. PLEASE CHECK BACK SOON OR GIVE US A CALL.
-  </div>
+  </div> -->
   <form
     class:disabled={!formAvailable}
     method="POST"
@@ -73,6 +77,10 @@
         //@ts-ignore
         formObject[key] = value;
       }
+
+      let created = Math.floor(Date.now() / 1000);
+      //@ts-ignore
+      formObject["created"] = created;
 
       const docRef = await addDoc(formCollection, formObject);
 
@@ -226,6 +234,7 @@
     margin-top: 10%;
     color: var(--bg);
     margin-bottom: 5px;
+    text-align: center;
   }
   form {
     display: flex;
