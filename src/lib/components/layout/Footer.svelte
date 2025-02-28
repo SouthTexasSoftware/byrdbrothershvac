@@ -1,16 +1,15 @@
 <script lang="ts">
-
   let date = new Date();
   let copyrightYear = date.getFullYear();
-  let photoFilename = 'sts-logo-no-icon.png';
+  let stsPhotoFile = "sts-logo-no-icon.png";
+  let mrcoolPhotoFile = "mrcool-logo.png";
 
   const getAssetSrc = (name: string) => {
     const path = `/src/lib/photos/${name}`;
     const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
     const mod = modules[path] as { default: string };
     return mod.default;
-};
-
+  };
 </script>
 
 <footer>
@@ -26,36 +25,37 @@
   <div class="info-row">
     <div class="contact">
       <p class="label">Contact Information</p>
-      <a
-        href="https://www.google.com/maps/place/BYRD+BROTHERS+HVAC/@29.0417636,-95.7044471,17z/data=!3m1!4b1!4m6!3m5!1s0x2df28abd63014a9:0x592a1a3e5416ec91!8m2!3d29.0417589!4d-95.7018722!16s%2Fg%2F11pyc3j0jb?entry=ttu"
-        >101 E 6th Street <br /> Sweeny, TX 77480</a
-      >
-      <a href="tel:+19794808444">(979) 480-8444</a>
+      <div class="contact-info">
+        <a
+          href="https://www.google.com/maps/place/BYRD+BROTHERS+HVAC/@29.0417636,-95.7044471,17z/data=!3m1!4b1!4m6!3m5!1s0x2df28abd63014a9:0x592a1a3e5416ec91!8m2!3d29.0417589!4d-95.7018722!16s%2Fg%2F11pyc3j0jb?entry=ttu"
+          >101 E 6th Street <br /> Sweeny, TX 77480</a
+        >
+        <a href="tel:+19794808444">(979) 480-8444</a>
+      </div>
     </div>
     <div class="partners">
       <p class="label">Our Partners</p>
-      <div class='partner-row'>
-        <a href="https://www.ruud.com/products/hvac/"
-          ><img
-            src="//static-ruud.globalimageserver.com/_WP/img/header/logo.png"
-            alt="Ruud Logo Background"
-            class="footer-picture ruud"
-            width=""
-            height=""
-          /></a
-        >
-        <a href="https://mrcool.com/"
-          ><img
-            class="footer-picture"
-            src="https://mrcool.com/wp-content/themes/mrcool-2022/images/logo/mc-logo-grad.svg"
-            data-fallback="https://mrcool.com/wp-content/themes/mrcool-2022/images/logo/mc-logo-grad.png"
-            alt="MrCool Blue Logo"
-          /></a
-        >
-      </div>
+
+      <a href="https://www.ruud.com/products/hvac/"
+        ><img
+          src="//static-ruud.globalimageserver.com/_WP/img/header/logo.png"
+          alt="Ruud Logo Background"
+          class="footer-picture ruud"
+          width=""
+          height=""
+        /></a
+      >
+      <a href="https://mrcool.com/"
+        ><img
+          class="footer-picture"
+          src={getAssetSrc(mrcoolPhotoFile)}
+          alt="MrCool Blue Logo"
+        /></a
+      >
+
       <a href="https://www.southtexas.software/">
         <img
-          src={getAssetSrc(photoFilename)}
+          src={getAssetSrc(stsPhotoFile)}
           alt="South Texas Software, LLC"
           class="footer-picture"
         /></a
@@ -73,7 +73,7 @@
     max-width: 1920px;
     padding: 0 10px;
     background-color: var(--banner-primary);
-    height: 210px;
+    height: 225px;
     margin-top: 50px;
   }
   button {
@@ -107,18 +107,20 @@
   .contact a,
   .partners a {
     font-family: font-light;
-    font-size: 14px;
+    font-size: 16px;
   }
-  .partner-row {
+  .contact-info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
   }
   .footer-picture {
-    width: 150px;
+    width: 100px;
     margin-bottom: 10px;
   }
   .footer-picture.ruud {
-    width: 100px;
+    width: 75px;
     margin-bottom: -5px;
   }
   .copyright {
@@ -146,18 +148,19 @@
       justify-content: center;
       align-items: center;
     }
-    .contact, .partners {
+    .contact,
+    .partners {
       margin-bottom: 25px;
       justify-content: center;
       align-items: center;
     }
     .footer-picture {
-    width: 100px;
-    margin-bottom: 10px;
-  }
-  .footer-picture.ruud {
-    width: 80px;
-    margin-bottom: -5px;
-  }
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    .footer-picture.ruud {
+      width: 80px;
+      margin-bottom: -5px;
+    }
   }
 </style>
