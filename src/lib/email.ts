@@ -11,6 +11,9 @@ let msg: MessageObject = {
     email: "notifications@southtexas.software",
   },
   to: ["notifications@southtexas.software", "byrdbrothershvac@gmail.com"],
+
+  // FOR DEBUG
+  // to: ["notifications@southtexas.software"],
 };
 
 /**

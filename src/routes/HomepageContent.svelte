@@ -33,6 +33,9 @@
 </script>
 
 <div class="homepage-content content-width">
+  <div class="h-6 w-full"></div>
+  <GoogleReviews />
+  <div class="h-6 w-full"></div>
   <h2 class="service-statement">
     Specializing in <a href="/services/air_conditioning/installation"
       >AC Installation</a
@@ -43,8 +46,18 @@
     <a href="/services/air_conditioning/maintenance">AC Maintenance</a>, and
     <a href="/services/insulation">Insulation</a>.
   </h2>
+  <h2 class="service-statement">
+    All our employees are <span class="bold-vetted">long-term</span>,
+    <span class="bold-vetted">vetted</span>,
+    <span class="bold-vetted">background checked</span>, and
+    <span class="bold-vetted">invested</span>
+    in performing high quality work. This makes a difference!
+  </h2>
+  <h2 class="service-statement last">
+    Visit our <a href="/about/meet_team">Meet the Team </a>page to see who is
+    helping you today.
+  </h2>
 
-  <GoogleReviews />
   <ServiceAnythingStatement />
 
   <VideoPlayer />
@@ -71,7 +84,7 @@
       photoCaption={"New A/C outdoor unit installed and running"}
     />
   {/if}
- 
+
   <SectionContainer
     bannerContent={"COUNT ON COMFORT!"}
     bannerScreenSide="right"
@@ -196,7 +209,13 @@
     font-size: 20px;
     text-decoration: underline;
   }
-
+  .service-statement.last {
+    padding-bottom: 15px;
+  }
+  .bold-vetted {
+    font-weight: 700;
+    font-size: 19px;
+  }
   .section-content {
     font-family: font-regular;
     font-size: 20px;

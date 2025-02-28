@@ -41,7 +41,7 @@
   --bg: #fff;
   --text: #313131;
 
-  --banner-primary: #ff78189b;
+  --banner-primary: #ff7817;
   --primary-dark: #cf5e0e;
 
   --light-text: #8c8c8c;
@@ -98,8 +98,8 @@
 .center-child {
   display: flex;
   justify-content: center;
- }
- 
+}
+
 /* Tablet */
 @media only screen and (max-width: 1200px) and (min-width: 600px) {
   .content-width {
@@ -113,5 +113,4 @@
     width: 90vw;
     margin: 20px 5vw;
   }
-
 }

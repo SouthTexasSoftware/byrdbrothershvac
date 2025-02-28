@@ -20,6 +20,7 @@
   let formSubmitting = false;
   let formSubmitted = false;
 
+  // COMMENT OUT TO SHUT DOWN FORM SUBMISSIONS
   firebaseStore.subscribe((storeData) => {
     if (storeData) {
       formAvailable = true;
@@ -27,7 +28,11 @@
   });
 
   $: if (formAvailable) {
-    formCollection = collection($firebaseStore.db, "quote-forms");
+    if (dev) {
+      formCollection = collection($firebaseStore.db, "quote-forms-dev");
+    } else {
+      formCollection = collection($firebaseStore.db, "quote-forms-2");
+    }
   }
 
   let formInteractionCompleted = false;
@@ -52,6 +57,9 @@
 </script>
 
 <div class="form-wrapper">
+  <!-- <div class="form-unavailable">
+    QUOTE FORM DOWN FOR SERVER MAINTENANCE. PLEASE CHECK BACK SOON OR GIVE US A CALL.
+  </div> -->
   <form
     class:disabled={!formAvailable}
     method="POST"
@@ -69,6 +77,10 @@
         //@ts-ignore
         formObject[key] = value;
       }
+
+      let created = Math.floor(Date.now() / 1000);
+      //@ts-ignore
+      formObject["created"] = created;
 
       const docRef = await addDoc(formCollection, formObject);
 
@@ -91,7 +103,7 @@
       cancel();
 
       formSubmissionLogger();
-      
+
       formSubmitted = true;
       formSubmitting = false;
       formAvailable = false;
@@ -183,6 +195,20 @@
   .form-wrapper {
     position: relative;
   }
+  .form-unavailable {
+    position: absolute;
+    padding: 25px;
+    backdrop-filter: blur(3px);
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    margin-top: 15px;
+    font-size: 20px;
+    font-family: font-semibold;
+    text-align: center;
+    line-height: 34px;
+  }
   .submission-popup {
     width: 60%;
     height: 60%;
@@ -208,6 +234,7 @@
     margin-top: 10%;
     color: var(--bg);
     margin-bottom: 5px;
+    text-align: center;
   }
   form {
     display: flex;
