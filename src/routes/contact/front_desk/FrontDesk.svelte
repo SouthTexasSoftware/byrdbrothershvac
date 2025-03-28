@@ -21,8 +21,8 @@
         class="semibold"
         href="tel:+19794808444">phone</a
       >,
-      <a class="semibold" href="mailto:byrdbrothershvac@gmail.com">email</a>, or
-      prefer the personal touch of
+      <a class="semibold" href="mailto:office@byrdbros.com">email</a>, or prefer
+      the personal touch of
       <a
         class="semibold"
         href="https://www.google.com/maps/place/BYRD+BROTHERS+HVAC/@29.0417635,-95.7067431,17z/data=!3m1!4b1!4m6!3m5!1s0x2df28abd63014a9:0x592a1a3e5416ec91!8m2!3d29.0417589!4d-95.7018722!16s%2Fg%2F11pyc3j0jb?entry=ttu"
@@ -43,15 +43,15 @@
   <SectionBreak />
 
   <p class="final-paragraph">
-    Contacting us is the first step towards ensuring your indoor
-    comfort and well-being. We understand that your HVAC system plays a critical
-    role in your daily life, and any issues can disrupt your peace of mind.
-    Whether you require installation, repairs, maintenance, or expert advice,
-    reaching out to us is the key to reliable, efficient, and personalized
-    solutions. Our team is here to provide professional guidance, exceptional
-    service, and a swift response to your HVAC needs. Don't let heating or
-    cooling issues go unaddressed; contact us today, and let us take care of
-    your comfort, so you can focus on what matters most.
+    Contacting us is the first step towards ensuring your indoor comfort and
+    well-being. We understand that your HVAC system plays a critical role in
+    your daily life, and any issues can disrupt your peace of mind. Whether you
+    require installation, repairs, maintenance, or expert advice, reaching out
+    to us is the key to reliable, efficient, and personalized solutions. Our
+    team is here to provide professional guidance, exceptional service, and a
+    swift response to your HVAC needs. Don't let heating or cooling issues go
+    unaddressed; contact us today, and let us take care of your comfort, so you
+    can focus on what matters most.
   </p>
 </div>
 

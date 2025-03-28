@@ -44,19 +44,18 @@
             class="semibold"
             href="tel:+19794808444">phone</a
           >,
-          <a class="semibold" href="mailto:byrdbrothershvac@gmail.com">email</a
-          >, or prefer the personal touch of
+          <a class="semibold" href="mailto:office@byrdbros.com">email</a>, or
+          prefer the personal touch of
           <a
             class="semibold"
             href="https://www.google.com/maps/place/BYRD+BROTHERS+HVAC/@29.0417635,-95.7067431,17z/data=!3m1!4b1!4m6!3m5!1s0x2df28abd63014a9:0x592a1a3e5416ec91!8m2!3d29.0417589!4d-95.7018722!16s%2Fg%2F11pyc3j0jb?entry=ttu"
             >stopping by our office</a
-          >, we are here to make your experience as seamless and
-          convenient as possible. Ready to assist with scheduling
-          appointments, answering inquiries, and ensuring that you receive the
-          information you need to make informed decisions about your HVAC needs.
-          Your comfort and satisfaction are paramount, and Debbie is
-          your first point of contact on your journey to a more comfortable,
-          well-served home or business.
+          >, we are here to make your experience as seamless and convenient as
+          possible. Ready to assist with scheduling appointments, answering
+          inquiries, and ensuring that you receive the information you need to
+          make informed decisions about your HVAC needs. Your comfort and
+          satisfaction are paramount, and Debbie is your first point of contact
+          on your journey to a more comfortable, well-served home or business.
         </p>
       </div>
     </div>
@@ -81,7 +80,6 @@
         </p>
       </div>
     </div>
-
   {/if}
 </div>
 
