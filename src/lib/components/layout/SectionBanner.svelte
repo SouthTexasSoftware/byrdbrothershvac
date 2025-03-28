@@ -30,6 +30,7 @@
     text-align: center;
     background-color: var(--banner-primary);
     border-radius: 3px;
+    color: black;
   }
   .banner-description {
     font-family: font-light;
@@ -46,7 +47,6 @@
     .banner {
       width: auto;
       min-width: 350px;
-      
     }
     .banner.left {
       text-align: left;
