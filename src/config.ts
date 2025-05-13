@@ -4,22 +4,22 @@ const p = process?.env ? process.env : import.meta.env;
 
 export const firebaseClientConfig = {
   //@ts-ignore
-  apiKey: p.VITE_FIREBASE_APIKEY,
+  apiKey: p.FIREBASE_APIKEY,
   //@ts-ignore
-  authDomain: p.VITE_FIREBASE_AUTHDOMAIN,
+  authDomain: p.FIREBASE_AUTHDOMAIN,
   //@ts-ignore
-  projectId: p.VITE_FIREBASE_PROJECTID,
+  projectId: p.FIREBASE_PROJECTID,
   //@ts-ignore
-  storageBucket: p.VITE_FIREBASE_STORAGEBUCKET,
+  storageBucket: p.FIREBASE_STORAGEBUCKET,
   //@ts-ignore
-  messagingSenderId: p.VITE_FIREBASE_MESSAGINGSENDERID,
+  messagingSenderId: p.FIREBASE_MESSAGINGSENDERID,
   //@ts-ignore
-  appId: p.VITE_FIREBASE_APPID,
+  appId: p.FIREBASE_APPID,
   //@ts-ignore
-  measurementId: p.VITE_FIREBASE_MEASUREMENTID,
+  measurementId: p.FIREBASE_MEASUREMENTID,
 };
 
 export const sendgridConfig = {
   //@ts-ignore
-  apiKey: p.VITE_SENDGRID_API_KEY,
+  apiKey: p.SENDGRID_API_KEY,
 };
