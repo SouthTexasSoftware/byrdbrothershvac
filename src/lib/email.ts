@@ -10,7 +10,9 @@ let msg: MessageObject = {
     name: "South Texas Software",
     email: "notifications@southtexas.software",
   },
-  to: ["notifications@southtexas.software", "byrdbrothershvac@gmail.com"],
+
+  to: ["notifications@southtexas.software", "office@byrdbros.com"],
+
 
   // FOR DEBUG
   // to: ["notifications@southtexas.software"],
