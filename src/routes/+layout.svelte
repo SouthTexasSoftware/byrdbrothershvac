@@ -13,12 +13,12 @@
     if (!$firebaseStore) {
       connectToFirebase().then((connectedBool) => {
         if (connectedBool) {
-          console.log("Ready for form submissions!");
+          // console.log("Ready for form submissions!");
 
           // eventually shutoff for dev env
           if (!dev) {
             let analytics = connectAnalytics();
-            console.log(analytics);
+            // console.log(analytics);
             firebaseStore.update((storeData) => {
               storeData.analytics = analytics;
               return storeData;
