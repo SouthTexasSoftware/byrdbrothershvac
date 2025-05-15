@@ -1,6 +1,6 @@
 import sgMail from "@sendgrid/mail";
 import { dev } from "$app/environment";
-import { sendgridConfig } from "../config";
+import { SENDGRID_API_KEY } from "$env/static/private";
 
 const newRequestTemplateId = "d-ebb64ab7b732467ba9fe9a07efeb5c0a";
 // update for vercel env variables. git push required.
@@ -36,13 +36,13 @@ export async function emailHandler(
   }
 
   // d: change to dev if testing other features
-  if (false) {
+  if (dev) {
     console.log(
       "****************** SIMULATING EMAIL PAYLOAD *********************"
     );
     console.error(msg);
   } else {
-    sgMail.setApiKey(sendgridConfig.apiKey);
+    sgMail.setApiKey(SENDGRID_API_KEY);
     try {
       //@ts-ignore
       let sgResponse = await sgMail.send(msg);
