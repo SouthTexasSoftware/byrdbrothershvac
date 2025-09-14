@@ -2,6 +2,8 @@ let process: NodeJS.ProcessEnv | undefined;
 
 const p = process?.env ? process.env : import.meta.env;
 
+//prefix VITE_ only used on public facing variables per vite standard
+
 export const firebaseClientConfig = {
   //@ts-ignore
   apiKey: p.VITE_FIREBASE_APIKEY,
@@ -18,8 +20,8 @@ export const firebaseClientConfig = {
   //@ts-ignore
   measurementId: p.VITE_FIREBASE_MEASUREMENTID,
 };
-
+//git
 export const sendgridConfig = {
   //@ts-ignore
-  apiKey: p.VITE_SENDGRID_API_KEY,
+  apiKey: p.SENDGRID_API_KEY,
 };

@@ -18,7 +18,6 @@ export async function connectToFirebase() {
       const firestoreModule = await import("firebase/firestore");
 
       // ** PUBLIC VARIABLES **
-
       // Initialize Firebase
       const app = appModule.initializeApp(
         firebaseClientConfig,
