@@ -1,12 +1,24 @@
+import { error } from "@sveltejs/kit";
+
 /** @type {import('@sveltejs/kit').Handle} */
-
 export async function handle({ event, resolve }) {
-  const country = event.request.headers.get('x-vercel-ip-country');
-  const region = event.request.headers.get('x-vercel-ip-country-region');
+  const userAgent =
+    event.request.headers.get("user-agent")?.toLowerCase() || "";
+  const country = event.request.headers.get("x-vercel-ip-country");
+  const region = event.request.headers.get("x-vercel-ip-country-region");
 
-  // Allow only from Texas, USA (adjust logic as needed)
-  if (country !== 'US' || region !== 'TX') {
-    return new Response('Access Denied', { status: 403 });
+  // Allow Googlebot and other search engine crawlers
+  if (
+    userAgent.includes("googlebot") ||
+    userAgent.includes("bingbot") || // Optional: Add other crawlers like Bing
+    userAgent.includes("adsbot-google")
+  ) {
+    return resolve(event);
+  }
+
+  // Block non-Texas traffic
+  if (country !== "US" || region !== "TX") {
+    throw error(403);
   }
 
   return resolve(event);
