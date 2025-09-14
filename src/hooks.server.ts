@@ -1,4 +1,4 @@
-import { error } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
@@ -18,7 +18,7 @@ export async function handle({ event, resolve }) {
 
   // Block non-Texas traffic
   if (country !== "US" || region !== "TX") {
-    throw error(403);
+    throw error(403, "Not available in your Region. Please call (979) 480-8444.");
   }
 
   return resolve(event);
