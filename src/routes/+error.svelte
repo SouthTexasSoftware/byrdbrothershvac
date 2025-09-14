@@ -1,12 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
-  import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
   import { onMount } from "svelte";
-  import { fly } from "svelte/transition";
 
   let displayCards = false;
+
+  $: status = $page.status;
 
   onMount(() => {
     displayCards = true;
@@ -27,19 +26,25 @@
 <ViewTitleBar title="Something Went Wrong" />
 
 <div class="error-container">
-  {#if $page.error}
-    <p class="error-message">Page Error: {$page.error.message}</p>
+  {#if status === 403}
+    <p class="error-message">Sorry! We're not available in your region.</p>
+    <h3>
+      Please give us a <a href="tel:+19794808444">call</a> if this is incorrect.
+      <a href="tel:+19794808444">(979) 480-8444</a>
+    </h3>
+  {:else}
+    <p class="error-message">We can't find that page right now.</p>
+    <h3>But we're here to help!</h3>
+    <img
+      src={getAssetSrc("byrdbrothers-with-truck.png")}
+      alt="The Byrd Brothers"
+      class="footer-picture"
+    />
+    <div class="button-container">
+      <a href="/">Site Home</a>
+      <a href="/services">Our Services</a>
+    </div>
   {/if}
-  <h3>But we're here to help!</h3>
-  <img
-    src={getAssetSrc("byrdbrothers-with-truck.png")}
-    alt="The Byrd Brothers"
-    class="footer-picture"
-  />
-  <div class="button-container">
-    <a href="/">Site Home</a>
-    <a href="/services">Our Services</a>
-  </div>
 </div>
 
 <style>
