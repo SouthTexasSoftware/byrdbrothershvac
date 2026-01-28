@@ -1,6 +1,7 @@
 import type { FirebaseApp } from "firebase/app";
 import type { Analytics } from "firebase/analytics";
 import type { Firestore } from "firebase/firestore";
+import type { Auth } from "firebase/auth";
 import { writable } from "svelte/store";
 
 export const firebaseStore = writable<FirebaseStore>(undefined);
@@ -9,6 +10,7 @@ export interface FirebaseStore {
   app: FirebaseApp;
 
   db: Firestore;
+  auth: Auth;
 
   analytics?: Analytics;
 }

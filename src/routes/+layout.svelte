@@ -7,6 +7,7 @@
   import { connectToFirebase, connectAnalytics } from "$lib/helpers";
   import { dev } from "$app/environment";
   import { page } from "$app/stores";
+  import AlertToast from "$lib/components/AlertToast.svelte";
 
   // connect to firebase to ensure we can take form submissions.
   onMount(() => {
@@ -40,6 +41,7 @@
   <slot />
 </section>
 <Footer />
+<AlertToast />
 
 <style>
   #page-content {

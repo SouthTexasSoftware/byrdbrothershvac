@@ -3,7 +3,7 @@ import {
   persistentLocalCache,
   persistentMultipleTabManager,
 } from "@firebase/firestore";
-import { firebaseStore } from "./stores";
+import { firebaseStore, type FirebaseStore } from "./stores";
 import { get } from "svelte/store";
 import { getAnalytics } from "firebase/analytics";
 
@@ -16,12 +16,13 @@ export async function connectToFirebase() {
     try {
       const appModule = await import("firebase/app");
       const firestoreModule = await import("firebase/firestore");
+      const authModule = await import("firebase/auth");
 
       // ** PUBLIC VARIABLES **
       // Initialize Firebase
       const app = appModule.initializeApp(
         firebaseClientConfig,
-        "byrd-brothers-hvac"
+        "byrd-brothers-hvac",
       );
 
       const db = firestoreModule.initializeFirestore(app, {
@@ -30,10 +31,13 @@ export async function connectToFirebase() {
         }),
       });
 
+      const auth = authModule.getAuth(app);
+
       firebaseStore.set({
         app: app,
         db: db,
-      });
+        auth: auth,
+      } as FirebaseStore);
 
       return true;
     } catch (e) {
