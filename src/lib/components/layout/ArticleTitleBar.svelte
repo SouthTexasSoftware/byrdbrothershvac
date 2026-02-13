@@ -1,25 +1,23 @@
 <script lang="ts">
-
-export let title: string;
-export let date: string;
-export let machineDate: string;
-export let articleOwner: string;
-
-
+  export let title: string;
+  export let date: string;
+  export let machineDate: string;
+  export let articleOwner: string;
 </script>
 
-<div class="title-container">
-    <h1 class="article-title">{title}</h1>
-    <div class="title-underline" />
-    <p class='published-info'>Last Updated: <time datetime={machineDate}>{date}</time> by {articleOwner}</p>
-  </div>
+<div class="title-container mt4">
+  <h1 class="article-title">{title}</h1>
+  <div class="title-underline" />
+  <p class="published-info">
+    Last Updated: <time datetime={machineDate}>{date}</time> by {articleOwner}
+  </p>
+</div>
 
 <style>
   .title-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
   }
   .article-title {
     font-family: font-regular;
@@ -33,7 +31,8 @@ export let articleOwner: string;
     margin-top: 10px;
     background-color: var(--primary);
   }
-  .published-info, time {
+  .published-info,
+  time {
     font-family: font-light;
     font-size: 13px;
     margin-top: 5px;
@@ -46,9 +45,6 @@ export let articleOwner: string;
   }
   /* Mobile */
   @media only screen and (max-width: 600px) {
-    .title-container {
-        margin-top: 15px;
-    }
     .article-title {
       text-align: center;
     }

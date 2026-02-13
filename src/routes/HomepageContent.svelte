@@ -1,7 +1,6 @@
 <script lang="ts">
   import ServiceAnythingStatement from "$lib/components/ServiceAnythingStatement.svelte";
   import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
-  import DropdownButton from "$lib/components/layout/DropdownButton.svelte";
   import SectionBreak from "$lib/components/layout/SectionBreak.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import GoogleReviews from "$lib/components/photos/GoogleReviews.svelte";
@@ -9,6 +8,7 @@
   import { Video } from "lucide-svelte";
   import LinkCarousel from "./LinkCarousel.svelte";
   import VideoPlayer from "./VideoPlayer.svelte";
+  import PhoneAnimation from "$lib/components/photos/PhoneAnimation.svelte";
 
   export let screenWidth: number;
 
@@ -33,9 +33,17 @@
 </script>
 
 <div class="homepage-content content-width">
-  <div class="h-6 w-full"></div>
+  <div class="h-6 w-full text-center md:text-2xl text-xl md:mb-8 mb-12">
+    Now Offering Financing! Click <a
+      class="font-bold md:text-2xl text-xl text-[var(--banner-primary)]"
+      href="/financing">here</a
+    > to learn more.
+  </div>
   <GoogleReviews />
   <div class="h-6 w-full"></div>
+
+  <PhoneAnimation />
+  <div class="h-12 w-full"></div>
   <h2 class="service-statement">
     Specializing in <a href="/services/air_conditioning/installation"
       >AC Installation</a
@@ -60,49 +68,58 @@
 
   <ServiceAnythingStatement />
 
+  <div class="mt-8"></div>
+
   <VideoPlayer />
 
-  <SectionBreak />
-
-  <SectionContainer
-    bannerContent={"REQUEST A QUOTE!"}
-    bannerScreenSide={"left"}
-    bannerDescription={"Get an estimate for any size job."}
-  >
-    <RequestAQuote />
-  </SectionContainer>
-  <PhotoSingleBlock
-    photoFilename={"servicing-outdoor-unit-SQUARE.png"}
-    backgroundSide={"right"}
-    photoCaption={"A/C health check and tune-up services being performed"}
-  />
-  <SectionBreak />
-  {#if desktop}
+  <div class="flex flex-wrap mt-12">
+    <SectionContainer
+      bannerContent={"REQUEST A QUOTE!"}
+      bannerScreenSide={"left"}
+      bannerDescription={"Get an estimate for any size job."}
+    >
+      <RequestAQuote />
+    </SectionContainer>
+    <div class="w-full md:hidden h-12"></div>
     <PhotoSingleBlock
-      photoFilename={"new-outdoor-unit-SQUARE.png"}
-      backgroundSide={"left"}
-      photoCaption={"New A/C outdoor unit installed and running"}
+      photoFilename={"servicing-outdoor-unit-SQUARE.png"}
+      backgroundSide={"right"}
+      photoCaption={"A/C health check and tune-up services being performed"}
     />
-  {/if}
+  </div>
 
-  <SectionContainer
-    bannerContent={"COUNT ON COMFORT!"}
-    bannerScreenSide="right"
-  >
-    <p class="section-content">
-      Make sure you home stays <a class="warm" href="/services/heating">warm</a>
-      in the winter and
-      <a class="cool" href="/services/air_conditioning">cool</a>
-      in the summer with Byrd Brothers HVAC. Family owned and operated, we stand
-      by our work with a
-      <span class="semibold">100% satisfaction guarantee</span>.
-      <br />
-      <br />
-      <a class="primary" href="/about/meet_team">Meet The Team</a>! And see why
-      we will treat you like family too.
-    </p>
-  </SectionContainer>
+  <div class="flex flex-wrap mt-12 md:gap-0 gap-12">
+    {#if desktop}
+      <PhotoSingleBlock
+        photoFilename={"new-outdoor-unit-SQUARE.png"}
+        backgroundSide={"left"}
+        photoCaption={"New A/C outdoor unit installed and running"}
+      />
+    {/if}
+
+    <SectionContainer
+      bannerContent={"COUNT ON COMFORT!"}
+      bannerScreenSide="right"
+    >
+      <p class="section-content">
+        Make sure you home stays <a class="warm" href="/services/heating"
+          >warm</a
+        >
+        in the winter and
+        <a class="cool" href="/services/air_conditioning">cool</a>
+        in the summer with Byrd Brothers HVAC. Family owned and operated, we stand
+        by our work with a
+        <span class="semibold">100% satisfaction guarantee</span>.
+        <br />
+        <br />
+        <a class="primary" href="/about/meet_team">Meet The Team</a>! And see
+        why we will treat you like family too.
+      </p>
+    </SectionContainer>
+  </div>
+
   {#if mobile}
+    <div class="mt-12"></div>
     <PhotoSingleBlock
       photoFilename={"new-outdoor-unit-SQUARE.png"}
       backgroundSide={"left"}
@@ -110,72 +127,78 @@
     />
   {/if}
   <SectionBreak />
-  <SectionContainer bannerContent={"SERVICE AREAS"} bannerScreenSide="left">
-    <p class="section-content">
-      Based out of Sweeny, Texas we are uniquely positioned to provide services
-      to <span class="semibold">Brazoria County</span> and
-      <span class="semibold">Matagorda County</span>.
-      <br />
-      <br />
-      Our main cities of operation include
-      <a
-        href="https://www.google.com/maps/place/Sweeny,+TX+77480/@29.0459123,-95.7114511,15z/data=!3m1!4b1!4m6!3m5!1s0x86404ced90bbbcc3:0x79de8e90552c333c!8m2!3d29.0388615!4d-95.6985608!16zL20vMF95c2g?entry=ttu"
-        >Sweeny</a
-      >,
-      <a
-        href="https://www.google.com/maps/place/Lake+Jackson,+TX/@29.048068,-95.5228312,12z/data=!3m1!4b1!4m6!3m5!1s0x864043c8e9ae4935:0x902bd953a5fb41c6!8m2!3d29.0338575!4d-95.4343859!16zL20vMF95cTE?entry=ttu"
-        >Lake Jackson</a
-      >, and
-      <a
-        href="https://www.google.com/maps/place/Brazoria,+TX+77422/@29.0484158,-95.585697,14z/data=!3m1!4b1!4m6!3m5!1s0x8640448d49ed7c07:0x65960dffa9a67dae!8m2!3d29.0444147!4d-95.5691126!16zL20vMF95bGs?entry=ttu"
-        >Brazoria</a
-      >.
-      <br />
-      <br />
-    </p>
-    <div class="service-area-list">
-      <a href="about/service_area" class="cities-button">All Areas We Service</a
-      >
-      <div class="breaker-bar"></div>
-      <ul class="list-items">
-        <li>Angleton</li>
-        <li>Bailey's Prairie</li>
-        <li>Bay City</li>
-        <li>Brazoria</li>
-        <li>Caney</li>
-        <li>Cedar Lake</li>
-        <li>Cedar Lane</li>
-        <li>Chenango</li>
-        <li>Churchill</li>
-        <li>Clute</li>
-        <li>Damon</li>
-        <li>Danbury</li>
-        <li>Freeport</li>
-        <li>Hawkinsville</li>
-        <li>Holiday Lakes</li>
-        <li>Jones Creek</li>
-        <li>Lake Jackson</li>
-        <li>Old Ocean</li>
-        <li>Oyster Creek</li>
-        <li>Quintana</li>
-        <li>Richwood</li>
-        <li>Sugar Valley</li>
-        <li>Surfside Beach</li>
-        <li>Sweeny</li>
-        <li>Van Vleck</li>
-        <li>West Columbia</li>
-        <li>Wild Peach</li>
-      </ul>
-    </div>
 
-    <div />
-  </SectionContainer>
-  <!-- TODO: Change this to use the GOOGLE MAPS API -->
-  <img
-    class="service-area-map"
-    src={getAssetSrc(serviceAreaMapFilename)}
-    alt="Service Area Map"
-  />
+  <div class="flex flex-wrap mt-12">
+    <SectionContainer bannerContent={"SERVICE AREAS"} bannerScreenSide="left">
+      <p class="section-content">
+        Based out of Sweeny, Texas we are uniquely positioned to provide
+        services to <span class="semibold">Brazoria County</span> and
+        <span class="semibold">Matagorda County</span>.
+        <br />
+        <br />
+        Our main cities of operation include
+        <a
+          href="https://www.google.com/maps/place/Sweeny,+TX+77480/@29.0459123,-95.7114511,15z/data=!3m1!4b1!4m6!3m5!1s0x86404ced90bbbcc3:0x79de8e90552c333c!8m2!3d29.0388615!4d-95.6985608!16zL20vMF95c2g?entry=ttu"
+          >Sweeny</a
+        >,
+        <a
+          href="https://www.google.com/maps/place/Lake+Jackson,+TX/@29.048068,-95.5228312,12z/data=!3m1!4b1!4m6!3m5!1s0x864043c8e9ae4935:0x902bd953a5fb41c6!8m2!3d29.0338575!4d-95.4343859!16zL20vMF95cTE?entry=ttu"
+          >Lake Jackson</a
+        >, and
+        <a
+          href="https://www.google.com/maps/place/Brazoria,+TX+77422/@29.0484158,-95.585697,14z/data=!3m1!4b1!4m6!3m5!1s0x8640448d49ed7c07:0x65960dffa9a67dae!8m2!3d29.0444147!4d-95.5691126!16zL20vMF95bGs?entry=ttu"
+          >Brazoria</a
+        >.
+        <br />
+        <br />
+      </p>
+      <div class="service-area-list">
+        <a href="about/service_area" class="cities-button"
+          >All Areas We Service</a
+        >
+        <div class="breaker-bar"></div>
+        <ul class="list-items">
+          <li>Angleton</li>
+          <li>Bailey's Prairie</li>
+          <li>Bay City</li>
+          <li>Brazoria</li>
+          <li>Caney</li>
+          <li>Cedar Lake</li>
+          <li>Cedar Lane</li>
+          <li>Chenango</li>
+          <li>Churchill</li>
+          <li>Clute</li>
+          <li>Damon</li>
+          <li>Danbury</li>
+          <li>Freeport</li>
+          <li>Hawkinsville</li>
+          <li>Holiday Lakes</li>
+          <li>Jones Creek</li>
+          <li>Lake Jackson</li>
+          <li>Old Ocean</li>
+          <li>Oyster Creek</li>
+          <li>Quintana</li>
+          <li>Richwood</li>
+          <li>Sugar Valley</li>
+          <li>Surfside Beach</li>
+          <li>Sweeny</li>
+          <li>Van Vleck</li>
+          <li>West Columbia</li>
+          <li>Wild Peach</li>
+        </ul>
+      </div>
+
+      <div />
+    </SectionContainer>
+
+    <div class="md:basis-1/2 relative">
+      <img
+        class="service-area-map w-[100$] h-[100%]"
+        src={getAssetSrc(serviceAreaMapFilename)}
+        alt="Service Area Map"
+      />
+    </div>
+  </div>
 
   <p class="section-content">
     <br /><br />
@@ -261,11 +284,6 @@
   }
   .list-items li {
     flex: 50%;
-  }
-  .service-area-map {
-    width: 50%;
-    height: 50%;
-    margin-top: 40px;
   }
 
   /* UltraWide */

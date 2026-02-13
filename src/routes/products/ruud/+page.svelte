@@ -1,23 +1,30 @@
 <script lang="ts">
-  import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
-  import Ruud from "./Ruud.svelte";
-
-  let screenWidth: number;
-
-  $: mobile = screenWidth > 600 ? false : true;
+  import type { PageData } from "./$types";
+  import type { BlogPost } from "$lib/stores";
+  import BlogPostComponent from "$lib/components/blog/BlogPostComponent.svelte";
+  import BlogSkeletonComponent from "$lib/components/blog/BlogSkeletonComponent.svelte";
+  export let data: PageData;
+  let blog: BlogPost = data.blogPost;
 </script>
 
-<svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
   <title>RUUD HVAC Products | Byrd Brothers HVAC</title>
-  <meta
-    name="description"
-    content="Proudly a RUUD Pro Partner! We stand by RUUD product performance, efficiency, affordability, and warranty! Click to learn more."
-  />
+  {#if blog.description}
+    <meta name="description" content={blog.description} />
+  {/if}
+  {#if blog.image}
+    <meta property="og:image" content={blog.image} />
+  {/if}
 </svelte:head>
-<ViewTitleBar title="RUUD" />
-
-<Ruud {mobile} />
+<div class="content-width max-w-2xl">
+  {#if blog}
+    <BlogPostComponent blogPost={blog} embeddedPost={false} />
+  {:else}
+    <div class="md:w-[1200px] mt-6">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+</div>
 
 <style>
   /* UltraWide */

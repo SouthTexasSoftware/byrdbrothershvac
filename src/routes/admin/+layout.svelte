@@ -14,11 +14,15 @@
     MailQuestionIcon,
   } from "lucide-svelte"; // Import icons, added ChevronUp
   import { slide, fade } from "svelte/transition"; // For animations
+  import AdminLoading from "./AdminLoading.svelte";
+  //TODO: we modified the firestore rules set - test quote after tweaking the email notification to not go out in dev mode
 
   let loading = true;
   let interval: NodeJS.Timeout | undefined;
   let unsubscribe: (() => void) | undefined;
   let showMenu = false; // For mobile dropdown
+
+  let adminLoading = true; // New variable to control the loading state
 
   onMount(() => {
     checkFirebase();
@@ -50,6 +54,8 @@
             "failure",
           );
           goto("/owner-login");
+        } else {
+          adminLoading = false; // Set adminLoading to false when the user is signed in
         }
       });
     }
@@ -89,102 +95,114 @@
   };
 </script>
 
-<header class="bg-white border-b border-gray-200 shadow-sm flex flex-col">
-  <div class="p-4 flex justify-between items-center md:px-6">
-    <!-- Desktop View -->
-    <div class="hidden md:flex items-center space-x-8">
-      <img
-        src={getAssetSrc("admin_access_logo.png")}
-        alt="Admin Access"
-        class="w-24"
-      />
-      <!-- Replace with your photo path; placeholder for now -->
-      <nav class="flex space-x-4 items-center">
-        <a
-          href="/admin/blogs"
-          class="flex items-center text-gray-700 hover:text-gray-900"
-        >
-          <FileText class="w-5 h-5 mr-2" />
-          Blogs
-        </a>
-        <a
-          href="/admin/requests"
-          class="flex items-center text-gray-700 hover:text-gray-900"
-        >
-          <MailQuestionIcon class="w-5 h-5 mr-2" />
-          Requests
-        </a>
-      </nav>
-    </div>
-    <div class="hidden md:flex items-center space-x-4">
-      <button
-        on:click={handleSignOut}
-        class="text-gray-700 hover:text-gray-900"
-        aria-label="Sign Out"
-      >
-        <LogOut class="w-6 h-6" />
-      </button>
-    </div>
-
-    <!-- Mobile View Top Bar -->
-    <div class="flex md:hidden w-full justify-center items-center">
-      <img
-        src={getAssetSrc("admin_access_logo.png")}
-        alt="Admin Access"
-        class="w-24"
-      />
-      <!-- Centered on mobile -->
-    </div>
-    <button
-      on:click={toggleMenu}
-      class="flex md:hidden absolute right-4 text-gray-700 hover:text-gray-900 transition-transform duration-300 {showMenu
-        ? 'rotate-180'
-        : ''}"
-      aria-label="Menu"
-    >
-      {#if showMenu}
-        <ChevronUp class="w-6 h-6" />
-      {:else}
-        <ChevronDown class="w-6 h-6" />
-      {/if}
-    </button>
+{#if adminLoading}
+  <div transition:fade={{ duration: 300 }}>
+    <AdminLoading />
   </div>
+{:else}
+  <div transition:fade={{ duration: 300 }}>
+    <header class="bg-white border-b border-gray-200 shadow-sm flex flex-col">
+      <div class="p-4 flex justify-between items-center md:px-6">
+        <!-- Desktop View -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="/admin">
+            <img
+              src={getAssetSrc("admin_access_logo.png")}
+              alt="Admin Access"
+              class="w-24"
+            />
+          </a>
+          <!-- Replace with your photo path; placeholder for now -->
+          <nav class="flex space-x-4 items-center">
+            <a
+              href="/admin/blogs"
+              class="flex items-center text-gray-700 hover:text-gray-900"
+            >
+              <FileText class="w-5 h-5 mr-2" />
+              Blogs
+            </a>
+            <a
+              href="/admin/requests"
+              class="flex items-center text-gray-700 hover:text-gray-900"
+            >
+              <MailQuestionIcon class="w-5 h-5 mr-2" />
+              Requests
+            </a>
+          </nav>
+        </div>
+        <div class="hidden md:flex items-center space-x-4">
+          <button
+            on:click={handleSignOut}
+            class="text-gray-700 hover:text-gray-900"
+            aria-label="Sign Out"
+          >
+            <LogOut class="w-6 h-6" />
+          </button>
+        </div>
 
-  {#if showMenu}
-    <div
-      class="md:hidden flex flex-col items-center space-y-4 bg-white border-t border-gray-200 p-4"
-      transition:slide={{ duration: 300 }}
-    >
-      <a
-        href="/admin/blogs"
-        class="flex items-center text-gray-700 hover:text-gray-900"
-        on:click={toggleMenu}
-      >
-        <FileText class="w-5 h-5 mr-2" />
-        Blogs
-      </a>
-      <a
-        href="/admin/requests"
-        class="flex items-center text-gray-700 hover:text-gray-900"
-        on:click={toggleMenu}
-      >
-        <MailQuestionIcon class="w-5 h-5 mr-2" />
-        Requests
-      </a>
+        <!-- Mobile View Top Bar -->
+        <div class="flex md:hidden w-full justify-center items-center">
+          <a href="/admin">
+            <img
+              src={getAssetSrc("admin_access_logo.png")}
+              alt="Admin Access"
+              class="w-24"
+            />
+          </a>
+          <!-- Centered on mobile -->
+        </div>
+        <button
+          on:click={toggleMenu}
+          class="flex md:hidden absolute right-4 text-gray-700 hover:text-gray-900 transition-transform duration-300 {showMenu
+            ? 'rotate-180'
+            : ''}"
+          aria-label="Menu"
+        >
+          {#if showMenu}
+            <ChevronUp class="w-6 h-6" />
+          {:else}
+            <ChevronDown class="w-6 h-6" />
+          {/if}
+        </button>
+      </div>
 
-      <button
-        on:click={() => {
-          handleSignOut();
-          toggleMenu();
-        }}
-        class="flex items-center text-gray-700 hover:text-gray-900"
-      >
-        <LogOut class="w-5 h-5 mr-2" />
-        Sign Out
-      </button>
-    </div>
-  {/if}
-</header>
+      {#if showMenu}
+        <div
+          class="md:hidden flex flex-col items-center space-y-4 bg-white border-t border-gray-200 p-4"
+          transition:slide={{ duration: 300 }}
+        >
+          <a
+            href="/admin/blogs"
+            class="flex items-center text-gray-700 hover:text-gray-900"
+            on:click={toggleMenu}
+          >
+            <FileText class="w-5 h-5 mr-2" />
+            Blogs
+          </a>
+          <a
+            href="/admin/requests"
+            class="flex items-center text-gray-700 hover:text-gray-900"
+            on:click={toggleMenu}
+          >
+            <MailQuestionIcon class="w-5 h-5 mr-2" />
+            Requests
+          </a>
 
-<slot />
-<!-- This renders the child page content -->
+          <button
+            on:click={() => {
+              handleSignOut();
+              toggleMenu();
+            }}
+            class="flex items-center text-gray-700 hover:text-gray-900"
+          >
+            <LogOut class="w-5 h-5 mr-2" />
+            Sign Out
+          </button>
+        </div>
+      {/if}
+    </header>
+
+    <!-- Render the underlying pages or routes -->
+    <slot />
+  </div>
+{/if}

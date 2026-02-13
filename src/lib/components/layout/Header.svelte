@@ -4,6 +4,9 @@
   import DesktopNav from "./DesktopNav.svelte";
   import MobileNav from "./MobileNav.svelte";
   import { slide } from "svelte/transition";
+  import type { BlogPost } from "$lib/stores";
+
+  export let latestBlogs: BlogPost[] = [];
 
   let screenWidth: number;
   let mounted = false;
@@ -21,13 +24,13 @@
         <a href="/" id="logo-and-link-home" aria-label="Homepage Link">
           <LogoComponent height={45} />
         </a>
-        <MobileNav height={45} />
+        <MobileNav {latestBlogs} />
       </div>
     {:else}
       <a href="/" id="logo-and-link-home" aria-label="Homepage Link">
         <LogoComponent height={60} />
       </a>
-      <DesktopNav />
+      <DesktopNav {latestBlogs} />
     {/if}
   {/if}
 </header>

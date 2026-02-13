@@ -16,7 +16,7 @@
 </script>
 
 {#if mounted && content != "none"}
-  <h2 class="banner {mobileScreenSide}">{content}</h2>
+  <h2 class="banner {mobileScreenSide} mb-4">{content}</h2>
   {#if description}
     <p class="banner-description {mobileScreenSide}">{description}</p>
   {/if}
@@ -24,7 +24,7 @@
 
 <style>
   .banner {
-    font-size: 22px;
+    font-size: 24px;
     font-family: font-bold;
     width: 100%;
     text-align: center;

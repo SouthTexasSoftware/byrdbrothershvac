@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import { firebaseStore } from "$lib/stores";
+  import { firebaseStore, type BlogPost } from "$lib/stores";
   import { addToast } from "$lib/stores/toastStore";
   import {
     collection,
@@ -11,19 +11,10 @@
   } from "firebase/firestore";
   import type { Firestore } from "firebase/firestore"; // Import type
   import { goto } from "$app/navigation";
-
-  interface BlogPost {
-    id: string;
-    title: string;
-    slug: string;
-    description: string;
-    content: string; // Markdown content
-    views: number;
-    created: number; // Unix timestamp (seconds)
-    lastUpdated: number; // Unix timestamp (seconds)
-    status: "public" | "private";
-    image?: string; // Optional for future photo
-  }
+  import BlogCard from "$lib/components/blog/BlogCard.svelte";
+  import BlogCardSkeleton from "$lib/components/blog/BlogCardSkeleton.svelte";
+  import RequestCard from "$lib/components/requests/RequestCard.svelte";
+  import RequestCardSkeleton from "$lib/components/requests/RequestCardSkeleton.svelte";
 
   interface QuoteRequest {
     id: string;
@@ -102,10 +93,6 @@
   function navigateToRequest(id: string) {
     goto(`/admin/requests/${id}`); // Assuming a details route for requests
   }
-
-  function formatTimestamp(timestamp: number): string {
-    return new Date(timestamp * 1000).toLocaleDateString(); // Convert Unix seconds to date
-  }
 </script>
 
 <div class="flex flex-col md:flex-row gap-6 p-6">
@@ -123,41 +110,25 @@
     </div>
 
     {#if loadingBlogs}
-      {#each Array(3) as _}
-        <!-- Skeleton for 3 items -->
-        <div class="bg-white p-4 rounded-lg shadow mb-4 animate-pulse">
-          <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-          <div class="h-3 bg-gray-200 rounded w-1/2 mb-1"></div>
-          <div class="h-3 bg-gray-200 rounded w-1/4"></div>
-        </div>
+      {#each Array(5) as _}
+        <BlogCardSkeleton size="small" />
       {/each}
     {:else}
       {#each blogs as blog}
-        <div
-          class="bg-white p-4 rounded-lg shadow mb-4 cursor-pointer hover:shadow-md transition-shadow"
-          on:click={() => navigateToBlog(blog.slug)}
-        >
-          <div class="flex items-center">
-            {#if blog.image}
-              <img
-                src={blog.image}
-                alt="Blog image"
-                class="w-10 h-10 rounded-full mr-4"
-              />
-            {/if}
-            <div>
-              <h3 class="font-bold text-gray-900">{blog.title}</h3>
-              <p class="text-sm text-gray-600">{blog.description}</p>
-              <p class="text-xs text-gray-500">
-                Views: {blog.views} | Last Updated: {formatTimestamp(
-                  blog.lastUpdated,
-                )}
-              </p>
-            </div>
-          </div>
+        <div class="mb-4">
+          <a href={`/admin/blogs/${blog.slug}`}>
+            <BlogCard blogData={blog} size="small" />
+          </a>
         </div>
       {/each}
     {/if}
+    <div class="flex justify-center">
+      <a
+        href="/admin/blogs"
+        class="text-orange-600 hover:underline font-semibold"
+        >See All Blog Posts</a
+      >
+    </div>
   </div>
 
   <!-- Requests Column -->
@@ -166,27 +137,22 @@
       Recent Quote Requests
     </h2>
     {#if loadingRequests}
-      {#each Array(3) as _}
-        <!-- Skeleton for 3 items -->
-        <div class="bg-white p-4 rounded-lg shadow mb-4 animate-pulse">
-          <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-          <div class="h-3 bg-gray-200 rounded w-1/2 mb-1"></div>
-          <div class="h-3 bg-gray-200 rounded w-1/4"></div>
-        </div>
+      {#each Array(5) as _}
+        <RequestCardSkeleton />
       {/each}
     {:else}
       {#each requests as request}
-        <div
-          class="bg-white p-4 rounded-lg shadow mb-4 cursor-pointer hover:shadow-md transition-shadow"
-          on:click={() => navigateToRequest(request.id)}
-        >
-          <h3 class="font-bold text-gray-900">{request.name}</h3>
-          <p class="text-sm text-gray-600">Location: {request.location}</p>
-          <p class="text-xs text-gray-500">
-            Created: {formatTimestamp(request.created)}
-          </p>
-        </div>
+        <a href={`/admin/requests/${request.id}`}>
+          <RequestCard {request} />
+        </a>
       {/each}
     {/if}
+    <div class="flex justify-center">
+      <a
+        href="/admin/requests"
+        class="text-orange-600 hover:underline font-semibold"
+        >See All Requests</a
+      >
+    </div>
   </div>
 </div>

@@ -20,8 +20,3 @@ export const firebaseClientConfig = {
   //@ts-ignore
   measurementId: p.VITE_FIREBASE_MEASUREMENTID,
 };
-//git
-export const sendgridConfig = {
-  //@ts-ignore
-  apiKey: p.SENDGRID_API_KEY,
-};

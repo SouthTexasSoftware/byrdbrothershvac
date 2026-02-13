@@ -1,23 +1,30 @@
 <script lang="ts">
-  import AcInstallation from "../ACInstallation.svelte";
-  import AcMaintenance from "../ACMaintenance.svelte";
-
-  let screenWidth: number;
-
-  $: mobile = screenWidth > 600 ? false : true;
+  import type { PageData } from "./$types";
+  import type { BlogPost } from "$lib/stores";
+  import BlogPostComponent from "$lib/components/blog/BlogPostComponent.svelte";
+  import BlogSkeletonComponent from "$lib/components/blog/BlogSkeletonComponent.svelte";
+  export let data: PageData;
+  let blog: BlogPost = data.blogPost;
 </script>
 
-<svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title
-    >Air Conditioning Maintenance in Brazoria County | Byrd Brothers HVAC</title
-  >
-  <meta
-    name="description"
-    content="The key to a happy and healthy home! Learn more about why routine maintenance saves you in the long run."
-  />
+  <title>Air Conditioning Maintenance | Byrd Brothers HVAC</title>
+  {#if blog.description}
+    <meta name="description" content={blog.description} />
+  {/if}
+  {#if blog.image}
+    <meta property="og:image" content={blog.image} />
+  {/if}
 </svelte:head>
-<AcMaintenance {mobile} />
+<div class="content-width max-w-2xl">
+  {#if blog}
+    <BlogPostComponent blogPost={blog} embeddedPost={false} />
+  {:else}
+    <div class="md:w-[1200px] mt-6">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+</div>
 
 <style>
   /* UltraWide */

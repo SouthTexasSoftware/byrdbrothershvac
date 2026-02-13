@@ -2,12 +2,84 @@
   import { slide } from "svelte/transition";
   import DropdownButton from "./DropdownButton.svelte";
   import { page } from "$app/stores";
-  import { fix_and_destroy_block, onMount } from "svelte/internal";
+  import { onMount } from "svelte";
+  import type { BlogPost } from "$lib/stores";
 
-  export let height: number;
-  let width: number;
+  export let latestBlogs: BlogPost[] = [];
+
+  let showMobileMenu = false;
+  let mobileNavShowing = false;
   let triggerFanSpin = false;
   let startingAnimation = true;
+
+  let openDropdown: string | null = null;
+  let previousOpenDropdown: string | null = null;
+
+  type NavItem = {
+    label: string;
+    href: string;
+    key: string;
+    subItems?: { label: string; href: string }[];
+  };
+
+  $: navItems = [
+    { label: "HOME", href: "/", key: "home" },
+    {
+      label: "SERVICES",
+      href: "/services",
+      key: "services",
+      subItems: [
+        { label: "AIR CONDITIONING", href: "/services/air_conditioning" },
+        { label: "HEATING", href: "/services/heating" },
+        { label: "MAINTENANCE", href: "/services/maintenance_program" },
+        { label: "INSULATION", href: "/services/insulation" },
+        { label: "AIR QUALITY", href: "/services/air_quality" },
+      ],
+    },
+    {
+      label: "PRODUCTS",
+      href: "/products",
+      key: "products",
+      subItems: [
+        { label: "RUUD", href: "/products/ruud" },
+        { label: "MRCOOL", href: "/products/mrcool" },
+        { label: "GENERAC", href: "/products/generac" },
+        { label: "AIR SCRUBBER", href: "/products/air_scrubber" },
+        { label: "ATTIC TENT", href: "/products/attic_tent" },
+      ],
+    },
+    {
+      label: "BLOG",
+      href: "/blog",
+      key: "blog",
+      subItems: latestBlogs.map((blog) => {
+        
+        return {
+          label: blog.title.toUpperCase(),
+          href: `/blog/${blog.slug}`,
+        };
+      }),
+    },
+    {
+      label: "ABOUT",
+      href: "/about",
+      key: "about",
+      subItems: [
+        { label: "SERVICE AREA", href: "/about/service_area" },
+        { label: "MEET THE TEAM", href: "/about/meet_team" },
+        { label: "PARTNERS", href: "/about/partners" },
+      ],
+    },
+    {
+      label: "CONTACT",
+      href: "/contact",
+      key: "contact",
+      subItems: [
+        { label: "FRONT DESK", href: "/contact/front_desk" },
+        { label: "QUOTE FORM", href: "/contact/quote_form" },
+      ],
+    },
+  ] satisfies NavItem[];
 
   onMount(() => {
     setTimeout(() => {
@@ -15,122 +87,61 @@
     }, 7000);
   });
 
-  if (!height) {
-    height = 35;
-    width = 35;
-  } else {
-    width = height;
-  }
-
-  let showMobileMenu = false;
-  let mobileMenuElement: HTMLElement;
-  let mobileNavShowing = false;
-  let clickListener = false;
-  let scrollListener = false;
-
-  let dropdownState: { [key: string]: boolean } = {
-    services: false,
-    products: false,
-    about: false,
-    air_conditioning: false,
-    insulation: false,
-    contact: false,
-  };
-
-  let previousDropdownState: { [key: string]: boolean } = {
-    services: false,
-    products: false,
-    about: false,
-    air_conditioning: false,
-    insulation: false,
-    contact: false,
-  };
-
   $: if (mobileNavShowing) {
     document.addEventListener("click", closeMobileMenu);
-    console.log(document.body);
-    console.log(closeMobileMenu);
-    clickListener = true;
     document.addEventListener("scroll", closeMobileMenu);
-    scrollListener = true;
   }
+
   $: if (!showMobileMenu) {
-    if (clickListener) {
-      document.removeEventListener("click", closeMobileMenu);
-      clickListener = false;
-    }
-    if (scrollListener) {
-      document.removeEventListener("scroll", closeMobileMenu);
-      scrollListener = false;
-    }
+    document.removeEventListener("click", closeMobileMenu);
+    document.removeEventListener("scroll", closeMobileMenu);
     mobileNavShowing = false;
-
-    previousDropdownState = Object.assign({}, dropdownState);
-
-    dropdownState = {
-      services: false,
-      products: false,
-      about: false,
-      air_conditioning: false,
-      insulation: false,
-      contact: false,
-    };
+    previousOpenDropdown = openDropdown;
+    openDropdown = null;
   }
 
   function closeMobileMenu(event: Event) {
-    if (event.type == "scroll") {
+    if (event.type === "scroll") {
       showMobileMenu = false;
       return;
     }
 
-    let subMenuChecker = false;
+    // Check if click was on dropdown button
     let target = event.target as HTMLElement;
-    while (!subMenuChecker) {
-      console.log(target);
-      if (target == document.body) {
-        subMenuChecker = true;
-        break;
-      }
+    while (target && target !== document.body) {
       if (target.classList.contains("dropdown-button")) {
-        subMenuChecker = true;
         return;
-      } else {
-        target = target.parentElement || document.body;
       }
+      target = target.parentElement || document.body;
     }
-
-    if (!showMobileMenu) return;
-    //if (mobileMenuElement.contains(event.target as Node)) return;
 
     showMobileMenu = false;
   }
 
-  function toggleSubMenuDropdowns(selection: string) {
-    if (dropdownState[selection] == true) {
-      dropdownState[selection] = false;
-    } else {
-      dropdownState[selection] = true;
-    }
-
-    Object.keys(dropdownState).forEach((key) => {
-      if (key == selection) {
-        return;
-      }
-      dropdownState[key] = false;
-    });
+  function toggleDropdown(key: string) {
+    openDropdown = openDropdown === key ? null : key;
   }
-</script>
 
-<button
-  id="menu-button"
-  on:click={() => {
+  function toggleMobileMenu() {
     showMobileMenu = !showMobileMenu;
     if (showMobileMenu) {
       triggerFanSpin = true;
       setTimeout(() => (triggerFanSpin = false), 6500);
     }
-  }}
->
+  }
+
+  function isActive(href: string): boolean {
+    if (href === "/") return $page.url.pathname === "/";
+    return $page.url.pathname.includes(href);
+  }
+
+  function handleIntroEnd() {
+    mobileNavShowing = true;
+    openDropdown = previousOpenDropdown;
+  }
+</script>
+
+<button id="menu-button" on:click={toggleMobileMenu}>
   <svg
     id="fan"
     class:start={startingAnimation}
@@ -182,327 +193,54 @@
     <div
       class="mobile-nav-link-container"
       transition:slide
-      on:introend={() => {
-        mobileNavShowing = true;
-        dropdownState = Object.assign({}, previousDropdownState);
-      }}
-      bind:this={mobileMenuElement}
+      on:introend={handleIntroEnd}
     >
-      <a
-        href="/"
-        class="mobile-nav-link"
-        class:viewing={$page.url.pathname == "/"}>HOME</a
-      >
-      <div class="link-container services">
-        <div class="main-link">
-          <a
-            href="/services"
-            class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.services}
-            class:viewing={$page.url.pathname.includes("/services")}
-          >
-            SERVICES</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("services")}
-            class:showing={dropdownState.services}><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.services}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/services/air_conditioning"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/air_conditioning")}
-            >
-              AIR CONDITIONING
-            </a>
-            <a
-              href="/services/heating"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/heating")}
-            >
-              HEATING
-            </a>
-            <a
-              href="/services/maintenance_program"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/maintenance")}
-            >
-              MAINTENANCE
-            </a>
-            <a
-              href="/services/insulation"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/insulation")}
-            >
-              INSULATION
-            </a>
-            <a
-              href="/services/air_quality"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/air_quality")}
-            >
-              AIR QUALITY
-            </a>
-            <div class="sub-bar" />
+      {#each navItems as item}
+        {#if item.subItems}
+          <div class="link-container">
+            <div class="main-link">
+              <a
+                href={item.href}
+                class="mobile-nav-link"
+                class:dropdown-showing={openDropdown === item.key}
+                class:viewing={isActive(item.href)}
+              >
+                {item.label}
+              </a>
+              <button
+                class="dropdown-button"
+                on:click={() => toggleDropdown(item.key)}
+                class:showing={openDropdown === item.key}
+              >
+                <DropdownButton />
+              </button>
+            </div>
+            {#if openDropdown === item.key}
+              <div class="sub-links" transition:slide>
+                <div class="sub-bar" />
+                {#each item.subItems as subItem}
+                  <a
+                    href={subItem.href}
+                    class="mobile-nav-link sub"
+                    class:viewing={isActive(subItem.href)}
+                  >
+                    {subItem.label}
+                  </a>
+                {/each}
+                <div class="sub-bar" />
+              </div>
+            {/if}
           </div>
-        {/if}
-      </div>
-
-      <div class="link-container products">
-        <div class="main-link">
+        {:else}
           <a
-            href="/products"
+            href={item.href}
             class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.products}
-            class:viewing={$page.url.pathname.includes("/products")}
+            class:viewing={isActive(item.href)}
           >
-            PRODUCTS</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("products")}
-            class:showing={dropdownState.products}><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.products}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/products/ruud"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/ruud")}
-            >
-              RUUD
-            </a>
-            <a
-              href="/products/mrcool"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/mrcool")}
-            >
-              MRCOOL
-            </a>
-            <a
-              href="/products/generac"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/generac")}
-            >
-              GENERAC
-            </a>
-            <a
-              href="/products/air_scrubber"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/air_scrubber")}
-            >
-              AIR SCRUBBER
-            </a>
-            <a
-              href="/products/attic_tent"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/attic_tent")}
-            >
-              ATTIC TENT
-            </a>
-            <div class="sub-bar" />
-          </div>
+            {item.label}
+          </a>
         {/if}
-      </div>
-
-      <div class="link-container">
-        <div class="main-link">
-          <a
-            href="/services/air_conditioning"
-            class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.air_conditioning}
-            class:viewing={$page.url.pathname.includes(
-              "/services/air_conditioning"
-            )}
-          >
-            AIR CONDITIONING</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("air_conditioning")}
-            class:showing={dropdownState.air_conditioning}
-            ><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.air_conditioning}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/services/air_conditioning/installation"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes(
-                "/air_conditioning/installation"
-              )}
-            >
-              AC INSTALLATION
-            </a>
-            <a
-              href="/services/air_conditioning/repair"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes(
-                "/air_conditioning/repair"
-              )}
-            >
-              AC REPAIR
-            </a>
-            <a
-              href="/services/air_conditioning/maintenance"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes(
-                "/air_conditioning/maintenance"
-              )}
-            >
-              AC MAINTENANCE
-            </a>
-            <a
-              href="/services/air_conditioning/emergency"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes(
-                "/air_conditioning/emergency"
-              )}
-            >
-              EMERGENCY HVAC
-            </a>
-            <div class="sub-bar" />
-          </div>
-        {/if}
-      </div>
-
-      <div class="link-container about">
-        <div class="main-link">
-          <a
-            href="/about"
-            class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.about}
-            class:viewing={$page.url.pathname.includes("/about")}
-          >
-            ABOUT</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("about")}
-            class:showing={dropdownState.about}><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.about}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/about/service_area"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/service_area")}
-            >
-              SERVICE AREA
-            </a>
-            <a
-              href="/about/meet_team"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/meet_team")}
-            >
-              MEET THE TEAM
-            </a>
-            <a
-              href="/about/partners"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/partners")}
-            >
-              PARTNERS
-            </a>
-            <!-- <a
-              href="/about/financing"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/financing")}
-            >
-              FINANCING
-            </a> -->
-            <div class="sub-bar" />
-          </div>
-        {/if}
-      </div>
-
-      <!-- <div class="link-container">
-        <div class="main-link">
-          <a
-            href="/services/insulation"
-            class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.insulation}
-            class:viewing={$page.url.pathname.includes("/services/insulation")}
-          >
-            INSULATION</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("insulation")}
-            class:showing={dropdownState.insulation}><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.insulation}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/services/insulation/attic"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/insulation/attic")}
-            >
-              ATTIC
-            </a>
-            <a
-              href="/services/insulation/ducting"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/insulation/ducting")}
-            >
-              DUCTING
-            </a>
-
-            <div class="sub-bar" />
-          </div>
-        {/if}
-      </div> -->
-
-      <div class="link-container">
-        <div class="main-link">
-          <a
-            href="/contact"
-            class="mobile-nav-link"
-            class:dropdown-showing={dropdownState.contact}
-            class:viewing={$page.url.pathname.includes("/contact")}
-          >
-            CONTACT</a
-          >
-          <button
-            class="dropdown-button"
-            on:click={() => toggleSubMenuDropdowns("contact")}
-            class:showing={dropdownState.contact}><DropdownButton /></button
-          >
-        </div>
-        {#if dropdownState.contact}
-          <div class="sub-links" transition:slide>
-            <div class="sub-bar" />
-            <a
-              href="/contact/front_desk"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/front_desk")}
-            >
-              FRONT DESK
-            </a>
-            <a
-              href="/contact/quote_form"
-              class="mobile-nav-link sub"
-              class:viewing={$page.url.pathname.includes("/quote_form")}
-            >
-              QUOTE FORM
-            </a>
-
-            <div class="sub-bar" />
-          </div>
-        {/if}
-      </div>
+      {/each}
     </div>
   {/if}
 </nav>
@@ -512,46 +250,18 @@
     padding: 5px;
     margin-left: auto;
   }
+
   #fan {
     transform: rotate(30deg);
   }
-  #fan.start {
-    animation-name: start;
-    animation-duration: 6s;
-    animation-timing-function: ease;
-    animation-iteration-count: 1;
 
-    transform-origin: center;
-  }
-
+  #fan.start,
   #fan.play-animation {
     animation-name: menu-open;
     animation-duration: 6s;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-
     transform-origin: center;
-  }
-
-  @keyframes start {
-    0% {
-      transform: rotate(30deg);
-    }
-    5% {
-      transform: rotate(40deg);
-    }
-    10% {
-      transform: rotate(35deg);
-    }
-    15% {
-      transform: rotate(45deg);
-    }
-    20% {
-      transform: rotate(40deg);
-    }
-    100% {
-      transform: rotate(750deg);
-    }
   }
 
   @keyframes menu-open {
@@ -588,20 +298,23 @@
     padding: 10px 15px 10px 0px;
     box-shadow: 0px 0px 2px grey;
     z-index: 105;
-    background-color: hsl(var(--b1));
+    background-color: white;
     width: 270px;
   }
+
   .sub-bar {
     width: 200px;
     height: 2px;
     background-color: var(--input-border);
   }
+
   .link-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
+
   .mobile-nav-link {
     padding: 10px 25px;
     margin: 5px 0;
@@ -610,10 +323,13 @@
     color: var(--text);
     transition: all 0.3s;
     position: relative;
+    
   }
+
   .mobile-nav-link.dropdown-showing {
     color: var(--primary);
   }
+
   .mobile-nav-link.viewing::after {
     content: "";
     position: absolute;
@@ -623,20 +339,31 @@
     bottom: 10px;
     left: 15%;
   }
+
   .mobile-nav-link.sub.viewing::after {
     bottom: 5px;
   }
+
   .mobile-nav-link.sub {
     padding: 5px 25px;
     font-size: 16px;
     font-family: font-regular;
+    max-width: 220px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
   }
+
   .main-link {
     width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
   }
+
   .dropdown-button {
     padding: 10px;
     position: absolute;
@@ -644,9 +371,11 @@
     top: 20%;
     transition: all 0.5s;
   }
+
   .dropdown-button.showing {
     transform: rotate(180deg);
   }
+
   .sub-links {
     display: flex;
     flex-direction: column;
