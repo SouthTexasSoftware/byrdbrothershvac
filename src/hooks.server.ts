@@ -21,12 +21,12 @@ export async function handle({ event, resolve }) {
   }
 
   // Block non-Texas traffic
-  if (country !== "US" || region !== "TX") {
-    throw error(
-      403,
-      "Not available in your Region. Please call (979) 480-8444.",
-    );
-  }
+  // if (country !== "US" || region !== "TX") {
+  //   throw error(
+  //     403,
+  //     "Not available in your Region. Please call (979) 480-8444.",
+  //   );
+  // }
 
   return resolve(event);
 }
