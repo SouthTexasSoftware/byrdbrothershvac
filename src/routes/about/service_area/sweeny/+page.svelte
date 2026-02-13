@@ -1,23 +1,30 @@
 <script lang="ts">
-  import CityPage from "$lib/components/CityPage.svelte";
-  import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
-
-  let screenWidth: number;
-
-  $: mobile = screenWidth > 600 ? false : true;
+  import type { PageData } from "./$types";
+  import type { BlogPost } from "$lib/stores";
+  import BlogPostComponent from "$lib/components/blog/BlogPostComponent.svelte";
+  import BlogSkeletonComponent from "$lib/components/blog/BlogSkeletonComponent.svelte";
+  export let data: PageData;
+  let blog: BlogPost = data.blogPost;
 </script>
 
-<svelte:window bind:innerWidth={screenWidth} />
 <svelte:head>
-  <title>Air Conditioning Services in Sweeny | Byrd Brothers HVAC</title>
-  <meta
-    name="description"
-    content="Let us welcome you to the Byrd Brothers Family! We install, repair, and service all varieties of HVAC equipment. Air Conditioning and Heating Services in Sweeny, TX."
-  />
+  <title>Air Conditioning Install in Sweeny, Texas | Byrd Brothers HVAC</title>
+  {#if blog.description}
+    <meta name="description" content={blog.description} />
+  {/if}
+  {#if blog.image}
+    <meta property="og:image" content={blog.image} />
+  {/if}
 </svelte:head>
-<ViewTitleBar title="AC Services in Sweeny, TX" />
-
-<CityPage/>
+<div class="content-width max-w-2xl">
+  {#if blog}
+    <BlogPostComponent blogPost={blog} embeddedPost={false} />
+  {:else}
+    <div class="md:w-[1200px] mt-6">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+</div>
 
 <style>
   /* UltraWide */

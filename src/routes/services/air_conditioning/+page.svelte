@@ -1,16 +1,32 @@
 <script lang="ts">
   import ViewTitleBar from "$lib/components/layout/ViewTitleBar.svelte";
   import { onMount } from "svelte";
-  import ACInstallation from "./ACInstallation.svelte";
-  import AcRepair from "./ACRepair.svelte";
-  import AcMaintenance from "./ACMaintenance.svelte";
-  import EmergencyHvac from "./EmergencyHVAC.svelte";
   import SectionContainer from "$lib/components/layout/SectionContainer.svelte";
   import RequestAQuote from "$lib/components/forms/RequestAQuote.svelte";
+  import { getBlogPostBySlug } from "$lib/components/blog/blogUtils";
+  import BlogPostComponent from "$lib/components/blog/BlogPostComponent.svelte";
+  import type { BlogPost } from "$lib/stores";
+  import BlogSkeletonComponent from "$lib/components/blog/BlogSkeletonComponent.svelte";
 
   let screenWidth: number;
 
-  $: mobile = screenWidth > 600 ? false : true;
+  let installationPost: BlogPost | null = null;
+  let repairPost: BlogPost | null = null;
+  let maintenancePost: BlogPost | null = null;
+  let emergencyPost: BlogPost | null = null;
+
+  onMount(async () => {
+    try {
+      installationPost = await getBlogPostBySlug(
+        "air-conditioning-installation",
+      );
+      repairPost = await getBlogPostBySlug("air-conditioning-repair");
+      maintenancePost = await getBlogPostBySlug("air-conditioning-maintenance");
+      emergencyPost = await getBlogPostBySlug("emergency-hvac");
+    } catch (err) {
+      console.error("Error fetching blog post:", err);
+    }
+  });
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
@@ -26,8 +42,8 @@
 
 <ViewTitleBar title="Air Conditioning" />
 
-<div class="main-page-container content-width">
-  <p class="main-page-content">
+<div class="content-width md:w-xl">
+  <p class=" max-w-3xl">
     Byrd Brothers HVAC specializes in Air Conditioning Services in Brazoria
     County and Matagorda County of South Texas, with close proximity to <a
       href="/about/service_area/sweeny"
@@ -45,9 +61,9 @@
     that treats our customers like one of our own.
     <a href="/contact/quote_form" class="paragraph-link">Request a quote!</a>
     <br /><br />
-    Scroll down or click below to learn more about our AC services:
   </p>
-  <div class="link-container">
+  <div class="flex flex-col items-center justify-center">
+    Scroll down or click below to learn more about our AC services:
     <a href="/services/air_conditioning/installation">AC Installation</a>
     <a href="/services/air_conditioning/repair">AC Repair</a>
     <a href="/services/air_conditioning/maintenance">AC Maintenance</a>
@@ -56,22 +72,48 @@
 </div>
 <div class="divider-bar content-width" />
 
-<ACInstallation {mobile} include_quote_form={false} />
-<div class="divider-bar content-width" />
-<AcRepair {mobile} include_quote_form={false} />
-<div class="divider-bar content-width" />
-<AcMaintenance {mobile} include_quote_form={false} />
-<div class="divider-bar content-width" />
-<EmergencyHvac {mobile} include_quote_form={false} />
-
-<div class="article-content content-width">
-  <SectionContainer
-    bannerContent="GET A QUOTE!"
-    bannerScreenSide="left"
-    bannerDescription="Free estimates for any size job."
-  >
-    <RequestAQuote />
-  </SectionContainer>
+<div class="content-width max-w-2xl">
+  {#if installationPost}
+    <BlogPostComponent blogPost={installationPost} embeddedPost={true} />
+  {:else}
+    <div class="md:w-[1200px]">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+  <div class="divider-bar content-width" />
+  {#if repairPost}
+    <BlogPostComponent blogPost={repairPost} embeddedPost={true} />
+  {:else}
+    <div class="md:w-[1200px]">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+  <div class="divider-bar content-width" />
+  {#if maintenancePost}
+    <BlogPostComponent blogPost={maintenancePost} embeddedPost={true} />
+  {:else}
+    <div class="md:w-[1200px]">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+  <div class="divider-bar content-width" />
+  {#if emergencyPost}
+    <BlogPostComponent blogPost={emergencyPost} embeddedPost={true} />
+  {:else}
+    <div class="md:w-[1200px]">
+      <BlogSkeletonComponent />
+    </div>
+  {/if}
+  <div class="divider-bar content-width" />
+  <div class="article-content mx-auto max-w-2xl">
+    <SectionContainer
+      bannerContent="GET A QUOTE!"
+      bannerScreenSide="left"
+      bannerDescription="Free estimates for any size job."
+    >
+      <RequestAQuote />
+    </SectionContainer>
+  </div>
 </div>
 
 <style>

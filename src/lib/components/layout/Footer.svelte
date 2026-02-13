@@ -33,6 +33,7 @@
         <a href="tel:+19794808444">(979) 480-8444</a>
       </div>
     </div>
+
     <div class="partners">
       <p class="label">Our Partners</p>
 
@@ -67,6 +68,7 @@
 
 <style>
   footer {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;

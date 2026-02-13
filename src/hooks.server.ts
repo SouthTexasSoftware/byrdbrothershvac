@@ -1,7 +1,11 @@
+import { dev } from "$app/environment";
 import { error, redirect } from "@sveltejs/kit";
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
+  if (dev) {
+    return resolve(event);
+  }
   const userAgent =
     event.request.headers.get("user-agent")?.toLowerCase() || "";
   const country = event.request.headers.get("x-vercel-ip-country");
@@ -18,7 +22,10 @@ export async function handle({ event, resolve }) {
 
   // Block non-Texas traffic
   if (country !== "US" || region !== "TX") {
-    throw error(403, "Not available in your Region. Please call (979) 480-8444.");
+    throw error(
+      403,
+      "Not available in your Region. Please call (979) 480-8444.",
+    );
   }
 
   return resolve(event);

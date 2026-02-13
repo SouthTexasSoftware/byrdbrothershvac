@@ -1,193 +1,141 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { fly } from "svelte/transition";
+  import type { BlogPost } from "$lib/stores";
 
-  let hoverState = {
-    home: false,
-    services: false,
-    products: false,
-    about: false,
-    air_conditioning: false,
-    insulation: false,
-    contact: false,
+  export let latestBlogs: BlogPost[] = [];
+
+  type NavItem = {
+    label: string;
+    href: string;
+    subItems?: { label: string; href: string }[];
+  };
+
+  let hoveredItem: string | null = null;
+  let leaveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  const handleMouseEnter = (item: string) => {
+    if (leaveTimeout) clearTimeout(leaveTimeout);
+    hoveredItem = item;
+  };
+
+  const handleMouseLeave = () => {
+    leaveTimeout = setTimeout(() => {
+      hoveredItem = null;
+    }, 200);
+  };
+
+  $: navItems = [
+    { label: "HOME", href: "/" },
+    {
+      label: "SERVICES",
+      href: "/services",
+      subItems: [
+        { label: "AIR CONDITIONING", href: "/services/air_conditioning" },
+        { label: "HEATING", href: "/services/heating" },
+        { label: "MAINTENANCE", href: "/services/maintenance_program" },
+        { label: "INSULATION", href: "/services/insulation" },
+        { label: "AIR QUALITY", href: "/services/air_quality" },
+      ],
+    },
+    {
+      label: "PRODUCTS",
+      href: "/products",
+      subItems: [
+        { label: "RUUD", href: "/products/ruud" },
+        { label: "MRCOOL", href: "/products/mrcool" },
+        { label: "GENERAC", href: "/products/generac" },
+        { label: "AIR SCRUBBER", href: "/products/air_scrubber" },
+        { label: "ATTIC TENT", href: "/products/attic_tent" },
+      ],
+    },
+    {
+      label: "FINANCING",
+      href: "/financing",
+    },
+    {
+      label: "BLOG",
+      href: "/blog",
+      subItems: latestBlogs.map((blog) => {
+        return {
+          label: blog.title.toUpperCase(),
+          href: `/blog/${blog.slug}`,
+        };
+      }),
+    },
+    {
+      label: "ABOUT",
+      href: "/about",
+      subItems: [
+        { label: "SERVICE AREA", href: "/about/service_area" },
+        { label: "MEET THE TEAM", href: "/about/meet_team" },
+        { label: "PARTNERS", href: "/about/partners" },
+      ],
+    },
+    {
+      label: "CONTACT US",
+      href: "/contact",
+      subItems: [
+        { label: "FRONT DESK", href: "/contact/front_desk" },
+        { label: "QUOTE FORM", href: "/contact/quote_form" },
+      ],
+    },
+  ] satisfies NavItem[];
+
+  const isActive = (href: string): boolean => {
+    if (href === "/") return $page.url.pathname === "/";
+    return $page.url.pathname.includes(href);
   };
 </script>
 
 <nav class="desktop-nav-container">
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.home = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.home = false), 200);
-    }}
-  >
-    <a
-      href="/"
-      class="desktop-nav-link"
-      class:highlight={hoverState.home}
-      class:viewing={$page.url.pathname == "/"}
+  {#each navItems as item}
+    <div
+      class="link-container"
+      on:mouseenter={() => handleMouseEnter(item.label)}
+      on:mouseleave={handleMouseLeave}
+      role="presentation"
     >
-      HOME
-    </a>
-  </div>
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.services = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.services = false), 200);
-    }}
-  >
-    <a
-      href="/services"
-      class="desktop-nav-link"
-      class:highlight={hoverState.services}
-      class:viewing={$page.url.pathname.includes("/services")}
-    >
-      SERVICES
-    </a>
-    {#if hoverState.services}
-      <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/services/air_conditioning" class="desktop-nav-link">
-          AIR CONDITIONING
-        </a>
-        <a href="/services/heating" class="desktop-nav-link"> HEATING </a>
-        <a href="/services/maintenance_program" class="desktop-nav-link">
-          MAINTENANCE
-        </a>
-        <a href="/services/insulation" class="desktop-nav-link"> INSULATION </a>
-        <a href="/services/air_quality" class="desktop-nav-link">
-          AIR QUALITY
-        </a>
-      </div>
-    {/if}
-  </div>
+      <a
+        href={item.href}
+        class="desktop-nav-link"
+        class:highlight={hoveredItem === item.label}
+        class:viewing={isActive(item.href)}
+        on:focus={() => handleMouseEnter(item.label)}
+        on:blur={handleMouseLeave}
+      >
+        {item.label}
+      </a>
 
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.products = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.products = false), 200);
-    }}
-  >
-    <a
-      href="/products"
-      class="desktop-nav-link"
-      class:highlight={hoverState.products}
-      class:viewing={$page.url.pathname.includes("/products")}
-    >
-      PRODUCTS
-    </a>
-    {#if hoverState.products}
-      <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/products/ruud" class="desktop-nav-link"> RUUD </a>
-        <a href="/products/mrcool" class="desktop-nav-link"> MRCOOL </a>
-        <a href="/products/generac" class="desktop-nav-link"> GENERAC </a>
-        <a href="/products/air_scrubber" class="desktop-nav-link">
-          AIR SCRUBBER
-        </a>
-        <a href="/products/attic_tent" class="desktop-nav-link"> ATTIC TENT </a>
-      </div>
-    {/if}
-  </div>
-
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.air_conditioning = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.air_conditioning = false), 200);
-    }}
-  >
-    <a
-      href="/services/air_conditioning"
-      class="desktop-nav-link"
-      class:viewing={$page.url.pathname.includes("/services/air_conditioning")}
-      class:highlight={hoverState.air_conditioning}>AIR CONDITIONING</a
-    >
-    {#if hoverState.air_conditioning}
-      <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a
-          href="/services/air_conditioning/installation"
-          class="desktop-nav-link"
-        >
-          AC INSTALLATION
-        </a>
-        <a href="/services/air_conditioning/repair" class="desktop-nav-link">
-          AC REPAIR
-        </a>
-        <a
-          href="/services/air_conditioning/maintenance"
-          class="desktop-nav-link"
-        >
-          AC MAINTENANCE
-        </a>
-        <a href="/services/air_conditioning/emergency" class="desktop-nav-link">
-          EMERGENCY HVAC
-        </a>
-      </div>
-    {/if}
-  </div>
-
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.about = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.about = false), 200);
-    }}
-  >
-    <a
-      href="/about"
-      class="desktop-nav-link"
-      class:highlight={hoverState.about}
-      class:viewing={$page.url.pathname.includes("/about")}>ABOUT</a
-    >
-    {#if hoverState.about}
-      <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/about/service_area" class="desktop-nav-link">
-          SERVICE AREA
-        </a>
-        <a href="/about/meet_team" class="desktop-nav-link"> MEET THE TEAM </a>
-        <a href="/about/partners" class="desktop-nav-link"> PARTNERS </a>
-        <!-- <a href="/about/financing" class="desktop-nav-link"> FINANCING </a> -->
-      </div>
-    {/if}
-  </div>
-
-  <div
-    class="link-container"
-    on:mouseenter={() => (hoverState.contact = true)}
-    on:mouseleave={() => {
-      setTimeout(() => (hoverState.contact = false), 200);
-    }}
-  >
-    <a
-      href="/contact"
-      class="desktop-nav-link"
-      class:highlight={hoverState.contact}
-      class:viewing={$page.url.pathname.includes("/contact")}>CONTACT US</a
-    >
-    {#if hoverState.contact}
-      <div class="sub-menu" transition:fly={{ y: -10 }}>
-        <a href="/contact/front_desk" class="desktop-nav-link"> FRONT DESK </a>
-        <a href="/contact/quote_form" class="desktop-nav-link"> QUOTE FORM </a>
-      </div>
-    {/if}
-  </div>
+      {#if item.subItems && hoveredItem === item.label}
+        <div class="sub-menu" transition:fly={{ y: -10, duration: 200 }}>
+          {#each item.subItems as subItem}
+            <a href={subItem.href} class="desktop-nav-link">
+              {subItem.label}
+            </a>
+          {/each}
+        </div>
+      {/if}
+    </div>
+  {/each}
 </nav>
 
 <style>
   .desktop-nav-container {
     display: flex;
-    align-items: space-evenly;
+    align-items: center;
+    gap: 5px;
   }
+
   .link-container {
     min-width: 100px;
-    margin: 0 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     position: relative;
   }
+
   .desktop-nav-link {
     font-family: font-semibold;
     text-align: center;
@@ -195,23 +143,29 @@
     margin-top: 6px;
     margin-bottom: -3px;
     line-height: 278%;
-    transition: 0.3s all ease;
+    transition: all 0.3s ease;
     border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent; /* Add this */
     font-size: 16px;
     padding: 0 25px;
     white-space: nowrap;
   }
+
   .desktop-nav-link:hover {
     border-top: 3px solid #ff7817;
+    border-bottom: 3px solid #ff7817;
   }
+
   .desktop-nav-link.highlight {
     color: var(--primary-dark);
   }
+
   .desktop-nav-link.viewing {
     text-decoration: underline;
     text-decoration-color: #ff7817;
     text-decoration-thickness: 1px;
   }
+
   .sub-menu {
     min-width: 100%;
     position: absolute;
@@ -226,5 +180,19 @@
     border-bottom-right-radius: 5px;
     display: flex;
     flex-direction: column;
+  }
+
+  .sub-menu .desktop-nav-link {
+    max-width: 220px;
+    white-space: normal; /* Override the nowrap */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.4; /* Better line height for wrapped text */
+    padding: 10px 20px;
   }
 </style>

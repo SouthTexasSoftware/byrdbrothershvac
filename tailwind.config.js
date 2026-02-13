@@ -11,6 +11,8 @@ export default {
         byrdbrothershvac: {
           primary: "#fe7615",
 
+          "primary-dark": "#cf5e0e",
+
           secondary: "#1c79ea",
 
           accent: "#f7ddbb",

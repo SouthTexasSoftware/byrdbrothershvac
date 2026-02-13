@@ -7,6 +7,10 @@
   import { connectToFirebase, connectAnalytics } from "$lib/helpers";
   import { dev } from "$app/environment";
   import { page } from "$app/stores";
+  import AlertToast from "$lib/components/AlertToast.svelte";
+  import type { LayoutData } from "./$types";
+
+  export let data: LayoutData;
 
   // connect to firebase to ensure we can take form submissions.
   onMount(() => {
@@ -35,11 +39,12 @@
   });
 </script>
 
-<Header />
+<Header latestBlogs={data.latestBlogs} />
 <section id="page-content">
   <slot />
 </section>
 <Footer />
+<AlertToast />
 
 <style>
   #page-content {

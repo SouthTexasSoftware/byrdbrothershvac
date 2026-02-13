@@ -7,40 +7,28 @@
   export let id: string = "";
 </script>
 
-<div class="section-container" {id}>
-  <SectionBanner
-    content={bannerContent}
-    mobileScreenSide={bannerScreenSide}
-    description={bannerDescription}
-  />
-  <slot />
-</div>
+{#if bannerScreenSide !== "full"}
+  <div
+    class="section-container md:basis-1/2 md:mx-auto w-[100%] leading-7"
+    {id}
+  >
+    <SectionBanner
+      content={bannerContent}
+      mobileScreenSide={bannerScreenSide}
+      description={bannerDescription}
+    />
+    <slot />
+  </div>
+{:else}
+  <div class="section-container basis-full leading-7" {id}>
+    <SectionBanner
+      content={bannerContent}
+      mobileScreenSide={bannerScreenSide}
+      description={bannerDescription}
+    />
+    <slot />
+  </div>
+{/if}
 
 <style>
-  .section-container {
-    display: flex;
-    flex-direction: column;
-    width: 30vw;
-    max-width: 600px;
-    min-width: 400px;
-    margin-bottom: 25px;
-  }
-
-  /* UltraWide */
-  @media only screen and (min-width: 1900px) {
-  }
-  /* Tablet */
-  @media only screen and (max-width: 1200px) and (min-width: 600px) {
-  }
-  /* Mobile */
-  @media only screen and (max-width: 850px) {
-    .section-container {
-      width: auto;
-      min-width: 0px;
-      margin-top: 25px;
-    }
-  }
-  /* Very Small / Zoomed in Screens */
-  @media only screen and (max-width: 400px) {
-  }
 </style>

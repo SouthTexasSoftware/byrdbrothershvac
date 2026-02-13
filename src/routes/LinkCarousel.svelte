@@ -1,7 +1,50 @@
 <script lang="ts">
   import Carousel from "svelte-carousel";
 
-  const getAssetSrc = (name: string) => {
+  type CarouselItem = {
+    href: string;
+    imageName: string;
+    alt: string;
+    padding?: string; // Optional padding override
+  };
+
+  const carouselItems: CarouselItem[] = [
+    {
+      href: "/financing",
+      imageName: "synchrony-financing.png",
+      alt: "Financing Available",
+      padding: "25px 0px", // Custom padding
+    },
+    {
+      href: "/services/maintenance_program",
+      imageName: "annual-maintenance-logo.png",
+      alt: "Annual Maintenance Program",
+    },
+    {
+      href: "/products/ruud",
+      imageName: "ruud-pro-partner.png",
+      alt: "RUUD Pro Partner",
+    },
+    {
+      href: "/products/generac",
+      imageName: "generac-authorized-dealer-logo-nobg.png",
+      alt: "Generac Sales & Service",
+      padding: "20px 0px",
+    },
+    {
+      href: "/products/mrcool",
+      imageName: "mrcool-logo.png",
+      alt: "MRCOOL AC",
+      padding: "40px 0px",
+    },
+    {
+      href: "/products/air_scrubber",
+      imageName: "aerus-logo.png",
+      alt: "Aerus Air Scrubber",
+    },
+  ];
+
+  const getAssetSrc = (name: string): string => {
     const path = `/src/lib/photos/${name}`;
     const modules = import.meta.glob("/src/lib/photos/*", { eager: true });
     const mod = modules[path] as { default: string };
@@ -11,37 +54,16 @@
 
 <div class="carousel-wrapper">
   <Carousel autoplay>
-    <a class="carousel-card" href="/services/maintenance_program">
-      <img
-        src={getAssetSrc("annual-maintenance-logo.png")}
-        alt="Annual Maintenance Program"
-        class="ghost"
-      />
-    </a>
-    <a class="carousel-card" href="/about/partners#ruud">
-      <img
-        src={getAssetSrc("ruud-pro-partner.png")}
-        alt="RUUD Pro Partner"
-        class="ghost"
-      />
-    </a>
-    <a class="carousel-card" href="/about/partners#generac">
-      <img
-        src={getAssetSrc("generac-authorized-dealer-logo-nobg.png")}
-        alt="Generac Sales & Service"
-        class="ghost"
-      />
-    </a>
-    <a class="carousel-card" href="/about/partners#mrcool">
-      <img src={getAssetSrc("mrcool-logo.png")} alt="MRCOOL AC" class="ghost" />
-    </a>
-    <a class="carousel-card" href="/products/air_scrubber">
-      <img
-        src={getAssetSrc("aerus-logo.png")}
-        alt="Aerus Air Scrubber"
-        class="ghost"
-      />
-    </a>
+    {#each carouselItems as item}
+      <a class="carousel-card" href={item.href}>
+        <img
+          src={getAssetSrc(item.imageName)}
+          alt={item.alt}
+          class="ghost"
+          style={item.padding ? `padding: ${item.padding}` : ""}
+        />
+      </a>
+    {/each}
   </Carousel>
   <h3 class="carousel-label">Explore our Partners and Products!</h3>
 </div>
@@ -53,24 +75,28 @@
     left: 5vw;
     bottom: 50px;
   }
+
   .carousel-label {
     color: white;
     font-family: font-semibold;
     text-align: center;
   }
+
   .carousel-card {
-    height: 150px !important;
+    height: 150px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     overflow: hidden;
-    height: auto;
   }
+
   .ghost {
     background-color: rgba(255, 255, 255, 0.522);
-    padding: 0 20px;
+    padding: 0 20px; /* Default padding */
     border-radius: 8px;
   }
+
+  /* Tablet */
   @media only screen and (max-width: 1200px) and (min-width: 600px) {
     .carousel-wrapper {
       width: 300px;
@@ -78,10 +104,12 @@
       right: 5vw;
       bottom: 125px;
     }
+
     .carousel-card {
-      height: 125px !important;
+      height: 125px;
     }
   }
+
   /* Mobile */
   @media only screen and (max-width: 600px) {
     .carousel-wrapper {
@@ -90,9 +118,11 @@
       right: 10vw;
       bottom: 90px;
     }
+
     .carousel-card {
-      height: 20vw !important;
+      height: 20vw;
     }
+
     .carousel-label {
       display: none;
     }
