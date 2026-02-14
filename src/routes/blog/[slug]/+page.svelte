@@ -3,19 +3,18 @@
   import type { BlogPost } from "$lib/stores";
   import BlogPostComponent from "$lib/components/blog/BlogPostComponent.svelte";
   import { goto } from "$app/navigation";
-  import BlogSkeletonComponent from "$lib/components/blog/BlogSkeletonComponent.svelte";
+  import { page } from "$app/stores";
   export let data: PageData;
-  let blog: BlogPost = data.blogPost;
 </script>
 
 <svelte:head>
-  {#if blog}
-    <title>Blog Post - {blog.title}</title>
-    {#if blog.description}
-      <meta name="description" content={blog.description} />
+  {#if data.blogPost}
+    <title>Blog Post - {data.blogPost.title}</title>
+    {#if data.blogPost.description}
+      <meta name="description" content={data.blogPost.description} />
     {/if}
-    {#if blog.image}
-      <meta property="og:image" content={blog.image} />
+    {#if data.blogPost.image}
+      <meta property="og:image" content={data.blogPost.image} />
     {/if}
   {:else}
     <title>Blog Post - Our Blog</title>
@@ -31,18 +30,20 @@
     >
   </div>
   <div class="content-width max-w-2xl">
-    {#if !blog}
-      <div class="text-center py-20">
-        <h1 class="text-4xl font-bold mb-4">Post Not Found</h1>
-        <p class="text-xl text-gray-600 mb-8">
-          Sorry, we couldn't find that blog post.
-        </p>
-        <button class="btn btn-primary" on:click={() => goto("/blog")}>
-          Back to Blog
-        </button>
-      </div>
-    {:else}
-      <BlogPostComponent blogPost={blog} embeddedPost={false} />
-    {/if}
+    {#key data.blogPost?.id}
+      {#if !data.blogPost}
+        <div class="text-center py-20">
+          <h1 class="text-4xl font-bold mb-4">Post Not Found</h1>
+          <p class="text-xl text-gray-600 mb-8">
+            Sorry, we couldn't find that blog post.
+          </p>
+          <button class="btn btn-primary" on:click={() => goto("/blog")}>
+            Back to Blog
+          </button>
+        </div>
+      {:else}
+        <BlogPostComponent blogPost={data.blogPost} embeddedPost={false} />
+      {/if}
+    {/key}
   </div>
 </div>
