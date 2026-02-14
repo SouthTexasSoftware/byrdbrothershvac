@@ -126,11 +126,22 @@
             </div>
           </SectionContainer>
         {:else if block.type === "image"}
-          <PhotoSingleBlock
-            photoSrc={block.src}
-            photoCaption={block.caption}
-            backgroundSide={block.position}
-          />
+          <!-- Handle image links and normal images -->
+          {#if block.link}
+            <a href={block.link} target="_blank">
+              <PhotoSingleBlock
+                photoSrc={block.src}
+                photoCaption={block.caption}
+                backgroundSide={block.position}
+              />
+            </a>
+          {:else}
+            <PhotoSingleBlock
+              photoSrc={block.src}
+              photoCaption={block.caption}
+              backgroundSide={block.position}
+            />
+          {/if}
         {:else if block.type === "sectionBreak"}
           <SectionBreak />
         {/if}
