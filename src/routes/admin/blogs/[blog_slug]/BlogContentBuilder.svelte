@@ -218,47 +218,126 @@ When considering installing a new air conditioner, it's important to assess your
           <ChevronsUpDown class="w-6 h-6 ml-auto" />
         </button>
         {#if contentExplainedOpen}
-          <div class=" text-lg px-4 mb-6" transition:slide={{ duration: 300 }}>
-            On a new blog post, this section will be pre-populated with an
-            example layout to help understand how the editor gets rendered.
-            <br /> <br />
-            Posts are structured as a series of 'blocks'. Blocks are defined by a
-            Heading (larger text), Photos, or a Divider in the editor. There are
-            two blocks per row in desktop view, and one block per row in mobile/phone
-            view. For example - A Heading with text below it and then an inserted
-            photo will make up a full row in Desktop mode. This is the typical layout.
-            <br /> <br />
-            <strong class="text-lg font-semibold">NOTE: </strong> Mobile view of
-            the blog posts are pre-processed to organize the 'blocks' - follow
-            the patterns of the examples (i.e. two consecutive pictures at a
-            time) and mobile posts will be pre-processed correctly. I HIGHLY
-            recommend previewing the post on your phone before publishing.
-            Mobile website visitors make up >50% of your views.
-            <br /> <br />
-            <strong class="text-lg font-semibold">CONTENT STYLING </strong>
+          <div class="text-lg px-4 mb-6" transition:slide={{ duration: 300 }}>
+            This post is pre-filled with an example layout so you can see how
+            the editor renders content on the website.
+            <br /><br />
+
+            <strong class="text-lg font-semibold"
+              >HOW POSTS ARE STRUCTURED</strong
+            ><br />
+            Every blog post is built using <em>blocks</em>. A block can be:
             <ul class="list-disc list-inside text-lg [&_li]:text-lg">
-              <li>
-                Include a [left] or [right] tag to align headings and photos.
-                This is essential for mobile/phone styling.
-              </li>
-              <li>
-                Include a [full] tag to a heading to make it full width. The
-                heading can be empty to not render the orange banner.
-              </li>
-              <li>
-                Use the block editor '+' to add headings, lists, and images.
-              </li>
-              <li>
-                BLANK Headings will convert a text section to it's own block.
-              </li>
-              <li>
-                Highlight text and use the font toolbar to <strong>bold</strong>
-                or <em>italicize</em> text.
-              </li>
+              <li>A Heading (large title text)</li>
+              <li>Text content under a heading</li>
+              <li>An Image</li>
+              <li>A Divider (horizontal rule)</li>
             </ul>
             <br />
-            When you're ready, click "Update Preview" below the editor and see what
-            the actual blog post will look like to the public.
+
+            On desktop, two blocks are displayed per row.<br />
+            On mobile, blocks stack into a single column.
+            <br /><br />
+
+            <strong>Example Layout (Desktop Flow):</strong><br />
+            Blocks fill from left to right and wrap automatically.
+            <br /><br />
+            If you create:
+            <br />
+            Heading + Text<br />
+            Image<br />
+            Image
+            <br /><br />
+            The second image may wrap into the left column depending on block order.
+            The layout is based on flow — not fixed rows.
+            <br /><br />
+
+            <strong class="text-lg font-semibold"
+              >IMPORTANT — MOBILE VIEW</strong
+            ><br />
+            On mobile, blocks are automatically reorganized to create a clean alternating
+            pattern (text → image → text → image).
+            <br /><br />
+            For example:
+            <br />
+            If your desktop layout is:<br />
+            Text Block<br />
+            Image Block<br />
+            Image Block<br />
+            Text Block
+            <br /><br />
+            Mobile may rearrange this to:
+            <br />
+            Text<br />
+            Image<br />
+            Text<br />
+            Image
+            <br /><br />
+            Because of this:
+            <ul class="list-disc list-inside text-lg [&_li]:text-lg">
+              <li>Block order matters</li>
+              <li>Follow the example structure provided in new posts</li>
+              <li>Always preview on your phone before publishing</li>
+            </ul>
+            Over 50% of visitors view posts on mobile.
+            <br /><br />
+            <strong class="text-lg font-semibold">CONTENT STYLING GUIDE</strong>
+            <ul class="list-disc list-inside text-lg [&_li]:text-lg">
+              <li>
+                Add alignment tags at the <strong>end</strong> of headings or
+                photo captions to adjust their styling/position:
+                <br />
+                <ul class="list-decimal list-inside ml-4">
+                  <li>
+                    Alignment Options - <strong
+                      >[left] [right] [full] [none]
+                    </strong>or just don't add anything
+                  </li>
+                  <li>
+                    Example: <strong>House Remodel [left]</strong> This creates a
+                    left-aligned heading in an orange banner.
+                  </li>
+                  <li>
+                    Example: <strong>[right]</strong> This creates a right-aligned
+                    section with no orange banner or text.
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                To make an image clickable, add a link at the end of the
+                caption:
+                <br />
+                <ul class="list-decimal list-inside ml-4">
+                  <li>
+                    Example:<strong
+                      >Ruud Air Conditioner [left] (https://ruud.com)</strong
+                    > - This wraps the entire image in a clickable link.
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                As you move your cursor, a shadow box on the left will appear.
+                Use the "+" button to add headings, images, lists, and dividers.
+              </li>
+
+              <li>
+                Highlight text with your cursor and use the popup to make text <strong
+                  >bold</strong
+                >
+                or <em>italic</em>.
+              </li>
+            </ul>
+
+            <br />
+            <button
+              class="collapse-title font-bold text-xl w-full text-left flex justify-between items-center px-4"
+              on:click={() => (contentExplainedOpen = !contentExplainedOpen)}
+            >
+              Click here to close this section.
+              <ChevronsUpDown class="w-6 h-6 ml-auto" />
+            </button>
           </div>
         {/if}
       </div>

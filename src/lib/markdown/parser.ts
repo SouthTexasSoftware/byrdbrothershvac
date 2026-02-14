@@ -13,7 +13,8 @@ export type BlogBlock =
       src: string;
       caption: string;
       position: 'left' | 'right' | 'none' | 'full';
-      isSecondConsecutive?: boolean; // New flag
+      link?: string; // NEW
+      isSecondConsecutive?: boolean;
     }
   | {
       type: 'sectionBreak';
@@ -30,6 +31,19 @@ function extractPosition(text: string): { text: string; position: Position } {
     };
   }
   return { text, position: 'none' };
+}
+
+function extractTrailingLink(text: string): { text: string; link?: string } {
+  const linkMatch = text.match(/\s*\((https?:\/\/[^\s]+)\)\s*$/i);
+  
+  if (linkMatch) {
+    return {
+      text: text.replace(/\s*\((https?:\/\/[^\s]+)\)\s*$/i, '').trim(),
+      link: linkMatch[1],
+    };
+  }
+
+  return { text };
 }
 
 export function parseMarkdown(markdown?: string): BlogBlock[] {
@@ -79,14 +93,20 @@ export function parseMarkdown(markdown?: string): BlogBlock[] {
       if (imageToken && token.tokens.length === 1) {
         flushSection();
         
-        const caption = imageToken.title ?? imageToken.text ?? '';
-        const { text: cleanCaption, position } = extractPosition(caption);
-        
+        const rawCaption = imageToken.title ?? imageToken.text ?? '';
+
+        // 1️⃣ Extract trailing link first
+        const { text: withoutLink, link } = extractTrailingLink(rawCaption);
+
+        // 2️⃣ Then extract position
+        const { text: cleanCaption, position } = extractPosition(withoutLink);
+
         blocks.push({
           type: 'image',
           src: imageToken.href,
           caption: cleanCaption,
           position,
+          link,
         });
         continue;
       }
