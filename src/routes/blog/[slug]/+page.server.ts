@@ -3,7 +3,9 @@ import type { BlogPost } from '$lib/stores.js';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
+
   const snapshot = await db
+  
     .collection('blogs')
     .where('slug', '==', params.slug)
     .limit(1)
@@ -15,7 +17,8 @@ export async function load({ params }) {
 
   const doc = snapshot.docs[0];
   const post = doc.data() as BlogPost;
-
+ 
+  
   return {
     blogPost: {
       ...post

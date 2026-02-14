@@ -1,6 +1,6 @@
 <script lang="ts">
   export let photoFilename: string | undefined = undefined;
-  export let backgroundSide: "left" | "right" | "none" = "none";
+  export let backgroundSide: "left" | "right" | "none" | "full" = "none";
   export let photoCaption: string;
   export let photoSrc: string | undefined = undefined;
 

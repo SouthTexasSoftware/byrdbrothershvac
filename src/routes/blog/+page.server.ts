@@ -7,6 +7,7 @@ const pageSize = 6;
 export async function load() {
   const snapshot = await db
     .collection('blogs')
+    .where('status', '==', 'public')
     .orderBy('lastUpdated', 'desc')
     .limit(pageSize)
     .get();
