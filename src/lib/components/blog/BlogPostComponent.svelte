@@ -55,6 +55,7 @@
   let displayBlocks: BlogBlock[] = [];
   $: {
     displayBlocks = isMobile ? reorderForMobile(blocks) : blocks;
+    console.log(displayBlocks);
   }
 
   // Increment views client-side, once per session, only for public full posts

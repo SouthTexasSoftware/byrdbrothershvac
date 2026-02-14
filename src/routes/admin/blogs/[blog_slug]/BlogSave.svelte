@@ -76,25 +76,6 @@
         }
         addToast("Success", "Blog post saved!", "success");
 
-        // NEW: Ping Google and Bing if the post is public
-        if (blog.status === "public" && !dev) {
-          const sitemapUrl = `${location.origin}/sitemap.xml`; // Dynamically uses current domain
-
-          // Ping Google
-          fetch(
-            `https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`,
-          )
-            .then(() => console.log("Google sitemap ping sent"))
-            .catch((err) => console.error("Google ping failed:", err));
-
-          // Ping Bing
-          fetch(
-            `https://www.bing.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`,
-          )
-            .then(() => console.log("Bing sitemap ping sent"))
-            .catch((err) => console.error("Bing ping failed:", err));
-        }
-
         // Existing image purge code continues here...
         if (blog.id && fb.app) {
           const completer = addProcessingToast("Cleaning up unused images...");

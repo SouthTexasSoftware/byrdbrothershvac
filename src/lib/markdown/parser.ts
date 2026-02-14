@@ -50,7 +50,7 @@ export function parseMarkdown(markdown?: string): BlogBlock[] {
   if (!markdown || typeof markdown !== 'string') {
     return [];
   }
-
+  
   const tokens = marked.lexer(markdown);
   const blocks: BlogBlock[] = [];
   let currentSection: BlogBlock & { type: 'section' } | null = null;
@@ -111,19 +111,38 @@ export function parseMarkdown(markdown?: string): BlogBlock[] {
         continue;
       }
       
-      // Regular paragraph with content
       if (currentSection) {
-        currentSection.content += marked.parser([token]);
-      } else {
-        // Paragraph without a section - create an untitled section
-        currentSection = {
-          type: 'section',
-          title: '',
-          position: 'none',
-          content: marked.parser([token]),
-        };
-      }
-      continue;
+
+          let html = marked.parser([token]);
+
+          html = html.replace(/<code>([\s\S]*?)<\/code>/g, (_, content) => {
+          const decoded = content
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&amp;/g, '&');
+
+          return decoded;
+        });
+
+          currentSection.content += html;
+        } else {
+          // Paragraph without a section - create an untitled section
+          let html = marked.parser([token]);
+
+          html = html.replace(/<code>([\s\S]*?)<\/code>/g, (_, content) => {
+            return content;
+          });
+
+          currentSection = {
+            type: 'section',
+            title: '',
+            position: 'none',
+            content: html,
+          };
+        }
+        continue;
     }
 
     // Handle lists

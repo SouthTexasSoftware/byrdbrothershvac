@@ -188,6 +188,7 @@ When considering installing a new air conditioner, it's important to assess your
       const listener = ctx.get(listenerCtx);
 
       listener.markdownUpdated((_, markdown) => {
+        console.log("Markdown updated:", markdown);
         blogBuilderStore.update((state) => ({
           ...state,
           content: markdown,
