@@ -11,9 +11,9 @@
   const carouselItems: CarouselItem[] = [
     {
       href: "/financing",
-      imageName: "synchrony-financing.png",
+      imageName: "hearth-logo-with-financing.png",
       alt: "Financing Available",
-      padding: "25px 0px", // Custom padding
+      padding: "0px 0px", // Custom padding
     },
     {
       href: "/services/maintenance_program",
